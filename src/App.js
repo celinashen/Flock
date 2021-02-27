@@ -3,18 +3,25 @@ import logo from './logo.svg';
 import './App.css';
 
 const Header = () => {
-
+  return(
     <div>
         Hello
     </div>
-
+  )
 }
+
+
+
+
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
+          <Header></Header>
+
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
