@@ -4,7 +4,6 @@ import HeaderBar from './MenuBar';
 import styled from 'styled-components';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import TitleBar from './TitleBar';
 
 const THEME = createMuiTheme({
   typography: {
@@ -18,17 +17,26 @@ const THEME = createMuiTheme({
   }
 });
 
+/**
+const mainPageBox = styled.div`
+  height: 200px;
+  border: 5px black;
+`;
+
+const Content = styled.p`
+  font-size: 30px;
+  text-align: center;
+`;*/
 
 
-const App=()=> {
+const titleBar=()=> {
   return (
     <ThemeProvider theme={THEME}>
-        <div className="App">
-          <HeaderBar/>
-          <TitleBar/>
-        </div>
+          <Typography variant="h1" color="inherit">
+            Hi Celina, your bills are
+          </Typography>
     </ThemeProvider>
   );
 }
 
-export default App;
+export default titleBar;
