@@ -4,28 +4,26 @@ import HeaderBar from './MenuBar';
 import styled from 'styled-components';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import TitleBar from './TitleBar';
+import TitleIntro from './TitleIntro';
+import FlockList from './FlocksList';
 
-const THEME = createMuiTheme({
-  typography: {
-    fontFamily: [
-//      'GoogleSans',
-      'Times New Roman',
-//      '"Helvetica Neue"',
-//      'Arial',
-//      'sans-serif'
-    ].join(','),
-  }
-});
+// const THEME = createMuiTheme({
+//   typography: {
+//     fontFamily: [
+//       'Poppins',
+//     ].join(','),
+//   }
+// });
 
 
 
 const App=()=> {
   return (
-    <ThemeProvider theme={THEME}>
+    <ThemeProvider>
         <div className="App">
           <HeaderBar/>
-          <TitleBar/>
+          <TitleIntro/>
+          <FlockList/>
         </div>
     </ThemeProvider>
   );

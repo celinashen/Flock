@@ -17,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
   },
   bar: {
     background: "#ADD7AD",
+  },
+  typography: {
+    "fontFamily": "Poppins",
+    "fontSize": 20
   }
 }));
 
@@ -27,12 +31,15 @@ function HeaderBar() {
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
         <Toolbar variant="dense">
+
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit">
+
+          <Typography variant="h6" color="inherit" className={classes.typography}>
             Flock
           </Typography>
+          
         </Toolbar>
       </AppBar>
     </div>
