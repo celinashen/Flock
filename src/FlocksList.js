@@ -11,8 +11,8 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   large: {
-    width: theme.spacing(15),
-    height: theme.spacing(15),
+    width: theme.spacing(12),
+    height: theme.spacing(12),
   },
   typography: {
     "fontFamily": "Poppins",
@@ -29,7 +29,7 @@ const FlockIcon=()=> {
   const classes = useStyles();
   return (
       <Box>
-        <Avatar alt="hello" src="./testimage.jpg" variant="circle" className={classes.large}></Avatar>
+        <Avatar alt="hello" src="./images/surprisepika.jpg" variant="circle" className={classes.large}>hello</Avatar>
       </Box>
   );
 }
@@ -44,17 +44,20 @@ const FlockList=()=>{
   const classes = useStyles();
   return(
     <div className={classes.flockBox}> 
-      <Grid container spacing={3} direction  = "row" alignItems="center" justify="flex-start">
-        <Grid item xs = {1.3}>
-          <FlockIcon/>
+      <Box ml={13} mt={6}> 
+        <Grid container spacing={3} direction  = "row" alignItems="center" justify="flex-start">
+            <Grid item xs = {1.6} m={3}>
+                <FlockIcon/>
+            </Grid>
+            <Grid item xs = {1.6}>
+                <FlockIcon/>
+            </Grid>
+            <Grid item xs = {1.6}>
+                <FlockIcon/>
+            </Grid>
         </Grid>
-        <Grid item xs = {1.3}>
-          <FlockIcon/>
-        </Grid>
-        <Grid item xs = {1.3}>
-          <FlockIcon/>
-        </Grid>
-      </Grid>
+      </Box>
+      
     </div>
   )
 }
