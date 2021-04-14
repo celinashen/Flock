@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
   },
   typography: {
     "fontFamily": "Poppins",
-    "fontSize": 20
+    "fontSize": 40,
+    "color": "#979B82"
   },
   flockBox: {
     //padding: theme.spacing(2),
@@ -44,9 +45,20 @@ const FlockList=()=>{
   const classes = useStyles();
   return(
     <div className={classes.flockBox}> 
-      <Box ml={13} mt={6}> 
+        <Box pl={15} pt={5}>
+            <Typography className={classes.typography} align = "left" variant="h1" color="inherit" style={{fontWeight: 500}}>
+                flock's you're a part of
+            </Typography>
+        </Box>
+      <Box ml={14} mt={3}> 
         <Grid container spacing={3} direction  = "row" alignItems="center" justify="flex-start">
             <Grid item xs = {1.6} m={3}>
+                <FlockIcon/>
+            </Grid>
+            <Grid item xs = {1.6}>
+                <FlockIcon/>
+            </Grid>
+            <Grid item xs = {1.6}>
                 <FlockIcon/>
             </Grid>
             <Grid item xs = {1.6}>

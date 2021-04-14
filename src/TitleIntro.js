@@ -17,7 +17,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const UseStyles = makeStyles((theme) => ({
   typography: {
     "fontFamily": "Poppins",
-    "fontSize": 80
+    "fontSize": 80,
+    "color": "#ADD7AD"
   }
 }));
 
