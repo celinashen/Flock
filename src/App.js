@@ -6,6 +6,7 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import TitleIntro from './TitleIntro';
 import FlockList from './FlocksList';
+import OutstandingBox from './OustandingBox';
 
 // const THEME = createMuiTheme({
 //   typography: {
@@ -24,6 +25,7 @@ const App=()=> {
           <HeaderBar/>
           <TitleIntro/>
           <FlockList/>
+          <OutstandingBox/>
         </div>
     </ThemeProvider>
   );
