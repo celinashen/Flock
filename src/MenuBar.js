@@ -5,8 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+//import createMuiTheme from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,34 +17,29 @@ const useStyles = makeStyles((theme) => ({
   },
   bar: {
     background: "#ADD7AD",
+  },
+  typography: {
+    "fontFamily": "Poppins",
+    "fontSize": 20
   }
 }));
 
-const theme = createMuiTheme({
-  typography: {
-    fontFamily: [
-      'Nunito',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif'
-    ].join(','),
-  }
-});
 
 function HeaderBar() {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
         <Toolbar variant="dense">
+
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit">
+
+          <Typography variant="h6" color="inherit" className={classes.typography}>
             Flock
           </Typography>
+          
         </Toolbar>
       </AppBar>
     </div>

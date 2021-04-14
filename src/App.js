@@ -1,40 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import HeaderBar from './Header';
+import HeaderBar from './MenuBar';
+import styled from 'styled-components';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import TitleIntro from './TitleIntro';
+import FlockList from './FlocksList';
 
-const Header = () => {
+// const THEME = createMuiTheme({
+//   typography: {
+//     fontFamily: [
+//       'Poppins',
+//     ].join(','),
+//   }
+// });
 
-  return(
-    
-    <div>
-       <HeaderBar/>
-    </div>
-  )
-}
+
 
 const App=()=> {
   return (
-    <div className="App">
-      <HeaderBar/>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      
-    </div>
+    <ThemeProvider>
+        <div className="App">
+          <HeaderBar/>
+          <TitleIntro/>
+          <FlockList/>
+        </div>
+    </ThemeProvider>
   );
-  
 }
 
 export default App;
