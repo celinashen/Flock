@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import HeaderBar from './Header';
 
+
+
 const Header = () => {
 
   return(
@@ -31,7 +33,6 @@ const App=()=> {
           Learn React
         </a>
       </header>
-      
     </div>
   );
   
