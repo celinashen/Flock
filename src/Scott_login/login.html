@@ -1,16 +1,43 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
-        <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
-    </head>
-    <body>
+<head>
+  <title>Firebase Login</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-        <h1>My First Heading</h1>
+  <div id="login_div" class="main-div">
+    <h3>Firebase Web login Example</h3>
+    <input type="email" placeholder="Email..." id="email_field" />
+    <input type="password" placeholder="Password..." id="password_field" />
 
-        <p>My first paragraph.</p>
+    <button onclick="login()">Login to Account</button>
+  </div>
 
-    </body>
+  <div id="user_div" class="loggedin-div">
+    <h3>Welcome User</h3>
+    <p id="user_para">Welcome to Firebase web login Example. You're currently logged in.</p>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyACZZ4ElGSF4Xqki0bMzUziBs-h6AJuEz0",
+      authDomain: "flock-d6011.firebaseapp.com",
+      databaseURL: "https://flock-d6011-default-rtdb.firebaseio.com",
+      projectId: "flock-d6011",
+      storageBucket: "flock-d6011.appspot.com",
+      messagingSenderId: "1079036772812",
+      appId: "1:1079036772812:web:d84ac991e3acd4ee6b1d69",
+      measurementId: "G-YQ3B44G8B4"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="login.js"></script>
+
+</body>
 </html>
-
-
