@@ -12,84 +12,93 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import { palette } from '@material-ui/system';
-import { CallMissedSharp } from '@material-ui/icons';
+import { CallMissedSharp, CheckBoxOutlineBlankSharp } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
-  large: {
-    width: theme.spacing(12),
-    height: theme.spacing(12),
-  },
   typography: {
     "fontFamily": "Poppins",
     "fontSize": 20,
     "color": "#979B82"
   },
-  boxColor:{
-    "background-color": "#769E76"
+  cardGrid:{
+    minWidth:300
+  },
+  outstandingBoxContainer:{
+    backgroundColor: "#769E76",
+    // paddingLeft: '20',
+    // paddingRight: '20',
+    // paddingTop: '20',
+    // paddingBottom: '20',
+   // padding: theme.spacing(2),
+    minWidth: 330,
+
+    marginLeft: 120,
+    marginTop: 50
   },
   card:{
-    minWidth: 275,
-    padding: theme.spacing(2),
+    //minWidth: 275,
+    padding: theme.spacing(1.5),
     borderRadius: 10
+  },
+  bigCardsList:{
+    flexDirection: "row"
   }
 }));
 
 const ListItem=()=> {
   const classes = useStyles();
   return (
-
-    <React.Fragment>
-        <Grid item xs={4}>
-          <Card className = {classes.card}>
-            <Typography className = {classes.typography} style={{fontWeight: 500}}>
-              Flock: Japan
-            </Typography>
-            <Typography className = {classes.typography} style={{fontWeight: 500}}>
-              $20 from Jess
-            </Typography>
-          </Card>
-        </Grid>
-        <Grid item xs={4}>
-          <Card className = {classes.card}>
-            <Typography className = {classes.typography} style={{fontWeight: 500}}>
-              Flock: Japan
-            </Typography>
-            <Typography className = {classes.typography} style={{fontWeight: 500}}>
-              $20 from Jess
-            </Typography>
-          </Card>
-        </Grid>
-        <Grid item xs={4}>
-          <Card className = {classes.card}>
-            <Typography className = {classes.typography} style={{fontWeight: 500}}>
-              Flock: Japan
-            </Typography>
-            <Typography className = {classes.typography} style={{fontWeight: 500}}>
-              $20 from Jess
-            </Typography>
-          </Card>
-        </Grid>
-    </React.Fragment>
-
-      
+    <Card className = {classes.card} display = "flex">
+      <Typography className = {classes.typography} style={{fontWeight: 500}}>
+        Flock: Japan
+        <br />
+        $20 from Jess
+      </Typography>
+    </Card>
   );
 }
 
 const OutstandingBox=()=>{
   const classes = useStyles();
   return(
-    <div> 
-      <Box ml={14} mt={8}> 
-        <Grid direction  = "row" alignItems="center" justify="flex-start">
-          <Grid container item xs={3} spacing={3} className = {classes.boxColor} direction = "column">
-            <ListItem />
-          </Grid>
-        </Grid>
-      </Box>
-      
-    </div>
-  )
+    <Grid direction = "column" justify = "center" alignItems="center" container spacing = {4} className = {classes.outstandingBoxContainer} item xs={3} >
+      <Grid item xs={5} className = {classes.cardGrid}>
+        <ListItem />
+      </Grid>
+      <Grid item xs={5} className = {classes.cardGrid}>
+        <ListItem />
+      </Grid>
+      <Grid item xs={5} className = {classes.cardGrid}>
+        <ListItem />
+      </Grid>
+    </Grid>
+  );
 }
 
-export default OutstandingBox;
+const OutstandingBoxList=()=>{
+  const classes = useStyles();
+  return(
+    <Box>
+      <Grid container spacing={1} direction  = "row" alignItems="center" justify="flex-start">
+        <Grid item xs = {3}>
+          <OutstandingBox/>
+        </Grid>
+        <Grid item xs = {3}>
+          <OutstandingBox/>
+        </Grid>
+        <Grid item xs = {3}>
+          <OutstandingBox/>
+        </Grid>
+      </Grid>
+    </Box>
+    
+  );
+}
+
+//TODO:
+// Fix card responsiveness
+// have props to change bgcolor of outstanding boxes 
+// align containers in a row
+
+export default OutstandingBoxList;
