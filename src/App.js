@@ -10,17 +10,6 @@ import OutstandingBoxList from './OustandingBox';
 import OutstandingBox from './OustandingBox';
 import Grid from '@material-ui/core/Grid';
 
-
-// const THEME = createMuiTheme({
-//   typography: {
-//     fontFamily: [
-//       'Poppins',
-//     ].join(','),
-//   }
-// });
-
-
-
 const App=()=> {
   return (
     <ThemeProvider>
