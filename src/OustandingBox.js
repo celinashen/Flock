@@ -31,10 +31,11 @@ const useStyles = makeStyles((theme) => ({
     // paddingTop: '20',
     // paddingBottom: '20',
    // padding: theme.spacing(2),
-    minWidth: 330,
+    minWidth: 400,
 
     marginLeft: 120,
-    marginTop: 50
+    marginTop: 50,
+    marginBottom: 50,
   },
   card:{
     //minWidth: 275,
@@ -62,33 +63,16 @@ const ListItem=()=> {
 const OutstandingBox=()=>{
   const classes = useStyles();
   return(
-    <Grid direction = "column" justify = "center" alignItems="center" container spacing = {4} className = {classes.outstandingBoxContainer} item xs={3} >
-      <Grid item xs={5} className = {classes.cardGrid}>
-        <ListItem />
-      </Grid>
-      <Grid item xs={5} className = {classes.cardGrid}>
-        <ListItem />
-      </Grid>
-      <Grid item xs={5} className = {classes.cardGrid}>
-        <ListItem />
-      </Grid>
-    </Grid>
-  );
-}
-
-const OutstandingBoxList=()=>{
-  const classes = useStyles();
-  return(
     <Box>
-      <Grid container spacing={1} direction  = "row" alignItems="center" justify="flex-start">
-        <Grid item xs = {3}>
-          <OutstandingBox/>
+      <Grid direction = "column" justify = "center" alignItems="center" container spacing = {4} className = {classes.outstandingBoxContainer} item xs={3} >
+        <Grid item xs={5} className = {classes.cardGrid}>
+          <ListItem />
         </Grid>
-        <Grid item xs = {3}>
-          <OutstandingBox/>
+        <Grid item xs={5} className = {classes.cardGrid}>
+          <ListItem />
         </Grid>
-        <Grid item xs = {3}>
-          <OutstandingBox/>
+        <Grid item xs={5} className = {classes.cardGrid}>
+          <ListItem />
         </Grid>
       </Grid>
     </Box>
@@ -96,9 +80,27 @@ const OutstandingBoxList=()=>{
   );
 }
 
+const OutstandingBoxList=()=>{
+  const classes = useStyles();
+  return(
+
+      <Grid container spacing={0} direction  = "row" alignItems="left" justify="flex-start">
+        <Grid lg = {4}>
+          <OutstandingBox/>
+        </Grid>
+        <Grid lg = {4}>
+          <OutstandingBox/>
+        </Grid>
+        <Grid lg = {4}>
+          <OutstandingBox/>
+        </Grid>
+      </Grid>
+
+    
+  );
+}
+
 //TODO:
-// Fix card responsiveness
 // have props to change bgcolor of outstanding boxes 
-// align containers in a row
 
 export default OutstandingBoxList;

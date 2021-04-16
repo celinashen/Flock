@@ -21,10 +21,15 @@ const UseStyles = makeStyles((theme) => ({
     "fontSize": 80,
     "color": "#ADD7AD"
   },
-  numberInfoTypography: {
+  debitTypography: {
     "fontFamily": "Poppins",
-    "fontSize": 30,
+    "fontSize": 40,
     "color": "#ADD7AD"
+  }, 
+  creditTypography: {
+    "fontFamily": "Poppins",
+    "fontSize": 40,
+    "color": "#000000"
   }
 }));
 
@@ -32,10 +37,23 @@ const Debit=()=> {
   const classes = UseStyles();
   return (
       <Box pl={15} pt={10}>
-          <Typography className={classes.numberInfoTypography} align = "left" variant="h1" color="inherit" style={{fontWeight: 600}}>
+          <Typography className={classes.debitTypography} align = "left" variant="h1" color="inherit" style={{fontWeight: 700}}>
             $100
             <br />
             debit
+          </Typography>
+      </Box>
+  );
+}
+
+const Credit=()=> {
+  const classes = UseStyles();
+  return (
+      <Box pl={15} pt={10}>
+          <Typography className={classes.creditTypography} align = "left" variant="h1" color="inherit" style={{fontWeight: 700}}>
+            $100
+            <br />
+            credit
           </Typography>
       </Box>
   );
@@ -45,9 +63,9 @@ const titleBar=()=> {
   const Classes = UseStyles();
   return (
     <div>
-      <Grid direction = "row">
+      <Grid container spacing={1} direction  = "row" alignItems="center" justify="flex-start">
         <Grid>
-            <Box pl={15} pt={10}>
+            <Box pl={15} pt={10} pr={15}>
                 <Typography className={Classes.typography} align = "left" variant="h1" color="inherit" style={{fontWeight: 600}}>
                   Hi Celina, your bills are
                 </Typography>
@@ -55,6 +73,9 @@ const titleBar=()=> {
         </Grid>
         <Grid>
           <Debit/>
+        </Grid>
+        <Grid>
+          <Credit/>
         </Grid>
       </Grid>
         

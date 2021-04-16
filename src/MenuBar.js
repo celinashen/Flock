@@ -37,7 +37,7 @@ function HeaderBar() {
           </IconButton>
 
           <Typography variant="h6" color="inherit" className={classes.typography}>
-            Flock
+            F L O C K
           </Typography>
           
         </Toolbar>
