@@ -22,6 +22,15 @@
   .App-link {
     color: #61dafb;
   }
+<<<<<<< HEAD
+=======
+
+  const Header{
+    background-color: #ADD7AD;
+    min-height: 100px;
+    display: flex;
+  }
+>>>>>>> 74cffb4eeac54dffecda3fdd74999b5f688f505d
   
   @keyframes App-logo-spin {
     from {

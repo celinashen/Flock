@@ -7,7 +7,11 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+<<<<<<< HEAD
     "public": "public",
+=======
+    "public": "build",
+>>>>>>> 74cffb4eeac54dffecda3fdd74999b5f688f505d
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -16,5 +20,19 @@
   },
   "storage": {
     "rules": "storage.rules"
+<<<<<<< HEAD
+=======
+  },
+  "emulators": {
+    "hosting": {
+      "port": 5000
+    },
+    "ui": {
+      "enabled": true
+    }
+  },
+  "remoteconfig": {
+    "template": "remoteconfig.template.json"
+>>>>>>> 74cffb4eeac54dffecda3fdd74999b5f688f505d
   }
 }
