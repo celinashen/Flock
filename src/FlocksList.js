@@ -8,8 +8,15 @@ import { Avatar } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
   large: {
     width: theme.spacing(12),
     height: theme.spacing(12),
@@ -24,14 +31,28 @@ const useStyles = makeStyles((theme) => ({
     //textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  gridList: {
+    flexWrap: 'nowrap',
+    transform: 'translateZ(0)',
+  },
+
+  customWidth: {
+      width: '800px',
+      height: '115px',
+      overflowX: "scroll",
+      overFlowY: "hidden",
+      justifyContent: 'flex-start',
+      marginLeft: '115px',
+      marginTop: '30px'
+  },
+
+
 }));
 
 const FlockIcon=()=> {
   const classes = useStyles();
   return (
-      <Box>
-        <Avatar alt="hello" src="./images/surprisepika.jpg" variant="circle" className={classes.large}>hello</Avatar>
-      </Box>
+    <Avatar alt="hello" src="./images/surprisepika.jpg" variant="circle" className={classes.large}>hello</Avatar>
   );
 }
 
@@ -41,35 +62,42 @@ const FlockIcon=()=> {
 
 //padding in css
 //htlm doesn't have props
+
+const FlockListTitle=()=> {
+  const classes = useStyles();
+  return (
+    <Box pl={15} pt={5}>  
+      <Typography className={classes.typography} align = "left" variant="h1" color="inherit" style={{fontWeight: 500}}>
+          flock's you're a part of
+      </Typography>
+    </Box>
+  );
+}
+
+
 const FlockList=()=>{
   const classes = useStyles();
   return(
-    <div className={classes.flockBox}> 
-        <Box pl={15} pt={5}>
-            <Typography className={classes.typography} align = "left" variant="h1" color="inherit" style={{fontWeight: 500}}>
-                flock's you're a part of
-            </Typography>
-        </Box>
-      <Box ml={14} mt={3}> 
-        <Grid container spacing={3} direction  = "row" alignItems="center" justify="flex-start">
-            <Grid item xs = {1.6} m={3}>
-                <FlockIcon/>
-            </Grid>
-            <Grid item xs = {1.6}>
-                <FlockIcon/>
-            </Grid>
-            <Grid item xs = {1.6}>
-                <FlockIcon/>
-            </Grid>
-            <Grid item xs = {1.6}>
-                <FlockIcon/>
-            </Grid>
-            <Grid item xs = {1.6}>
-                <FlockIcon/>
-            </Grid>
+    <div> 
+      <div>
+        <FlockListTitle/>
+      </div>
+
+      <div className = {classes.customWidth}>
+        <Grid container spacing={0} direction = "row">
+          <Grid item xs = {2} ><FlockIcon/></Grid>
+          <Grid item xs = {2} ><FlockIcon/></Grid>
+          <Grid item xs = {2} ><FlockIcon/></Grid>
+          <Grid item xs = {2} ><FlockIcon/></Grid>
+          <Grid item xs = {2} ><FlockIcon/></Grid>
+          <Grid item xs = {2} ><FlockIcon/></Grid>
+          <Grid item xs = {2} ><FlockIcon/></Grid>
+          <Grid item xs = {2} ><FlockIcon/></Grid>
+          <Grid item xs = {2} ><FlockIcon/></Grid>
+          <Grid item xs = {2} ><FlockIcon/></Grid>
+          <Grid item xs = {2} ><FlockIcon/></Grid>
         </Grid>
-      </Box>
-      
+      </div>
     </div>
   )
 }

@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   outstandingBoxContainer:{
     backgroundColor: "#769E76",
+    borderRadius: "10px",
     // paddingLeft: '20',
     // paddingRight: '20',
     // paddingTop: '20',
@@ -39,8 +40,9 @@ const useStyles = makeStyles((theme) => ({
   },
   card:{
     //minWidth: 275,
-    padding: theme.spacing(1.5),
-    borderRadius: 10
+    //padding: theme.spacing(1.5),
+    borderRadius: 10,
+    minWidth: "134%"
   },
   bigCardsList:{
     flexDirection: "row"
@@ -50,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 const ListItem=()=> {
   const classes = useStyles();
   return (
-    <Card className = {classes.card} display = "flex">
+    <Card className = {classes.card}>
       <Typography className = {classes.typography} style={{fontWeight: 500}}>
         Flock: Japan
         <br />
@@ -64,39 +66,35 @@ const OutstandingBox=()=>{
   const classes = useStyles();
   return(
     <Box>
-      <Grid direction = "column" justify = "center" alignItems="center" container spacing = {4} className = {classes.outstandingBoxContainer} item xs={3} >
-        <Grid item xs={5} className = {classes.cardGrid}>
+      <Grid direction = "column" justify = "center" alignItems="left" container spacing = {2} className = {classes.outstandingBoxContainer} item xs={3} >
+        <Grid item xs={6} className = {classes.cardGrid}>
           <ListItem />
         </Grid>
-        <Grid item xs={5} className = {classes.cardGrid}>
+        <Grid item xs={6} className = {classes.cardGrid}>
           <ListItem />
         </Grid>
-        <Grid item xs={5} className = {classes.cardGrid}>
+        <Grid item xs={6} className = {classes.cardGrid}>
           <ListItem />
         </Grid>
       </Grid>
-    </Box>
-    
+    </Box> 
   );
 }
 
 const OutstandingBoxList=()=>{
   const classes = useStyles();
   return(
-
-      <Grid container spacing={0} direction  = "row" alignItems="left" justify="flex-start">
-        <Grid lg = {4}>
+      <Grid container spacing={0} direction  = "row" alignItems="center" justify="flex-start">
+        <Grid item lg = {4} sm = {12} md = {6} xs = {12}>
           <OutstandingBox/>
         </Grid>
-        <Grid lg = {4}>
+        <Grid item lg = {4} sm = {12} md = {6} xs = {12}>
           <OutstandingBox/>
         </Grid>
-        <Grid lg = {4}>
+        <Grid item lg = {4} sm = {12} md = {6} xs = {12}>
           <OutstandingBox/>
         </Grid>
-      </Grid>
-
-    
+      </Grid>    
   );
 }
 
