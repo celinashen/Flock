@@ -16,7 +16,7 @@ import { CallMissedSharp, CheckBoxOutlineBlankSharp } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
-  typography: {
+  typographyCard: {
     "fontFamily": "Poppins",
     "fontSize": 20,
     "color": "#979B82"
@@ -26,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10px",
     minWidth: 430,
     marginLeft: 120,
-    marginTop: 50,
-    marginBottom: 50,
   },
   card:{
     borderRadius: 10,
@@ -35,6 +33,11 @@ const useStyles = makeStyles((theme) => ({
   },
   minListWidth:{
     maxWidth: 1500
+  },
+  typographyOutstandingTitle:{
+    "fontFamily": "Poppins",
+    "fontSize": 30,
+    "color": "#979B82"
   }
 }));
 
@@ -42,7 +45,7 @@ const ListItem=()=> {
   const classes = useStyles();
   return (
     <Card className = {classes.card}>
-      <Typography className = {classes.typography} style={{fontWeight: 500}}>
+      <Typography className = {classes.typographyCard} style={{fontWeight: 500}}>
         Flock: Japan
         <br />
         $20 from Jess
@@ -55,17 +58,26 @@ const OutstandingBox=()=>{
   const classes = useStyles();
   return(
 
-    <Grid direction = "column" justify = "center" alignItems = "center" className = {classes.outstandingBoxContainer} item xs={3} >
-      <Box pl = {2.5} pr = {2.5} pt = {2.5}>
-        <ListItem/>
+    <div>
+      <Box pt = {6} pl = {5}>
+        <Typography className = {classes.typographyOutstandingTitle} style={{fontWeight: 500}}>
+          Outstanding Debits
+        </Typography>
       </Box>
-      <Box pl = {2.5} pr = {2.5} pt = {2}>
-        <ListItem/>
-      </Box>
-      <Box pl = {2.5} pr = {2.5} pt = {2} pb = {2}>
-        <ListItem/>
-      </Box>
-    </Grid>
+      <Grid>
+        <Grid direction = "column" justify = "center" alignItems = "center" className = {classes.outstandingBoxContainer} >
+          <Box pl = {2.5} pr = {2.5} pt = {2.5}>
+            <ListItem/>
+          </Box>
+          <Box pl = {2.5} pr = {2.5} pt = {2}>
+            <ListItem/>
+          </Box>
+          <Box pl = {2.5} pr = {2.5} pt = {2} pb = {2}>
+            <ListItem/>
+          </Box>
+        </Grid>
+      </Grid>
+    </div>
  
   );
 }
