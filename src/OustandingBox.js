@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10px",
     minWidth: 430,
     marginLeft: 120,
+    marginBottom: 200
   },
   card:{
     borderRadius: 10,
@@ -59,7 +60,7 @@ const OutstandingBox=()=>{
   return(
 
     <div>
-      <Box pt = {6} pl = {5}>
+      <Box pt = {6} ml = {20}>
         <Typography className = {classes.typographyOutstandingTitle} style={{fontWeight: 500}}>
           Outstanding Debits
         </Typography>
