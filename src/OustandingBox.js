@@ -24,21 +24,18 @@ const useStyles = makeStyles((theme) => ({
   outstandingBoxContainer:{
     backgroundColor: "#769E76",
     borderRadius: "10px",
-    // paddingLeft: '20',
-    // paddingRight: '20',
-    // paddingTop: '20',
-    // paddingBottom: '20',
-   // padding: theme.spacing(2),
-    maxWidth: 400,
+    minWidth: 430,
     marginLeft: 120,
     marginTop: 50,
     marginBottom: 50,
   },
   card:{
-    //minWidth: 275,
     borderRadius: 10,
     maxWidth: "200%"
   },
+  minListWidth:{
+    maxWidth: 1500
+  }
 }));
 
 const ListItem=()=> {
@@ -76,14 +73,14 @@ const OutstandingBox=()=>{
 const OutstandingBoxList=()=>{
   const classes = useStyles();
   return(
-      <Grid container spacing={0} direction  = "row" alignItems="center" justify="flex-start">
-        <Grid item lg = {4} sm = {12} md = {6} xs = {12}>
+      <Grid container spacing={0} direction  = "row" className = {classes.minListWidth}>
+        <Grid item lg = {4} md = {6} sm = {12} xs = {12}>
           <OutstandingBox/>
         </Grid>
-        <Grid item lg = {4} sm = {12} md = {6} xs = {12}>
+        <Grid item lg = {4} md = {6} sm = {12} xs = {12}>
           <OutstandingBox/>
         </Grid>
-        <Grid item lg = {4} sm = {12} md = {6} xs = {12}>
+        <Grid item lg = {4} md = {6} sm = {12} xs = {12}>
           <OutstandingBox/>
         </Grid>
       </Grid>    
