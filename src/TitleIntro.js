@@ -36,7 +36,7 @@ const UseStyles = makeStyles((theme) => ({
 const Debit=()=> {
   const classes = UseStyles();
   return (
-      <Box pl={15} pt={10}>
+      <Box pl={9} pt={10}>
           <Typography className={classes.debitTypography} align = "left" variant="h1" color="inherit" style={{fontWeight: 700}}>
             $100
             <br />
