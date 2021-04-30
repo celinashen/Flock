@@ -25,8 +25,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#769E76",
     borderRadius: "10px",
     minWidth: 430,
+    maxHeight: 300,
     marginLeft: 120,
-    marginBottom: 200
+    marginBottom: 200,
+    overflowY: 'scroll',
+    overflowX: 'hidden'
   },
   card:{
     borderRadius: 10,
@@ -39,6 +42,11 @@ const useStyles = makeStyles((theme) => ({
     "fontFamily": "Poppins",
     "fontSize": 30,
     "color": "#979B82"
+  },
+  maxHeightOverflow: {
+    maxHeight: 300,
+ //   overflowY: 'scroll',
+  //  overflowX: 'hidden'
   }
 }));
 
@@ -68,6 +76,18 @@ const OutstandingBox=()=>{
       <Grid>
         <Grid direction = "column" justify = "center" alignItems = "center" className = {classes.outstandingBoxContainer} >
           <Box pl = {2.5} pr = {2.5} pt = {2.5}>
+            <ListItem/>
+          </Box>
+          <Box pl = {2.5} pr = {2.5} pt = {2}>
+            <ListItem/>
+          </Box>
+          <Box pl = {2.5} pr = {2.5} pt = {2}>
+            <ListItem/>
+          </Box>
+          <Box pl = {2.5} pr = {2.5} pt = {2}>
+            <ListItem/>
+          </Box>
+          <Box pl = {2.5} pr = {2.5} pt = {2}>
             <ListItem/>
           </Box>
           <Box pl = {2.5} pr = {2.5} pt = {2}>

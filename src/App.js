@@ -9,6 +9,7 @@ import FlockList from './FlocksList';
 import OutstandingBoxList from './OustandingBox';
 import OutstandingBox from './OustandingBox';
 import Grid from '@material-ui/core/Grid';
+import ActivityMenu from './Activity';
 
 const App=()=> {
   return (
@@ -18,9 +19,11 @@ const App=()=> {
           <TitleIntro/>
           <FlockList/>
           <OutstandingBoxList/>
+          <ActivityMenu/>
         </div>
     </ThemeProvider>
   );
 }
+
 
 export default App;

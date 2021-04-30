@@ -46,7 +46,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '30px'
   },
   gridWidth: {
-    width: '600px'
+    width: '700px',
+    overflowX: "scroll",
+    overFlowY: "hidden",
+    maxHeight: '115px',
+    alignContent: 'flex-start',
+    marginLeft: '115px',
+    marginTop: '30px'
   }
 
 
@@ -88,15 +94,15 @@ const FlockList=()=>{
         <FlockListTitle/>
       </div>
 
-      <div className = {classes.customWidth}>
+      <div>
         <Grid container spacing={0} direction = "row" className = {classes.gridWidth}>
-          <Grid><FlockIcon/></Grid>
-          <Grid><FlockIcon/></Grid>
-          <Grid><FlockIcon/></Grid>
-          <Grid><FlockIcon/></Grid>
-          <Grid><FlockIcon/></Grid>
-          <Grid><FlockIcon/></Grid>
-          <Grid><FlockIcon/></Grid>
+          <Grid width = "10%"><FlockIcon/></Grid>
+          <Grid width = "10%"><FlockIcon/></Grid>
+          <Grid item lg = {2.5}><FlockIcon/></Grid>
+          <Grid item lg = {2.5}><FlockIcon/></Grid>
+          <Grid item lg = {2.5}><FlockIcon/></Grid>
+          <Grid item lg = {2.5}><FlockIcon/></Grid>
+          <Grid item lg = {2.5}><FlockIcon/></Grid>
         </Grid>
       </div>
     </div>
