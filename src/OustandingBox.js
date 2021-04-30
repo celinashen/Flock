@@ -21,9 +21,6 @@ const useStyles = makeStyles((theme) => ({
     "fontSize": 20,
     "color": "#979B82"
   },
-  cardGrid:{
-    minWidth:300
-  },
   outstandingBoxContainer:{
     backgroundColor: "#769E76",
     borderRadius: "10px",
@@ -32,21 +29,16 @@ const useStyles = makeStyles((theme) => ({
     // paddingTop: '20',
     // paddingBottom: '20',
    // padding: theme.spacing(2),
-    minWidth: 400,
-
+    maxWidth: 400,
     marginLeft: 120,
     marginTop: 50,
     marginBottom: 50,
   },
   card:{
     //minWidth: 275,
-    //padding: theme.spacing(1.5),
     borderRadius: 10,
-    minWidth: "134%"
+    maxWidth: "200%"
   },
-  bigCardsList:{
-    flexDirection: "row"
-  }
 }));
 
 const ListItem=()=> {
@@ -65,19 +57,19 @@ const ListItem=()=> {
 const OutstandingBox=()=>{
   const classes = useStyles();
   return(
-    <Box>
-      <Grid direction = "column" justify = "center" alignItems="left" container spacing = {2} className = {classes.outstandingBoxContainer} item xs={3} >
-        <Grid item xs={6} className = {classes.cardGrid}>
-          <ListItem />
-        </Grid>
-        <Grid item xs={6} className = {classes.cardGrid}>
-          <ListItem />
-        </Grid>
-        <Grid item xs={6} className = {classes.cardGrid}>
-          <ListItem />
-        </Grid>
-      </Grid>
-    </Box> 
+
+    <Grid direction = "column" justify = "center" alignItems = "center" className = {classes.outstandingBoxContainer} item xs={3} >
+      <Box pl = {2.5} pr = {2.5} pt = {2.5}>
+        <ListItem/>
+      </Box>
+      <Box pl = {2.5} pr = {2.5} pt = {2}>
+        <ListItem/>
+      </Box>
+      <Box pl = {2.5} pr = {2.5} pt = {2} pb = {2}>
+        <ListItem/>
+      </Box>
+    </Grid>
+ 
   );
 }
 

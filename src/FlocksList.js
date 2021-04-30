@@ -37,14 +37,17 @@ const useStyles = makeStyles((theme) => ({
   },
 
   customWidth: {
-      width: '800px',
-      height: '115px',
-      overflowX: "scroll",
-      overFlowY: "hidden",
-      justifyContent: 'flex-start',
-      marginLeft: '115px',
-      marginTop: '30px'
+    overflowX: "scroll",
+    overFlowY: "hidden",
+    width: '800px',
+    maxHeight: '115px',
+    alignContent: 'flex-start',
+    marginLeft: '115px',
+    marginTop: '30px'
   },
+  gridWidth: {
+    width: '600px'
+  }
 
 
 }));
@@ -52,7 +55,9 @@ const useStyles = makeStyles((theme) => ({
 const FlockIcon=()=> {
   const classes = useStyles();
   return (
-    <Avatar alt="hello" src="./images/surprisepika.jpg" variant="circle" className={classes.large}>hello</Avatar>
+    <Box>
+      <Avatar alt="hello" src="./images/surprisepika.jpg" variant="circle" className={classes.large}>hello</Avatar>
+    </Box>
   );
 }
 
@@ -84,18 +89,14 @@ const FlockList=()=>{
       </div>
 
       <div className = {classes.customWidth}>
-        <Grid container spacing={0} direction = "row">
-          <Grid item xs = {2} ><FlockIcon/></Grid>
-          <Grid item xs = {2} ><FlockIcon/></Grid>
-          <Grid item xs = {2} ><FlockIcon/></Grid>
-          <Grid item xs = {2} ><FlockIcon/></Grid>
-          <Grid item xs = {2} ><FlockIcon/></Grid>
-          <Grid item xs = {2} ><FlockIcon/></Grid>
-          <Grid item xs = {2} ><FlockIcon/></Grid>
-          <Grid item xs = {2} ><FlockIcon/></Grid>
-          <Grid item xs = {2} ><FlockIcon/></Grid>
-          <Grid item xs = {2} ><FlockIcon/></Grid>
-          <Grid item xs = {2} ><FlockIcon/></Grid>
+        <Grid container spacing={0} direction = "row" className = {classes.gridWidth}>
+          <Grid><FlockIcon/></Grid>
+          <Grid><FlockIcon/></Grid>
+          <Grid><FlockIcon/></Grid>
+          <Grid><FlockIcon/></Grid>
+          <Grid><FlockIcon/></Grid>
+          <Grid><FlockIcon/></Grid>
+          <Grid><FlockIcon/></Grid>
         </Grid>
       </div>
     </div>
