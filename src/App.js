@@ -1,15 +1,13 @@
 import React from 'react';
 import './App.css';
-import HeaderBar from './MenuBar';
-import styled from 'styled-components';
+import HeaderBar from './components/MenuBar';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import TitleIntro from './TitleIntro';
-import FlockList from './FlocksList';
-import OutstandingBoxList from './OustandingBox';
-import OutstandingBox from './OustandingBox';
-import Grid from '@material-ui/core/Grid';
-import ActivityMenu from './Activity';
+
+import TitleIntro from './components/TitleIntro';
+import FlockList from './components/FlocksList';
+import OutstandingBoxList from './components/OustandingBox';
+import ActivityMenu from './components/Activity';
+import IssueDebit from './pages/IssueDebit';
 
 const App=()=> {
   return (
@@ -20,6 +18,7 @@ const App=()=> {
           <FlockList/>
           <OutstandingBoxList/>
           <ActivityMenu/>
+          <IssueDebit/>
         </div>
     </ThemeProvider>
   );

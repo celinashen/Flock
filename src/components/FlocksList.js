@@ -1,15 +1,10 @@
 import React from 'react';
-import './App.css';
-import HeaderBar from './MenuBar';
-import styled from 'styled-components';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import '../App.css';
 import Typography from '@material-ui/core/Typography';
 import { Avatar } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -56,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '110px'
   },
   divStyle:{
-    width: '700px',
+    width: '770px',
     maxHeight: '115px',
     overflowX: "auto",
     overflowY: "hidden",
@@ -113,7 +108,8 @@ const FlockList=()=>{
           <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
           <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
           <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
-        
+          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
       </div>
     </div>
   )

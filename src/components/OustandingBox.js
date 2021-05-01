@@ -1,6 +1,5 @@
 import React from 'react';
-import './App.css';
-import HeaderBar from './MenuBar';
+import '../App.css';
 import styled from 'styled-components';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -31,12 +30,14 @@ const useStyles = makeStyles((theme) => ({
     overflowY: 'scroll',
     overflowX: 'hidden'
   },
+
   card:{
     borderRadius: 10,
     maxWidth: "200%"
   },
   minListWidth:{
-    maxWidth: 1500
+    maxWidth: 1500,
+    maxHeight: 400
   },
   typographyOutstandingTitle:{
     "fontFamily": "Poppins",
