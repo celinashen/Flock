@@ -11,7 +11,16 @@ import OutstandingBox from './OustandingBox';
 import Grid from '@material-ui/core/Grid';
 import ActivityMenu from './Activity';
 
-const App=()=> {
+import withFirebaseAuth from 'react-with-firebase-auth'
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import firebaseConfig from './firebaseConfig';
+
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+
+
+const App = ({ user, signOut, signInWithGoogle }) => {
   return (
     <ThemeProvider>
         <div className="App">
@@ -21,9 +30,34 @@ const App=()=> {
           <OutstandingBoxList/>
           <ActivityMenu/>
         </div>
+
+        <div className="App">
+          <header className="App-header">
+            {
+              user 
+                ? <p>Hello, {user.displayName}</p>
+                : <p>Please sign in.</p>
+            }
+            {
+              user
+                ? <button onClick={signOut}>Sign out</button>
+                : <button onClick={signInWithGoogle}>Sign in with Google</button>
+            }
+          </header>
+        </div>
+
     </ThemeProvider>
   );
 }
 
 
-export default App;
+const firebaseAppAuth = firebaseApp.auth();
+const providers = {
+  googleProvider: new firebase.auth.GoogleAuthProvider(),
+};
+
+
+export default withFirebaseAuth({
+  providers,
+  firebaseAppAuth,
+})(App);
