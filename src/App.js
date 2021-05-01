@@ -11,6 +11,17 @@ import FlockList from './components/FlocksList';
 import OutstandingBoxList from './components/OustandingBox';
 import ActivityIcon from './components/ActivityBar';
 import IssueDebit from './pages/IssueDebit';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+
+// const options = [
+//   'flock1', 'scottsaho', 'celinasthebest:)'
+// ];
+// const defaultOption = options[0];
+
+// <Dropdown options={options} onChange={options._onSelect} 
+//               value={defaultOption} placeholder="Select an option" />;
+
 
 const App=()=> {
   return (
