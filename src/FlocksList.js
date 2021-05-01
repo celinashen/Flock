@@ -46,13 +46,24 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '30px'
   },
   gridWidth: {
-    width: '700px',
-    overflowX: "scroll",
-    overFlowY: "hidden",
-    maxHeight: '115px',
+  //  width: '700px',
+ //   maxHeight: '115px',
     alignContent: 'flex-start',
+    // marginLeft: '115px',
+    // marginTop: '30px'
+  },
+  flockIconWidth: {
+    minWidth: '110px'
+  },
+  divStyle:{
+    width: '700px',
+    maxHeight: '115px',
+    overflowX: "auto",
+    overflowY: "hidden",
     marginLeft: '115px',
-    marginTop: '30px'
+    marginTop: '30px',
+    display: 'flex',
+    flexDirection: 'row'
   }
 
 
@@ -94,16 +105,15 @@ const FlockList=()=>{
         <FlockListTitle/>
       </div>
 
-      <div>
-        <Grid container spacing={0} direction = "row" className = {classes.gridWidth}>
-          <Grid width = "10%"><FlockIcon/></Grid>
-          <Grid width = "10%"><FlockIcon/></Grid>
-          <Grid item lg = {2.5}><FlockIcon/></Grid>
-          <Grid item lg = {2.5}><FlockIcon/></Grid>
-          <Grid item lg = {2.5}><FlockIcon/></Grid>
-          <Grid item lg = {2.5}><FlockIcon/></Grid>
-          <Grid item lg = {2.5}><FlockIcon/></Grid>
-        </Grid>
+      <div className={classes.divStyle}>
+          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
+        
       </div>
     </div>
   )
