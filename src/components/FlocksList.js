@@ -60,8 +60,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row'
   }
-
-
+  
 }));
 
 const FlockIcon=()=> {
@@ -90,7 +89,6 @@ const FlockListTitle=()=> {
     </Box>
   );
 }
-
 
 const FlockList=()=>{
   const classes = useStyles();

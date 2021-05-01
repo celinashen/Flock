@@ -8,7 +8,6 @@ const IssueDebit = () => {
         <div>
             <form>
                 <h1>Issue a Debit</h1>
-
                 <label>Amount</label>
                 <input placeholder = "How much they owe" />
             </form>
@@ -16,4 +15,15 @@ const IssueDebit = () => {
     )
 }
 
+
+
+
+
 export default IssueDebit;
+
+
+
+
+
+
+

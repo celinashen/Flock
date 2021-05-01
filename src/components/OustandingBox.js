@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#769E76",
     borderRadius: "10px",
     minWidth: 430,
-    maxHeight: 300,
+    maxHeight: 323,
     marginLeft: 120,
     marginBottom: 200,
     overflowY: 'scroll',
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   typographyOutstandingTitle:{
     "fontFamily": "Poppins",
-    "fontSize": 30,
+    "fontSize": 25,
     "color": "#979B82"
   },
   maxHeightOverflow: {
@@ -71,7 +71,7 @@ const OutstandingBox=()=>{
     <div>
       <Box pt = {6} ml = {20}>
         <Typography className = {classes.typographyOutstandingTitle} style={{fontWeight: 500}}>
-          Outstanding Debits
+          outstanding debits
         </Typography>
       </Box>
       <Grid>
