@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#769E76",
     borderRadius: "10px",
     minWidth: 430,
-    maxHeight: 323,
+    maxHeight: 300,
     marginLeft: 120,
     marginBottom: 200,
     overflowY: 'scroll',
@@ -44,11 +44,6 @@ const useStyles = makeStyles((theme) => ({
     "fontSize": 25,
     "color": "#979B82"
   },
-  maxHeightOverflow: {
-    maxHeight: 300,
- //   overflowY: 'scroll',
-  //  overflowX: 'hidden'
-  }
 }));
 
 const ListItem=()=> {

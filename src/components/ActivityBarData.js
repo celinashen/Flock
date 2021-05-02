@@ -22,7 +22,7 @@ export const ActivityBarData = [
     {
         date: 'march 13, 2020',
         flock: 'rent',
-        transaction: 'Angela issued you a credit for $130',
+        transaction: 'Angela issued you a credit for $130 lorem ipsum some extra random text',
         transactionID: '3'
     }
 ]
