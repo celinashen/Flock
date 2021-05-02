@@ -86,7 +86,7 @@ const UseStyles = makeStyles((theme) => ({
     alignItems: 'flex-start',
   },
   listStyle:{
-    listStyle: 'none'
+    listStyle: 'none',
   },
   activityBarToggle:{
     width:'100%',
@@ -94,6 +94,10 @@ const UseStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'start',
     alignItems: 'center'
+  }, 
+  activityBarOverflow:{
+    maxHeight: '100vh',
+    overFlowY: 'scroll',
   }
   
  
@@ -123,7 +127,7 @@ const ActivityIcon=()=> {
         </Grid>
       </div>
       <nav className = {sidebar ? classes.activityBarActive : classes.activityBar}>
-        <ul>
+        <ul className = {classes.activityBarOverflow}>
           <li className = {classes.activityBarToggle}>
             <Link to = "#" className = 'menu-bars'>
               
@@ -134,7 +138,7 @@ const ActivityIcon=()=> {
             return (
               
                 <li key={index} className = {classes.listStyle}>
-                  <Card className = {classes.activityCardStyle}>
+                  <Card className = {classes.activityCardStyle} style={{boxShadow: "none"}}>
                     <span className = {classes.cardDetails} style={{fontWeight: 500}}>{item.date}</span>
                     <br/>
                     <span className = {classes.cardDetails} style={{fontWeight: 500}}>{item.flock}</span>
@@ -142,7 +146,8 @@ const ActivityIcon=()=> {
                     <span className = {classes.cardTransaction} style={{fontWeight: 600}}>{item.transaction}</span>
                   </Card>
                 </li>
-              
+ 
+                
             )
           })}
         </ul>

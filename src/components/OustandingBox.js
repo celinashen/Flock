@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 const ListItem=()=> {
   const classes = useStyles();
   return (
-    <Card className = {classes.card}>
+    <Card className = {classes.card} style={{boxShadow: "none"}}>
       <Typography className = {classes.typographyCard} style={{fontWeight: 500}}>
         Flock: Japan
         <br />
