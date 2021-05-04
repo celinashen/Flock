@@ -47,7 +47,10 @@ const UseStyles = makeStyles((theme) => ({
     height: '100%',
     width: '20%',
     backgroundColor: "rgba(173, 215, 173,0.8)", 
-    transition: '800ms'
+    transition: '800ms',
+    overflowX: 'hidden',
+    maxHeight: '100vh',
+    overFlowY: 'scroll',
     // transition: 'transform 350ms linear',
     // transform: 'translateX(0%)',
     // transition: 'transform 350ms linear'
@@ -96,8 +99,7 @@ const UseStyles = makeStyles((theme) => ({
     alignItems: 'center'
   }, 
   activityBarOverflow:{
-    maxHeight: '100vh',
-    overFlowY: 'scroll',
+
   }
   
  
@@ -127,16 +129,15 @@ const ActivityIcon=()=> {
         </Grid>
       </div>
       <nav className = {sidebar ? classes.activityBarActive : classes.activityBar}>
-        <ul className = {classes.activityBarOverflow}>
+        <ul>
           <li className = {classes.activityBarToggle}>
             <Link to = "#" className = 'menu-bars'>
-              
+
               <AiIcons.AiFillCloseCircle color = {'white'} onClick={showSidebar}/>
             </Link>
           </li>
           {ActivityBarData.map((item, index) => {
             return (
-              
                 <li key={index} className = {classes.listStyle}>
                   <Card className = {classes.activityCardStyle} style={{boxShadow: "none"}}>
                     <span className = {classes.cardDetails} style={{fontWeight: 500}}>{item.date}</span>
@@ -145,9 +146,7 @@ const ActivityIcon=()=> {
                     <br/>
                     <span className = {classes.cardTransaction} style={{fontWeight: 600}}>{item.transaction}</span>
                   </Card>
-                </li>
- 
-                
+                </li> 
             )
           })}
         </ul>
