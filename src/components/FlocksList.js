@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   typography: {
     "fontFamily": "Poppins",
-    "fontSize": 40,
+    "fontSize": 30,
     "color": "#979B82"
   },
   flockBox: {
@@ -41,11 +41,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '30px'
   },
   gridWidth: {
-  //  width: '700px',
- //   maxHeight: '115px',
     alignContent: 'flex-start',
-    // marginLeft: '115px',
-    // marginTop: '30px'
   },
   flockIconWidth: {
     minWidth: '110px'
@@ -56,9 +52,24 @@ const useStyles = makeStyles((theme) => ({
     overflowX: "auto",
     overflowY: "hidden",
     marginLeft: '115px',
-    marginTop: '30px',
+    marginTop: '15px',
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    height: "100%",
+    '&::-webkit-scrollbar': {
+      marginTop: '20px',
+      height: '0.3em',
+      
+    },
+    '&::-webkit-scrollbar-track': {
+      boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+      webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: 'rgba(224,224,224)',
+      outline: '1px solid slategrey',
+      borderRadius: '10px'
+    }
   }
   
 }));
@@ -83,7 +94,7 @@ const FlockListTitle=()=> {
   const classes = useStyles();
   return (
     <Box pl={15} pt={5}>  
-      <Typography className={classes.typography} align = "left" variant="h1" color="inherit" style={{fontWeight: 500}}>
+      <Typography className={classes.typography} align = "left" variant="h1" color="inherit" style={{fontWeight: 600}}>
           flock's you're a part of
       </Typography>
     </Box>

@@ -31,7 +31,7 @@ function HeaderBar() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.bar}>
+      <AppBar position="static" className={classes.bar} style={{boxShadow: "none"}}>
         <Toolbar variant="dense">
 
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">

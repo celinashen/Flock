@@ -22,22 +22,36 @@ const useStyles = makeStyles((theme) => ({
   },
   outstandingBoxContainer:{
     backgroundColor: "#769E76",
-    borderRadius: "10px",
+    borderRadius: "20px",
     minWidth: 430,
-    maxHeight: 300,
+    maxHeight: 320,
     marginLeft: 120,
     marginBottom: 200,
     overflowY: 'scroll',
-    overflowX: 'hidden'
+    overflowX: 'hidden',
+    height: "100%",
+    '&::-webkit-scrollbar': {
+      width: '0.45em',
+      height: '0.1em'
+    },
+    '&::-webkit-scrollbar-track': {
+      boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+      webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+    },
+    '&::-webkit-scrollbar-thumb': {
+      height: '6px',
+      backgroundColor: 'rgba(0,0,0,.3)',
+      outline: '1px solid slategrey',
+      borderRadius: '10px'
+    }
   },
-
   card:{
     borderRadius: 10,
     maxWidth: "200%"
   },
   minListWidth:{
     maxWidth: 1500,
-    maxHeight: 400
+    maxHeight: 500
   },
   typographyOutstandingTitle:{
     "fontFamily": "Poppins",

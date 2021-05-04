@@ -16,7 +16,7 @@ const UseStyles = makeStyles((theme) => ({
   typography: {
     "fontFamily": "Poppins",
     "fontSize": 80,
-    "color": "#ADD7AD"
+    "color": "#769E76"
   },
   debitTypography: {
     "fontFamily": "Poppins",
@@ -74,11 +74,8 @@ const titleBar=()=> {
         <Grid>
           <Credit/>
         </Grid>
-      </Grid>
-        
+      </Grid>  
     </div>
-      
-      
   );
 }
 
