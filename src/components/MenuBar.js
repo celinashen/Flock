@@ -10,6 +10,10 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router';
 //import createMuiTheme from '@material-ui/styles';
 
+
+
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -22,7 +26,19 @@ const useStyles = makeStyles((theme) => ({
   },
   typography: {
     "fontFamily": "Poppins",
+    "fontSize": 20,
+    paddingRight: 35
+  },
+  homeButton:{
+    "fontFamily": "Poppins",
     "fontSize": 20
+  },
+  navigation:{
+    padding: '20px',
+    display: 'flex',
+   // flexDirection: 'row',
+   // justifyContent: 'flex-end',
+   // float: 'right'
   }
 }));
 
@@ -34,14 +50,27 @@ function HeaderBar() {
       <AppBar position="static" className={classes.bar} style={{boxShadow: "none"}}>
         <Toolbar variant="dense">
 
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-
-          <Typography variant="h6" color="inherit" className={classes.typography}>
+          <Typography variant="h6" color="inherit" className={classes.homeButton}>
             F L O C K 
           </Typography>
-          
+
+          <div className = {classes.navigation}>
+            <Typography variant="h6" color="inherit" className={classes.typography}>
+              your dashboard
+            </Typography>
+
+            <Typography variant="h6" color="inherit" className={classes.typography}>
+              your flocks
+            </Typography>
+
+            <Typography variant="h6" color="inherit" className={classes.typography}>
+              issue debits
+            </Typography>
+
+            <Typography variant="h6" color="inherit" className={classes.typography}>
+              pay credits
+            </Typography>
+          </div>
           
         </Toolbar>
       </AppBar>

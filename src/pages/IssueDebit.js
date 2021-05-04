@@ -10,7 +10,6 @@ import 'react-dropdown/style.css';
 
 const IssueDebit = () => {
     return (
-        
         <div>
             <form>
                 <h1>Issue a Debit</h1>
