@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../pages/App.css';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { Link } from 'react-router';
+
 //import createMuiTheme from '@material-ui/styles';
 
 
@@ -63,9 +63,11 @@ function HeaderBar() {
               your flocks
             </Typography>
 
-            <Typography variant="h6" color="inherit" className={classes.typography}>
-              issue debits
-            </Typography>
+              <Typography variant="h6" color="inherit" className={classes.typography}>
+                issue debits
+              </Typography>
+
+            
 
             <Typography variant="h6" color="inherit" className={classes.typography}>
               pay credits

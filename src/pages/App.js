@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.css';
-import HeaderBar from './components/MenuBar';
+import HeaderBar from '../components/MenuBar';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 
-import TitleIntro from './components/TitleIntro';
-import FlockList from './components/FlocksList';
-import OutstandingBoxList from './components/OustandingBox';
-import ActivityIcon from './components/ActivityBar';
-import IssueDebit from './pages/IssueDebit';
+import TitleIntro from '../components/TitleIntro';
+import FlockList from '../components/FlocksList';
+import OutstandingBoxList from '../components/OustandingBox';
+import ActivityIcon from '../components/ActivityBar';
+
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 

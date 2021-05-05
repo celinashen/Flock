@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../pages/App.css';
 import Typography from '@material-ui/core/Typography';
 import { Avatar } from '@material-ui/core';
 import Box from '@material-ui/core/Box';

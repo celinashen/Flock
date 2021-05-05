@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react';
 
-import '../App.css';
+import '../pages/App.css';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';

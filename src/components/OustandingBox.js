@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../pages/App.css';
 import styled from 'styled-components';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
