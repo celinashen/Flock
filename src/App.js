@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import HeaderBar from './MenuBar';
 import styled from 'styled-components';
@@ -10,66 +10,38 @@ import OutstandingBoxList from './OustandingBox';
 import OutstandingBox from './OustandingBox';
 import Grid from '@material-ui/core/Grid';
 import ActivityMenu from './Activity';
-import IssueDebit from './IssueDebit';
+import CreateFlock from './CreateFlock';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
+import {db, firebaseAppAuth, providers} from './firebaseConfig.js';
 import withFirebaseAuth from 'react-with-firebase-auth'
-import firebase from 'firebase'
-import 'firebase/auth';
-import firebaseConfig from './firebaseConfig';
-//import db from './firebaseConfig';
 
 
 
-
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const firebaseAppAuth = firebaseApp.auth();
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider(),
-};
-
-
-
-/*
-async function getMarkers(user) {
-  const events = await db.collection('user')
-  var tempDoc = [];
-  events.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        if (user!=null && doc.data()!=null)
-          if (doc.data().id == user.uid) {
-            tempDoc = doc.data().flocks;
-            return tempDoc;
-          }
-      })
-   })
- }
-*/
 
 var flockOptions = [];
 var defaultOption = "Please select a flock.";
-var match = false;
+var profileMatch = false;
 
 const App = ({ user, signOut, signInWithGoogle }) => {
   
-  //Scan through database for user match, then load user-specific flocks.
+  //Scan through database for user profileMatch, then load user-specific flocks.
   db.collection('user').get().then(querySnapshot =>{
     querySnapshot.forEach(doc => {
       if (doc.data()!=null && user!=null)
         if (doc.data().id == user.uid) {
           Object.assign(flockOptions, doc.data().flocks)
-          match = true;
+          profileMatch = true;
         }
     })
-    if (match == false && user!=null) {
+    if (profileMatch == false && user!=null) {
       const res = db.collection('user').add({
         name: user.displayName,
         flocks: [],
         id: user.uid,
       });
-    }//end of if match
+    }//end of if profileMatch
   })//end of firebase ref
 
 
@@ -83,7 +55,7 @@ const App = ({ user, signOut, signInWithGoogle }) => {
           <Dropdown options={flockOptions} onChange={flockOptions._onSelect} 
           value={defaultOption} placeholder="Select an option" />
           <ActivityMenu/>
-          <IssueDebit/>
+          <CreateFlock/>
         </div>
 
         <div className="App">
@@ -117,14 +89,11 @@ export default withFirebaseAuth({
 
 /* 
 =============================== TO-DO LIST ===============================
-
-- Add user
+- display current UID
+- add users to flocks
 - display users in dropdown
 
 
-
-
-==== ADD USER ====
 
 ==== ENTER PAYABLE ====
 *Enter amount*
