@@ -22,10 +22,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // <Dropdown options={options} onChange={options._onSelect} 
 //               value={defaultOption} placeholder="Select an option" />;
 
-
 var flockOptions = [];
 var defaultOption = "Please select a flock.";
 var profileMatch = false;
+var flockIDs = [];
+var loopCount;
 
 const App = ({ user, signOut, signInWithGoogle }) => {
   
