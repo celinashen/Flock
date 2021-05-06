@@ -19,10 +19,15 @@ import withFirebaseAuth from 'react-with-firebase-auth'
 
 
 
-
 var flockOptions = [];
+var flockIDs = [];
 var defaultOption = "Please select a flock.";
 var profileMatch = false;
+var loopCount = 0;
+
+var memberOptions = [];
+
+
 
 const App = ({ user, signOut, signInWithGoogle }) => {
   
@@ -31,7 +36,7 @@ const App = ({ user, signOut, signInWithGoogle }) => {
     querySnapshot.forEach(doc => {
       if (doc.data()!=null && user!=null)
         if (doc.data().id == user.uid) {
-          Object.assign(flockOptions, doc.data().flocks)
+          Object.assign(flockIDs, doc.data().flocks) //load flockIDs with the flock IDs
           profileMatch = true;
         }
     })
@@ -44,6 +49,29 @@ const App = ({ user, signOut, signInWithGoogle }) => {
     }//end of if profileMatch
   })//end of firebase ref
 
+  db.collection('flock-groups').get().then(querySnapshot => {//Translate from flock ID to flockName for dropdown
+    for (var i=0; i < flockIDs.length; i++) {//To-do: add warning that you shouldn't have two flocks with the same name, otherwise code will die
+      querySnapshot.forEach(doc => {
+        if (doc.id == flockIDs[i] && loopCount == 0) {
+          flockOptions.push(doc.data().flockName);
+        }
+      })
+    }
+    loopCount++
+  })
+
+  function nextDropdown(id){
+    //scan database and return list of flock members
+    db.collection('flock-groups').get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        if (doc.id == id)
+          Object.assign(memberOptions,doc.data().members);
+      })
+    })
+  }
+
+
+
 
   return (
     <ThemeProvider>
@@ -52,9 +80,12 @@ const App = ({ user, signOut, signInWithGoogle }) => {
           <TitleIntro/>
           <FlockList/>
           <OutstandingBoxList/>
-          <Dropdown options={flockOptions} onChange={flockOptions._onSelect} 
+          <Dropdown options={flockOptions} onChange={flockOptions._onSelect} onClick={()=> console.log(flockOptions._onSelect)/*nextDropdown(flockOptions._onSelect)*/}
           value={defaultOption} placeholder="Select an option" />
           <ActivityMenu/>
+          <Dropdown options={memberOptions} onChange={memberOptions._onSelect}
+          value={defaultOption} placeholder="Select an option" />
+
           <CreateFlock/>
         </div>
 

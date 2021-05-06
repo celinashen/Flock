@@ -24,8 +24,6 @@ class CreateFlock extends React.Component {
     }
 
 
-
-    
     handleChange(event) {
         this.setState({value: event.target.value});
     }
@@ -58,7 +56,7 @@ class CreateFlock extends React.Component {
     return (
         <form onSubmit={this.handleSubmit}>
         <label>
-            Name:
+            Enter Name of new Flock:
             <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
