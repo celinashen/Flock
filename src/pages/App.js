@@ -29,23 +29,34 @@ var profileMatch = false;
 
 const App = ({ user, signOut, signInWithGoogle }) => {
   
-    //Scan through database for user profileMatch, then load user-specific flocks.
-    db.collection('user').get().then(querySnapshot =>{
+  //Scan through database for user profileMatch, then load user-specific flocks.
+  db.collection('user').get().then(querySnapshot =>{
+    querySnapshot.forEach(doc => {
+      if (doc.data()!=null && user!=null)
+        if (doc.data().id == user.uid) {
+          Object.assign(flockIDs, doc.data().flocks) //load flockIDs with the flock IDs
+          profileMatch = true;
+        }
+    })
+    if (profileMatch == false && user!=null) {
+      const res = db.collection('user').add({
+        name: user.displayName,
+        flocks: [],
+        id: user.uid,
+      });
+    }//end of if profileMatch
+  })//end of firebase ref
+
+  db.collection('flock-groups').get().then(querySnapshot => {//Translate from flock ID to flockName for dropdown
+    for (var i=0; i < flockIDs.length; i++) {//To-do: add warning that you shouldn't have two flocks with the same name, otherwise code will die
       querySnapshot.forEach(doc => {
-        if (doc.data()!=null && user!=null)
-          if (doc.data().id == user.uid) {
-            Object.assign(flockOptions, doc.data().flocks)
-            profileMatch = true;
-          }
+        if (doc.id == flockIDs[i] && loopCount == 0) {
+          flockOptions.push(doc.data().flockName);
+        }
       })
-      if (profileMatch == false && user!=null) {
-        const res = db.collection('user').add({
-          name: user.displayName,
-          flocks: [],
-          id: user.uid,
-        });
-      }//end of if profileMatch
-    })//end of firebase ref
+    }
+    loopCount++
+  })
 
   return (
     <ThemeProvider>
