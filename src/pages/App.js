@@ -1,18 +1,18 @@
-import React from 'react';
-import './App.css';
-import HeaderBar from '../components/MenuBar';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-
-
-import TitleIntro from '../components/TitleIntro';
-import FlockList from '../components/FlocksList';
-import OutstandingBoxList from '../components/OustandingBox';
-import ActivityIcon from '../components/ActivityBar';
-
+import { ThemeProvider } from '@material-ui/core/styles';
+import { default as React } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import withFirebaseAuth from 'react-with-firebase-auth';
+import FlockList from '../components/FlocksList';
+import HeaderBar from '../components/MenuBar';
+import OutstandingBoxList from '../components/OustandingBox';
+import TitleIntro from '../components/TitleIntro';
+import ActivityIcon from '../components/ActivityBar';
+import './App.css';
+import CreateFlock from './CreateFlock';
+import { db, firebaseAppAuth, providers } from './firebaseConfig.js';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 
 // const options = [
 //   'flock1', 'scottsaho', 'celinasthebest:)'
@@ -23,7 +23,30 @@ import 'react-dropdown/style.css';
 //               value={defaultOption} placeholder="Select an option" />;
 
 
-const App=()=> {
+var flockOptions = [];
+var defaultOption = "Please select a flock.";
+var profileMatch = false;
+
+const App = ({ user, signOut, signInWithGoogle }) => {
+  
+    //Scan through database for user profileMatch, then load user-specific flocks.
+    db.collection('user').get().then(querySnapshot =>{
+      querySnapshot.forEach(doc => {
+        if (doc.data()!=null && user!=null)
+          if (doc.data().id == user.uid) {
+            Object.assign(flockOptions, doc.data().flocks)
+            profileMatch = true;
+          }
+      })
+      if (profileMatch == false && user!=null) {
+        const res = db.collection('user').add({
+          name: user.displayName,
+          flocks: [],
+          id: user.uid,
+        });
+      }//end of if profileMatch
+    })//end of firebase ref
+
   return (
     <ThemeProvider>
         <div className="App">
@@ -31,16 +54,38 @@ const App=()=> {
           <TitleIntro/>
           <FlockList/>
           <OutstandingBoxList/>
+          <Dropdown options={flockOptions} onChange={flockOptions._onSelect} 
+          value={defaultOption} placeholder="Select an option" />
           <Router>
             <ActivityIcon/>
             <Switch>
               <Route path = '/' />
             </Switch>
           </Router>
+          <CreateFlock/>
         </div>
+
+        <div className="App">
+          <header className="App-header">
+            {
+              user 
+                ? <p>Hello, {user.displayName}</p>
+                : <p>Please sign in.</p>
+            }
+            {
+              user
+                ? <button onClick={signOut}>Sign out</button>
+                : <button onClick={signInWithGoogle}>Sign in with Google</button>
+            }
+          </header>
+        </div>
+
     </ThemeProvider>
   );
 }
 
 
-export default App;
+export default withFirebaseAuth({
+  providers,
+  firebaseAppAuth,
+})(App);
