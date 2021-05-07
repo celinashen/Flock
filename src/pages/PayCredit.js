@@ -14,23 +14,19 @@ import MenuBar from '../components/MenuBar'
             </form> */}
 
 
-const IssueDebit = () => {
+const PayCredit = () => {
     return (
         <div>
             <MenuBar/>
             <Form 
-                title = "Issue a Receivable"
-                description = "Let someone know that they owe you money by submitting a ‘Issue a Debit’ record. Once they pay you back, they will send you a confirmation that they have paid you, and you can confirm the transaction (confirmations found in the inbox)."
+                title = "Pay a Credit"
+                description = "Let the person you owe know that you have paid them or e-transfered them by submitting a ‘pay a credit’ confirmation. Note: your credit record will be removed once they confirm they have received your money."
             />
         </div>
     )
 }
 
-
-
-
-
-export default IssueDebit;
+export default PayCredit;
 
 
 

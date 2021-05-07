@@ -1,19 +1,16 @@
 
-import React, {useState} from 'react';
-
-import '../pages/App.css';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import * as AiIcons from "react-icons/ai";
+import * as GiIcons from "react-icons/gi";
+import { Link } from 'react-router-dom';
+import '../pages/App.css';
 import { ActivityBarData } from './ActivityBarData';
 
-import { Link } from 'react-router-dom';
-import * as GiIcons from "react-icons/gi";
-import * as AiIcons from "react-icons/ai";
+
+
 
 
 const UseStyles = makeStyles((theme) => ({

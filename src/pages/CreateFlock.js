@@ -19,9 +19,6 @@ class CreateFlock extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
-
-    
     handleChange(event) {
         this.setState({value: event.target.value});
     }
