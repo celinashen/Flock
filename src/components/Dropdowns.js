@@ -109,8 +109,6 @@ const Dropdowns = () => {
                     onChange={handleChangeUser}
                     options = {['Please select a flock']} />
                 )}
-                
-
 
               </Grid>
           </Grid>
