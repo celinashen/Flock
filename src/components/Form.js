@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
         "fontFamily": "Poppins",
         "fontSize": 50,
         "color": "#769E76",
-        alignItems: 'center'
+        alignItems: 'center',
+        fontWeight: '600'
     },
     divStyle:{
         position: 'absolute', 
@@ -63,8 +64,25 @@ const useStyles = makeStyles((theme) => ({
     labelStyle:{
         fontFamily: 'Poppins'
     }, 
-    textboxStyle:{
-        marginBottom: '25px'
+    textFieldStyle:{
+        '& .MuiOutlinedInput-root': {
+            '&:hover fieldset': {
+                borderColor: 'rgba(118,158,118,1)',
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: '#979B82',
+            },
+        }
+    },
+    messageStyle:{
+        marginBottom: '30px', 
+        marginTop: '20px',
+        '& label.Mui-focused': {
+            color: '#979B82',
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: '#979B82',
+        },
     }
 }));
 
@@ -77,12 +95,12 @@ const Form = (props) => {
     const [message, setMessage] = useState('');
 
 
-    const handleInputChange = (event) =>{
+    const handleInputChange = (event) => {
         const target = event.target;
         const value = target.value;
         const name = target.name;
 
-        if (name == 'amount'){
+        if (name == 'amount' ){
             setAmount(value);
         }
         else if (name == 'expenseName'){
@@ -95,9 +113,10 @@ const Form = (props) => {
 
     const handleSubmit = (event) => {
         //this is where you will send the values to the fb
-        alert('Amount: ' + amount);
+        console.log(amount);
+        alert('Amount: ' + amount + ' | Expense: ' + expenseName + ' | Message: ' + message);
         event.preventDefault();
-        //use amount and expenseName to retrive the values
+        //use 'amount' and 'expenseName' and 'message' to retrive the values
     }
 
     const classes = useStyles();
@@ -112,30 +131,30 @@ const Form = (props) => {
                 
                 <form onSubmit={handleSubmit}>
                     <Grid direction = "row" container spacing={0}>
-                        <Grid item lg = {6} className = {classes.textboxStyle}>
+                        <Grid item lg = {6} style = {{marginBottom: '25px'}}>
                             <Typography className = {classes.labelStyle}>Amount</Typography>
-                            <TextField id = "outlined-basic" variant = "outlined">
-                                <br/>
-                                <input
-                                    name = 'amount'
-                                    type = 'number'
-                                    value={amount}
-                                    onChange={handleInputChange}>
-                                </input>
+                            <TextField 
+                                id = "outlined-basic" 
+                                variant = "outlined" 
+                                className = {classes.textFieldStyle}
+                                
+                                name = 'amount'
+                                type = 'number'        
+                                onChange={handleInputChange}>
                             </TextField>
                         </Grid>
 
-                        <Grid item lg = {6} className = {classes.textboxStyle}>
+                        <Grid item lg = {6} style = {{marginBottom: '25px'}}>
                             <Typography className = {classes.labelStyle}>Name of Expense</Typography>
-                            <TextField id = "outlined-basic" variant = "outlined">
+                            <TextField 
+                                id = "outlined-basic" 
+                                variant = "outlined" 
+                                className = {classes.textFieldStyle}
                                 
-                                <br/>
-                                <input
-                                    name = 'expenseName'
-                                    type = 'text'
-                                    value={expenseName}
-                                    onChange={handleInputChange}>
-                                </input>
+                                name = 'expenseName'
+                                type = 'text'
+                                value={expenseName}
+                                onChange={handleInputChange}>
                             </TextField>
                         </Grid>
 
@@ -143,22 +162,23 @@ const Form = (props) => {
                         <Dropdowns/>
                         <br/>
 
-                        <TextField id = "standard-basic" label = "Message (optional)" fullWidth = 'true' style = {{marginBottom: '30px', marginTop: '20px'}}>
-                            <br/>
-                            <input
-                                name = 'message'
-                                type = 'text'
-                                value={message}
-                                onChange={handleInputChange}>
-                            </input>
+                        <TextField 
+                            id = "standard-basic" 
+                            label = "Message (optional)" 
+                            fullWidth = 'true' 
+                            className = {classes.messageStyle}
+
+                            name = 'message'
+                            type = 'text'
+                            value={message}
+                            onChange={handleInputChange}>
                         </TextField>
  
                     </Grid>
 
-                    <input type="submit" value="Submit" className = {classes.submit}/>
+                    <input type="submit" value={props.submit} className = {classes.submit}/>
                 </form>
             </div>
-            
         )
     }
 

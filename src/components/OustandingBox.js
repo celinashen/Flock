@@ -32,18 +32,22 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     '&::-webkit-scrollbar': {
       width: '0.45em',
-      height: '0.1em'
+      height: '0.1em',
+      scrollMarginTop: '10px'
+      
     },
     '&::-webkit-scrollbar-track': {
       boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
-      webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+      webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+      scrollMarginTop: '10px'
     },
     '&::-webkit-scrollbar-thumb': {
       height: '6px',
       backgroundColor: 'rgba(0,0,0,.3)',
       outline: '1px solid slategrey',
-      borderRadius: '10px'
-    }
+      borderRadius: '10px',
+      scrollMarginTop: '10px'
+    },
   },
   card:{
     borderRadius: 10,
@@ -56,7 +60,8 @@ const useStyles = makeStyles((theme) => ({
   typographyOutstandingTitle:{
     "fontFamily": "Poppins",
     "fontSize": 25,
-    "color": "#979B82"
+    "color": "#979B82", 
+    textAlign: 'center'
   },
 }));
 

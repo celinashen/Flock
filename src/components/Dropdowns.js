@@ -12,7 +12,6 @@ var flockIDs = [];
 var userIDs = [];
 var loopCount;
 
-
   class Dropdowns extends React.Component {
     state = {
         flock: null,
