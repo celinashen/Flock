@@ -12,24 +12,25 @@ var flockIDs = [];
 var userIDs = [];
 var loopCount;
 
-  class Dropdowns extends React.Component {
-    state = {
-        flock: null,
-        selectedUser: null,
-    };
-    handleChange = selectedOptionFlock => {
-        this.setState({ flock: selectedOptionFlock });
+const Dropdowns = () => {
+    
+    const [selectedOptionFlock, setFlock] = useState(null);
+    const [selectedOptionUser, setSelectedUser] = useState(null);
+    
+    const handleChange = (selectedOptionFlock) => {
+        setFlock(selectedOptionFlock);
+        console.log('new one');
         console.log(`Option selected:`, selectedOptionFlock);
         
     };
 
-    handleChangeUser = selectedOptionUser => {
-        this.setState({ selectedUser: selectedOptionUser})
+    const handleChangeUser = (selectedOptionUser) => {
+        setSelectedUser(selectedOptionUser);
         console.log("User selected:", selectedOptionUser);
     };
 
 
-    getFlockLists() {
+    function getFlockLists() {
         var user = firebase.auth().currentUser;
 
         //Scan through database for user profileMatch, then load user-specific flocks.
@@ -58,11 +59,11 @@ var loopCount;
         return flockIDs;
     }
 
-    getFlockUsers() {
+    function getFlockUsers() {
         db.collection('flock-groups').get().then(querySnapshot =>{
             querySnapshot.forEach(doc => {
                 if (doc.data()!=null)
-                    if (doc.id == this.selectedOptionFlock) {
+                    if (doc.id == selectedOptionFlock) {
                         Object.assign(userIDs, doc.data().members) //load flockIDs with the flock IDs
                     }
             })
@@ -72,28 +73,24 @@ var loopCount;
     }
 
 
-
-
-    render() {
-      const { selectedOptionFlock, selectedOptionUser } = this.state;
       
       return (
           <Grid direction = "row" container spacing={0}>
               <Grid item lg = {6}>
                 <Typography>Which flock owes you?</Typography>
                 <Dropdown value={selectedOptionFlock} placeholder={defaultOption}
-                onChange={this.handleChange} options={this.getFlockLists()}/>
+                onChange={handleChange} options={getFlockLists()}/>
               </Grid>
 
               <Grid item lg = {6}>
                 <Typography>Who owes you?</Typography>
                 <Dropdown value={selectedOptionUser} placeholder={"Please select a user."}
-                onChange={this.handleChangeUser} options={this.getFlockUsers()}/>
+                onChange={handleChangeUser} options={getFlockUsers()}/>
               </Grid>
           </Grid>
 
       );
-    }
+    
   }
   
 

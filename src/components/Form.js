@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',  
         justifyContent:'center', 
         marginTop: '335px',
-        marginBottom: '2%'
+        marginBottom: ''
     },
     descriptionStyle:{
         marginBottom: '40px',
@@ -139,7 +139,8 @@ const Form = (props) => {
                                 className = {classes.textFieldStyle}
                                 
                                 name = 'amount'
-                                type = 'number'        
+                                type = 'number'   
+                                value = {amount}     
                                 onChange={handleInputChange}>
                             </TextField>
                         </Grid>
