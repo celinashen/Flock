@@ -42,7 +42,18 @@ const App = ({ user, signOut, signInWithGoogle }) => {
     }//end of if profileMatch
   })//end of firebase ref
 
-
+      /*
+      db.collection('flock-groups').get().then(querySnapshot => {//Translate from flock ID to flockName for dropdown
+          for (var i=0; i < flockIDs.length; i++) {//To-do: add warning that you shouldn't have two flocks with the same name, otherwise code will die
+              querySnapshot.forEach(doc => {
+              if (doc.id == flockIDs[i] && loopCount == 0) {
+                  flockOptions.push(doc.data().flockName);
+              }
+              })
+          }
+          loopCount++
+      })
+      */
 
   return (
     <ThemeProvider>
