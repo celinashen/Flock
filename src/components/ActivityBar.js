@@ -129,7 +129,6 @@ const ActivityIcon=()=> {
         <ul>
           <li className = {classes.activityBarToggle}>
             <Link to = "#" className = 'menu-bars'>
-
               <AiIcons.AiFillCloseCircle color = {'white'} onClick={showSidebar}/>
             </Link>
           </li>

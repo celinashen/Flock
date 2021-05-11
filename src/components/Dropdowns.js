@@ -20,17 +20,19 @@ const Dropdowns = () => {
     
     const toggleIsSelected = () => setIsSelected(isSelected => !isSelected);
 
+    //setIsSelected(isSelected => !isSelected);
+
     const handleChange = (selectedOptionFlock) => {
         setFlock(selectedOptionFlock);
-        setIsSelected(isSelected => !isSelected);
+        setIsSelected(!isSelected);
 
         //the second dropdown indicates boolean is true, but prints out false? maybe cause need to exit function to update
-        console.log('boolean: ', isSelected); //should print out true
+        console.log('boolean: ', isSelected); 
         console.log(`Option selected:`, selectedOptionFlock);
     };
 
     const handleChangeUser = (selectedOptionUser) => {
-        console.log('boolean: ', isSelected);
+        console.log('boolean: ', isSelected); //should print out true here
         setSelectedUser(selectedOptionUser);
         console.log("User selected:", selectedOptionUser);
     };

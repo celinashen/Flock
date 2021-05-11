@@ -13,6 +13,10 @@ import CreateFlock from './CreateFlock';
 import { db, firebaseAppAuth, providers } from './firebaseConfig.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import IssueDebit from './IssueDebit';
+
+import HomePage from './HomePage';
+
 
 // const options = [
 //   'flock1', 'scottsaho', 'celinasthebest:)'
@@ -62,19 +66,19 @@ const App = ({ user, signOut, signInWithGoogle }) => {
   return (
     <ThemeProvider>
         <div className="App">
-          <HeaderBar/>
-          <TitleIntro/>
-          <FlockList/>
-          <OutstandingBoxList/>
-          <Dropdown options={flockOptions} onChange={flockOptions._onSelect} 
-          value={defaultOption} placeholder="Select an option" />
+          
+
           <Router>
-            <ActivityIcon/>
+            <HeaderBar/>
             <Switch>
-              <Route path = '/' />
+                <Route path = '/issue'><IssueDebit/></Route>
+                <Route path = '/'><HomePage/></Route>
             </Switch>
           </Router>
-          <CreateFlock/>
+
+          <Dropdown options={flockOptions} onChange={flockOptions._onSelect} 
+          value={defaultOption} placeholder="Select an option" />
+          
         </div>
 
         <div className="App">

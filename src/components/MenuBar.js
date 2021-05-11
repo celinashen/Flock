@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { MuiThemeProvider } from '@material-ui/core/styles';
+import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom';
 
 //import createMuiTheme from '@material-ui/styles';
 
@@ -51,17 +52,20 @@ function HeaderBar() {
           </Typography>
 
           <div className = {classes.navigation}>
-            <Typography variant="h6" color="inherit" className={classes.typography}>
-              your dashboard
-            </Typography>
 
-            <Typography variant="h6" color="inherit" className={classes.typography}>
-              your flocks
-            </Typography>
+          <Typography variant="h6" color="inherit" className={classes.typography}>
+            your dashboard
+          </Typography>
 
-              <Typography variant="h6" color="inherit" className={classes.typography}>
-                issue debits
-              </Typography>
+          <Typography variant="h6" color="inherit" className={classes.typography}>
+            your flocks
+          </Typography>
+
+          <Link to = "/issue">
+            <Typography variant="h6" color="inherit" className={classes.typography}>
+              issue debits
+            </Typography>
+          </Link>
 
             
 

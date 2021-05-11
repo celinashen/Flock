@@ -78,14 +78,14 @@ const ListItem=()=> {
   );
 }
 
-const OutstandingBox=()=>{
+const OutstandingBox=(props)=>{
   const classes = useStyles();
   return(
 
     <div>
       <Box pt = {6} ml = {20}>
         <Typography className = {classes.typographyOutstandingTitle} style={{fontWeight: 500}}>
-          outstanding debits
+          {props.title}
         </Typography>
       </Box>
       <Grid>
@@ -123,13 +123,13 @@ const OutstandingBoxList=()=>{
   return(
       <Grid container spacing={0} direction  = "row" className = {classes.minListWidth}>
         <Grid item lg = {4} md = {6} sm = {12} xs = {12}>
-          <OutstandingBox/>
+          <OutstandingBox title = "oustanding debits"/>
         </Grid>
         <Grid item lg = {4} md = {6} sm = {12} xs = {12}>
-          <OutstandingBox/>
+          <OutstandingBox title = "oustanding credits"/>
         </Grid>
         <Grid item lg = {4} md = {6} sm = {12} xs = {12}>
-          <OutstandingBox/>
+          <OutstandingBox title = "inbox"/>
         </Grid>
       </Grid>    
   );
