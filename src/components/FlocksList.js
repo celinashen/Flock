@@ -57,17 +57,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     height: "100%",
     '&::-webkit-scrollbar': {
-      marginTop: '20px',
-      height: '0.3em',
-      
+      height: '0.4em',
     },
     '&::-webkit-scrollbar-track': {
+      marginTop: '30px',
       boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
       webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
     },
     '&::-webkit-scrollbar-thumb': {
       backgroundColor: 'rgba(224,224,224)',
-      outline: '1px solid slategrey',
       borderRadius: '10px'
     },
   },
@@ -90,7 +88,8 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(12),
     height: theme.spacing(12),
     position: 'relative',
-    backgroundColor: 'rgba(255,0,0,0.3)'
+    backgroundColor: 'rgba(255,0,0,0.3)',
+    marginBottom: '6px'
   },
   
 }));
