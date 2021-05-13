@@ -5,6 +5,7 @@ import { Avatar } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Image from 'react-bootstrap/Image';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -12,14 +13,12 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
   },
-  large: {
-    width: theme.spacing(12),
-    height: theme.spacing(12),
-  },
+
   typography: {
     "fontFamily": "Poppins",
     "fontSize": 30,
-    "color": "#979B82"
+    "color": "#979B82",
+    marginTop: '15px'
   },
   flockBox: {
     //padding: theme.spacing(2),
@@ -48,11 +47,12 @@ const useStyles = makeStyles((theme) => ({
   },
   divStyle:{
     width: '770px',
-    maxHeight: '115px',
+    maxHeight: '200px',
     overflowX: "auto",
     overflowY: "hidden",
     marginLeft: '115px',
     marginTop: '15px',
+    marginBottom: '15px',
     display: 'flex',
     flexDirection: 'row',
     height: "100%",
@@ -69,17 +69,65 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'rgba(224,224,224)',
       outline: '1px solid slategrey',
       borderRadius: '10px'
-    }
-  }
+    },
+  },
+  flockIconTitle:{
+    position: 'absolute', 
+    top: '10px', 
+    left: '50',
+    "color": "white",
+    fontFamily: 'Poppins',
+    display: 'block',
+  },
+  flockIconDiv:{
+    display: 'inline-block',
+    position: 'relative'
+    // textAlign: 'center',
+    // verticalAlign: 'top',
+    // alignItems: 'center',
+  },
+  large: {
+    width: theme.spacing(12),
+    height: theme.spacing(12),
+    position: 'relative',
+    backgroundColor: 'rgba(255,0,0,0.3)'
+  },
   
 }));
 
-const FlockIcon=()=> {
+{/* <div position = 'absolute'>
+        <Typography className={classes.flockIconTitle} style = {{fontWeight: 500}}>Title</Typography>  
+      </div>
+      <Avatar className={classes.large} alt="flock" src={props.flockPhoto} variant="circle"></Avatar> */}
+
+      // <Image 
+      //     className = {classes.large}
+      //     src={props.flockPhoto}
+      //     roundedCircle = 'true'
+      //     fluid = 'true'>
+      // </Image>
+
+
+{/* <div>
+        <img src={props.flockPhoto} width='200px' height='200px'></img>
+      </div> */}
+
+const FlockIcon=(props)=> {
   const classes = useStyles();
   return (
-    <Box>
-      <Avatar alt="hello" src="./images/surprisepika.jpg" variant="circle" className={classes.large}>hello</Avatar>
-    </Box>
+    <div className = {classes.flockIconDiv}>
+      <div position = 'absolute'>
+      </div>
+      <Avatar className={classes.large} alt="flock" variant="circle"
+        style = {{
+          background: `url(${props.flockPhoto})`,
+          boxShadow: 'inset 0 0 0 2000px rgba(0, 0, 0, 0.5)',
+          backgroundSize: '100% auto',
+          backgroundRepeat: 'no-repeat'
+        }}>
+          <Typography className={classes.flockIconTitle} style = {{fontWeight: 500}}>Title</Typography>  
+        </Avatar>
+    </div>
   );
 }
 
@@ -101,6 +149,10 @@ const FlockListTitle=()=> {
   );
 }
 
+
+// put in pexel (or unsplash) link for flockPhoto + flock title as props
+// use pexel API to create a place where user can create flocks
+//must copy image address not link address
 const FlockList=()=>{
   const classes = useStyles();
   return(
@@ -110,15 +162,15 @@ const FlockList=()=>{
       </div>
 
       <div className={classes.divStyle}>
-          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon flockPhoto = "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon flockPhoto = "https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon flockPhoto = "https://images.pexels.com/photos/3800117/pexels-photo-3800117.jpeg?cs=srgb&dl=pexels-vitalna-3800117.jpg&fm=jpg"/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon flockPhoto = "https://images.pexels.com/photos/3464632/pexels-photo-3464632.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon flockPhoto = "https://images.pexels.com/photos/987586/pexels-photo-987586.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon flockPhoto = "https://images.pexels.com/photos/1777921/pexels-photo-1777921.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon flockPhoto = "https://images.pexels.com/photos/4348791/pexels-photo-4348791.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon flockPhoto = "https://images.pexels.com/photos/1624895/pexels-photo-1624895.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
+          <Grid className = {classes.flockIconWidth}><FlockIcon flockPhoto = "https://images.pexels.com/photos/1005638/pexels-photo-1005638.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
       </div>
     </div>
   )

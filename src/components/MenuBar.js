@@ -53,9 +53,11 @@ function HeaderBar() {
 
           <div className = {classes.navigation}>
 
+        <Link to='/'> 
           <Typography variant="h6" color="inherit" className={classes.typography}>
             your dashboard
           </Typography>
+        </Link>
 
           <Typography variant="h6" color="inherit" className={classes.typography}>
             your flocks
@@ -67,11 +69,11 @@ function HeaderBar() {
             </Typography>
           </Link>
 
-            
-
+          <Link to ='/pay'>
             <Typography variant="h6" color="inherit" className={classes.typography}>
               pay credits
             </Typography>
+          </Link>
           </div>
           
         </Toolbar>

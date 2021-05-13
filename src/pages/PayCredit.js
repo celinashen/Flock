@@ -17,7 +17,6 @@ import MenuBar from '../components/MenuBar'
 const PayCredit = () => {
     return (
         <div>
-            <MenuBar/>
             <Form 
                 title = "Pay a Credit"
                 description = "Let the person you owe know that you have paid them or e-transfered them by submitting a ‘pay a credit’ confirmation. Note: your credit record will be removed once they confirm they have received your money."
