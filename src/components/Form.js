@@ -15,6 +15,9 @@ import {TextField} from '@material-ui/core';
 import { db } from '../pages/firebaseConfig'
 
 
+
+
+
 const useStyles = makeStyles((theme) => ({
     titleTypography: {
         "fontFamily": "Poppins",
@@ -93,7 +96,9 @@ const Form = (props) => {
     const [amount, setAmount] = useState(0);
     const [expenseName, setExpenseName] = useState('');
     const [message, setMessage] = useState('');
-
+    const [selectedOptionFlock, setFlock] = useState('');
+    const [selectedOptionUser, setSelectedUser] = useState('');
+    const [isSelected, setIsSelected] = useState(false);
 
     const handleInputChange = (event) => {
         const target = event.target;
@@ -111,13 +116,41 @@ const Form = (props) => {
         }
     }
 
+    const handleChangeFlock = (selectedOptionFlock) => {
+        setFlock(selectedOptionFlock);
+        setIsSelected(!isSelected);
+
+        //the second dropdown indicates boolean is true, but prints out false? maybe cause need to exit function to update
+        console.log('boolean: ', isSelected); 
+        console.log(`Option selected:`, selectedOptionFlock);
+    };
+
+    const handleChangeUser = (selectedOptionUser) => {
+        console.log('boolean: ', isSelected); //should print out true here
+        setSelectedUser(selectedOptionUser);
+        console.log("User selected:", selectedOptionUser);
+    };
+
+
     const handleSubmit = (event) => {
         //this is where you will send the values to the fb
         console.log(amount);
-        alert('Amount: ' + amount + ' | Expense: ' + expenseName + ' | Message: ' + message);
+        alert('Amount: ' + amount + ' | Expense: ' + expenseName + ' | Message: ' + message + ' | selectedOptionFlock: ' + selectedOptionFlock.value + ' | selectedOptionUser: ' + selectedOptionUser.value);
         event.preventDefault();
         //use 'amount' and 'expenseName' and 'message' to retrive the values
+        
+        /*var user = firebase.auth().currentUser;
+        const res = db.collection('transaction').add({
+            receivableBy: user.uid,
+            payableTo:
+            id: user.uid,
+            amount: amount,
+          });*/
+    
     }
+    var defaultOption = "Please select a flock.";
+
+
 
     const classes = useStyles();
         return(
@@ -160,7 +193,38 @@ const Form = (props) => {
                         </Grid>
 
                         <br/>
-                        <Dropdowns/>
+
+                        <Grid direction = "row" container spacing={0}>
+                            <Grid item lg = {6}>
+                                <Typography>Which flock owes you?</Typography>
+                                <Dropdown 
+                                    value={selectedOptionFlock} 
+                                    placeholder={defaultOption}
+                                    onChange={handleChangeFlock} 
+                                    options={['option1', 'option2']}/>
+                            </Grid>
+
+                            <Grid item lg = {6}>
+                                <Typography>Who owes you?</Typography>
+
+                                {isSelected ? 
+                                (
+                                <Dropdown 
+                                    value={selectedOptionUser} 
+                                    placeholder={"Please select a user."}
+                                    onChange={handleChangeUser}
+                                    options = {['Boolean is true']} />
+                                ) : (
+                                    <Dropdown 
+                                    value={selectedOptionUser} 
+                                    placeholder={"Please select a user."}
+                                    onChange={handleChangeUser}
+                                    options = {['Please select a flock']} />
+                                )}
+
+                            </Grid>
+                        </Grid>
+
                         <br/>
 
                         <TextField 

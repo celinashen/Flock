@@ -22,7 +22,7 @@ const Dropdowns = () => {
 
     //setIsSelected(isSelected => !isSelected);
 
-    const handleChange = (selectedOptionFlock) => {
+    const handleChangeFlock = (selectedOptionFlock) => {
         setFlock(selectedOptionFlock);
         setIsSelected(!isSelected);
 
@@ -90,7 +90,7 @@ const Dropdowns = () => {
                 <Dropdown 
                     value={selectedOptionFlock} 
                     placeholder={defaultOption}
-                    onChange={handleChange} 
+                    onChange={handleChangeFlock} 
                     options={['option1', 'option2']}/>
               </Grid>
 
