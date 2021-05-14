@@ -48,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
         minWidth: '50vh',
         borderRadius: '20px',
         boxShadow: '0px 4px 20px 0px rgba(118,158,118,0.5)',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginBottom: '15px'
     },
     buttonStyle:{
         fontFamily: "Poppins",
@@ -70,6 +71,9 @@ const useStyles = makeStyles((theme) => ({
             borderColor: 'rgba(118,158,118,1)',
             outlineColor: 'rgba(118,158,118,1)',
         }
+    },
+    loonTheDuck:{
+        transform: 'translateX(10px)'
     }
 }));
 
@@ -98,10 +102,23 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
   })//end of firebase ref
 
   const classes = useStyles();
+
+  const Emoji = props => (
+    <span
+      className="emoji"
+      role="img"
+      aria-label={props.label ? props.label : ""}
+      aria-hidden={props.label ? "false" : "true"}
+    >
+      {props.symbol}
+    </span>
+  )
+
   return (
     <div>
         <div className = {classes.signIn}>
             <Card className = {classes.cardStyle}>
+                
                 <header className = {classes.titleTypography}>
                 {
                     user 
@@ -115,6 +132,7 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
                 }
                 </header>
             </Card>
+                <Emoji symbol="🦆" className = {classes.loonTheDuck}/>
         </div>
     </div>
     
