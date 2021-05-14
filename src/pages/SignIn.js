@@ -26,10 +26,11 @@ import Card from "@material-ui/core/Card";
 const useStyles = makeStyles((theme) => ({
     titleTypography: {
         "fontFamily": "Poppins",
-        "fontSize": 40,
+        "fontSize": 25,
         "color": "#769E76",
         alignItems: 'center',
-        fontWeight: '300'
+        justifyContent: 'center',
+        fontWeight: '600'
     },
     signIn:{
         backgroundColor: '#C9D4C4',
@@ -43,9 +44,32 @@ const useStyles = makeStyles((theme) => ({
     },
     cardStyle:{
         backgroundColor: 'white',
-        minHeight: '60px',
-        minWidth: '100px',
-        borderRadius: '20px'
+        minHeight: '20vh',
+        minWidth: '50vh',
+        borderRadius: '20px',
+        boxShadow: '0px 4px 20px 0px rgba(118,158,118,0.5)',
+        textAlign: 'center'
+    },
+    buttonStyle:{
+        fontFamily: "Poppins",
+        color: 'rgba(255, 255, 255, 1)',
+
+        width: '70%',
+        height: '56px',
+        borderRadius: '10px',
+        position: 'relative',
+        backgroundColor: 'rgba(118,158,118,1)',
+        border: 'rgba(118,158,118,1)',
+        
+        transition: '0.3s all',
+        '&:hover':{
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+            color: 'rgba(118,158,118,1)',
+            boxShadow: '0px 4px 20px 0px rgba(118,158,118,0.5)',
+            cursor: 'pointer',
+            borderColor: 'rgba(118,158,118,1)',
+            outlineColor: 'rgba(118,158,118,1)',
+        }
     }
 }));
 
@@ -75,8 +99,7 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
 
   const classes = useStyles();
   return (
-    <div>      
-        
+    <div>
         <div className = {classes.signIn}>
             <Card className = {classes.cardStyle}>
                 <header className = {classes.titleTypography}>
@@ -87,8 +110,8 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
                 }
                 {
                     user
-                    ? <button onClick={signOut}>Sign out</button>
-                    : <button onClick={signInWithGoogle}>Sign in with Google</button>
+                    ? <button className = {classes.buttonStyle} onClick={signOut}>Sign out</button>
+                    : <button className = {classes.buttonStyle} onClick={signInWithGoogle}>Sign in with Google</button>
                 }
                 </header>
             </Card>
