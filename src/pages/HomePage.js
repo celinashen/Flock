@@ -29,24 +29,6 @@ var flockIDs = [];
 var loopCount;
 
 const HomePage = ({ user, signOut, signInWithGoogle }) => {
-  
-  //Scan through database for user profileMatch, then load user-specific flocks.
-  db.collection('user').get().then(querySnapshot =>{
-    querySnapshot.forEach(doc => {
-      if (doc.data()!=null && user!=null)
-        if (doc.data().id == user.uid) {
-          Object.assign(flockIDs, doc.data().flocks) //load flockIDs with the flock IDs
-          profileMatch = true;
-        }
-    })
-    if (profileMatch == false && user!=null) {
-      const res = db.collection('user').add({
-        name: user.displayName,
-        flocks: [],
-        id: user.uid,
-      });
-    }//end of if profileMatch
-  })//end of firebase ref
 
   db.collection('flock-groups').get().then(querySnapshot => {//Translate from flock ID to flockName for dropdown
     for (var i=0; i < flockIDs.length; i++) {//To-do: add warning that you shouldn't have two flocks with the same name, otherwise code will die
@@ -84,20 +66,6 @@ const HomePage = ({ user, signOut, signInWithGoogle }) => {
           value={defaultOption} 
           placeholder="Select an option" />
 
-      <div className="App">
-        <header className="App-header">
-          {
-            user 
-              ? <p>Hello, {user.displayName}</p>
-              : <p>Please sign in.</p>
-          }
-          {
-            user
-              ? <button onClick={signOut}>Sign out</button>
-              : <button onClick={signInWithGoogle}>Sign in with Google</button>
-          }
-        </header>
-      </div>
     </div>
     
 
