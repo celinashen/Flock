@@ -13,8 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import {TextField} from '@material-ui/core';
 
 import { db } from '../pages/firebaseConfig'
-
-
+import firebase from 'firebase'
 
 
 
@@ -92,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
 //props: title, description
 
 const Form = (props) => {
-    
+
     const [amount, setAmount] = useState(0);
     const [expenseName, setExpenseName] = useState('');
     const [message, setMessage] = useState('');
@@ -118,7 +117,7 @@ const Form = (props) => {
 
     const handleChangeFlock = (selectedOptionFlock) => {
         setFlock(selectedOptionFlock);
-        setIsSelected(!isSelected);
+        setIsSelected(isSelected);
 
         //the second dropdown indicates boolean is true, but prints out false? maybe cause need to exit function to update
         console.log('boolean: ', isSelected); 
@@ -126,9 +125,9 @@ const Form = (props) => {
     };
 
     const handleChangeUser = (selectedOptionUser) => {
-        console.log('boolean: ', isSelected); //should print out true here
+        //console.log('boolean: ', isSelected); //should print out true here
         setSelectedUser(selectedOptionUser);
-        console.log("User selected:", selectedOptionUser);
+        //console.log("User selected:", selectedOptionUser);
     };
 
 
@@ -148,7 +147,71 @@ const Form = (props) => {
           });*/
     
     }
-    var defaultOption = "Please select a flock.";
+
+
+
+    function getFlockLists() {
+        var user = firebase.auth().currentUser;
+        var flockIDs = [];
+        var tempObject = {};
+    
+        //Scan through database for user profileMatch, then load user-specific flocks.
+        db.collection('user').get().then(querySnapshot =>{
+            querySnapshot.forEach(doc => {
+                if (doc.data()!=null && user!=null)
+                    if (doc.data().id == user.uid) 
+                        doc.data().flocks.forEach(doc2 => {
+                            db.collection('flock-groups').get().then(querySnapshot2 => {
+                                querySnapshot2.forEach(doc3 => {
+                                    if (doc2 == doc3.id) {
+                                        tempObject = {value: doc2, label: doc3.data().flockName};
+                                        flockIDs.push(tempObject);
+                                        //console.log(tempObject);
+                                    }
+    
+                                })
+                            })
+                        });                        
+            })
+        })//end of firebase ref
+        //console.log(flockIDs);
+        return flockIDs;
+    }
+
+    function getUserLists() {
+        var userIDs = [];
+        var tempObject = {};
+
+        db.collection('flock-groups').get().then(querySnapshot =>{
+            querySnapshot.forEach(doc => {
+                if (selectedOptionFlock.value == doc.id) {
+                    doc.data().members.forEach(doc2 => {
+                        db.collection('user').get().then(querySnapshot2 =>{
+                            querySnapshot2.forEach(doc3 => {
+                                //console.log(doc2+", "+doc3.data().id);
+                                if (doc2 == doc3.data().id) {
+                                    tempObject = {value: doc2, label: doc3.data().Name};
+                                    userIDs.push(tempObject);
+                                    console.log("beep")
+                                }
+                            })
+                        })
+                    })
+                }
+            })
+        })
+        return userIDs;
+    }
+
+
+
+
+    const defaultOption = "Please select a flock.";
+    const flockIDs = getFlockLists();
+    const userIDs = getUserLists();
+
+
+
 
 
 
@@ -196,12 +259,14 @@ const Form = (props) => {
 
                         <Grid direction = "row" container spacing={0}>
                             <Grid item lg = {6}>
-                                <Typography>Which flock owes you?</Typography>
+                                <Typography>Which flock owes you?</Typography> 
                                 <Dropdown 
                                     value={selectedOptionFlock} 
                                     placeholder={defaultOption}
                                     onChange={handleChangeFlock} 
-                                    options={['option1', 'option2']}/>
+                                    options={flockIDs}/>
+                                
+                                
                             </Grid>
 
                             <Grid item lg = {6}>
@@ -213,14 +278,14 @@ const Form = (props) => {
                                     value={selectedOptionUser} 
                                     placeholder={"Please select a user."}
                                     onChange={handleChangeUser}
-                                    options = {['Boolean is true']} />
+                                    options = {userIDs} />
                                 ) : (
                                     <Dropdown 
                                     value={selectedOptionUser} 
                                     placeholder={"Please select a user."}
                                     onChange={handleChangeUser}
                                     options = {['Please select a flock']} />
-                                )}
+                                )} 
 
                             </Grid>
                         </Grid>
