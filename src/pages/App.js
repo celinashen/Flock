@@ -16,6 +16,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import IssueDebit from './IssueDebit';
 import PayCredit from './PayCredit';
 import HomePage from './HomePage';
+import SignIn from './SignIn';
+import { GiDungeonGate } from 'react-icons/gi';
+import UserFlocks from './UserFlocks';
 
 //everything that's constant across all pages put into here
 
@@ -45,8 +48,9 @@ const App = () => {
             <Switch>
                 <Route path = '/issue'><IssueDebit/></Route>
                 <Route path = '/pay'><PayCredit/></Route>
+                <Route path = '/signin'><SignIn/></Route>
+                <Route path = '/yourflocks'><UserFlocks/></Route>
                 <Route path = '/'><HomePage/></Route>
-                
             </Switch>
           </Router>
           

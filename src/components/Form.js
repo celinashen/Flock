@@ -7,12 +7,14 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Dropdowns from './Dropdowns';
 import Grid from '@material-ui/core/Grid';
 import {TextField} from '@material-ui/core';
 
-import { db } from '../pages/firebaseConfig'
+import { db } from '../pages/firebaseConfig';
+import firebase from 'firebase';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -89,10 +91,16 @@ const useStyles = makeStyles((theme) => ({
 //props: title, description
 
 const Form = (props) => {
-    
+
     const [amount, setAmount] = useState(0);
     const [expenseName, setExpenseName] = useState('');
     const [message, setMessage] = useState('');
+    const [selectedOptionFlock, setFlock] = useState('');
+    const [selectedOptionUser, setSelectedUser] = useState('');
+    const [isSelected, setIsSelected] = useState(false);
+
+    
+    
 
 
     const handleInputChange = (event) => {
@@ -111,13 +119,107 @@ const Form = (props) => {
         }
     }
 
+    const handleChangeFlock = (selectedOptionFlock) => {
+        setFlock(selectedOptionFlock);
+        setIsSelected(isSelected);
+
+        //the second dropdown indicates boolean is true, but prints out false? maybe cause need to exit function to update
+        console.log('boolean: ', isSelected); 
+        console.log(`Option selected:`, selectedOptionFlock);
+    };
+
+    const handleChangeUser = (selectedOptionUser) => {
+        //console.log('boolean: ', isSelected); //should print out true here
+        setSelectedUser(selectedOptionUser);
+        //console.log("User selected:", selectedOptionUser);
+    };
+
+
     const handleSubmit = (event) => {
         //this is where you will send the values to the fb
         console.log(amount);
-        alert('Amount: ' + amount + ' | Expense: ' + expenseName + ' | Message: ' + message);
+        alert('Amount: ' + amount + ' | Expense: ' + expenseName + ' | Message: ' + message + ' | selectedOptionFlock: ' + selectedOptionFlock.value + ' | selectedOptionUser: ' + selectedOptionUser.value);
         event.preventDefault();
         //use 'amount' and 'expenseName' and 'message' to retrive the values
+        
+        /*var user = firebase.auth().currentUser;
+        const res = db.collection('transaction').add({
+            receivableBy: user.uid,
+            payableTo:
+            id: user.uid,
+            amount: amount,
+          });*/
+    
     }
+
+
+
+    function getFlockLists() {
+        var user = firebase.auth().currentUser;
+        var flockIDs = [];
+        var tempObject = {};
+    
+        //Scan through database for user profileMatch, then load user-specific flocks.
+        db.collection('user').get().then(querySnapshot =>{
+            querySnapshot.forEach(doc => {
+                if (doc.data()!=null && user!=null)
+                    if (doc.data().id == user.uid) 
+                        doc.data().flocks.forEach(doc2 => {
+                            db.collection('flock-groups').get().then(querySnapshot2 => {
+                                querySnapshot2.forEach(doc3 => {
+                                    if (doc2 == doc3.id) {
+                                        tempObject = {value: doc2, label: doc3.data().flockName};
+                                        flockIDs.push(tempObject);
+                                        //console.log(tempObject);
+                                    }
+    
+                                })
+                            })
+                        });                        
+            })
+        })//end of firebase ref
+        //console.log(flockIDs);
+        return flockIDs;
+    }
+
+    function getUserLists() {
+        var userIDs = [];
+        var tempObject = {};
+
+        db.collection('flock-groups').get().then(querySnapshot =>{
+            querySnapshot.forEach(doc => {
+                if (selectedOptionFlock.value == doc.id) {
+                    doc.data().members.forEach(doc2 => {
+                        db.collection('user').get().then(querySnapshot2 =>{
+                            querySnapshot2.forEach(doc3 => {
+                                //console.log(doc2+", "+doc3.data().id);
+                                if (doc2 == doc3.data().id) {
+                                    tempObject = {value: doc2, label: doc3.data().Name};
+                                    userIDs.push(tempObject);
+                                    console.log("beep")
+                                }
+                            })
+                        })
+                    })
+                }
+            })
+        })
+        return userIDs;
+    }
+
+
+
+
+    const defaultOption = "Please select a flock.";
+    const userIDs = getUserLists();
+
+    const [flockIDs, setFlockIDs] = useState([]);
+    useEffect(() => {
+        setFlockIDs(getFlockLists());
+        console.log('hello');
+        console.log(flockIDs);
+    });
+
 
     const classes = useStyles();
         return(
@@ -160,7 +262,38 @@ const Form = (props) => {
                         </Grid>
 
                         <br/>
-                        <Dropdowns/>
+
+                        <Grid direction = "row" container spacing={0}>
+                            <Grid item lg = {6}>
+                                <Typography>Which flock owes you?</Typography> 
+                                <Dropdown 
+                                    value={selectedOptionFlock} 
+                                    placeholder={defaultOption}
+                                    onChange={handleChangeFlock} 
+                                    options={flockIDs}/>
+                            </Grid>
+
+                            <Grid item lg = {6}>
+                                <Typography>Who owes you?</Typography>
+
+                                {isSelected ? 
+                                (
+                                <Dropdown 
+                                    value={selectedOptionUser} 
+                                    placeholder={"Please select a user."}
+                                    onChange={handleChangeUser}
+                                    options = {userIDs} />
+                                ) : (
+                                    <Dropdown 
+                                    value={selectedOptionUser} 
+                                    placeholder={"Please select a user."}
+                                    onChange={handleChangeUser}
+                                    options = {['Please select a flock']} />
+                                )} 
+
+                            </Grid>
+                        </Grid>
+
                         <br/>
 
                         <TextField 

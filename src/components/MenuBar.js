@@ -59,9 +59,11 @@ function HeaderBar() {
           </Typography>
         </Link>
 
+        <Link to = '/yourflocks'>
           <Typography variant="h6" color="inherit" className={classes.typography}>
             your flocks
           </Typography>
+        </Link>
 
           <Link to = "/issue">
             <Typography variant="h6" color="inherit" className={classes.typography}>
