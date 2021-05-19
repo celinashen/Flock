@@ -36,6 +36,16 @@ const useStyles = makeStyles((theme) => ({
    // flexDirection: 'row',
    // justifyContent: 'flex-end',
    // float: 'right'
+  }, 
+  linkStyle:{
+    textDecoration: 'none', 
+    color: 'white',
+    '&:hover': {
+      color: 'black',
+    },
+    '&:active':{
+      textDecoration: 'underline'
+    }
   }
 }));
 
@@ -53,25 +63,25 @@ function HeaderBar() {
 
           <div className = {classes.navigation}>
 
-        <Link to='/'> 
+        <Link to='/' className = {classes.linkStyle}> 
           <Typography variant="h6" color="inherit" className={classes.typography}>
             your dashboard
           </Typography>
         </Link>
 
-        <Link to = '/yourflocks'>
+        <Link to = '/yourflocks' className = {classes.linkStyle}>
           <Typography variant="h6" color="inherit" className={classes.typography}>
             your flocks
           </Typography>
         </Link>
 
-          <Link to = "/issue">
+          <Link to = "/issue" className = {classes.linkStyle}>
             <Typography variant="h6" color="inherit" className={classes.typography}>
               issue debits
             </Typography>
           </Link>
 
-          <Link to ='/pay'>
+          <Link to ='/pay' className = {classes.linkStyle}>
             <Typography variant="h6" color="inherit" className={classes.typography}>
               pay credits
             </Typography>
