@@ -117,7 +117,7 @@ const Form = (props) => {
 
     const handleChangeFlock = (selectedOptionFlock) => {
         setFlock(selectedOptionFlock);
-        setIsSelected(isSelected);
+        setIsSelected(!isSelected);
 
         //the second dropdown indicates boolean is true, but prints out false? maybe cause need to exit function to update
         console.log('boolean: ', isSelected); 
@@ -138,13 +138,13 @@ const Form = (props) => {
         event.preventDefault();
         //use 'amount' and 'expenseName' and 'message' to retrive the values
         
-        /*var user = firebase.auth().currentUser;
+        var user = firebase.auth().currentUser;
         const res = db.collection('transaction').add({
             receivableBy: user.uid,
-            payableTo:
-            id: user.uid,
+            payableTo: selectedOptionUser.value,
+            flockID: selectedOptionFlock.value,
             amount: amount,
-          });*/
+          });
     
     }
 
@@ -165,6 +165,16 @@ const Form = (props) => {
                                 querySnapshot2.forEach(doc3 => {
                                     if (doc2 == doc3.id) {
                                         tempObject = {value: doc2, label: doc3.data().flockName};
+                                        Object.defineProperties(tempObject, {
+                                            value: {
+                                                value: doc2,
+                                                writable: true,
+                                            },
+                                            label: {
+                                                value: doc3.data().flockName,
+                                                writable: true
+                                            },
+                                        });
                                         flockIDs.push(tempObject);
                                         //console.log(tempObject);
                                     }
@@ -264,7 +274,9 @@ const Form = (props) => {
                                     value={selectedOptionFlock} 
                                     placeholder={defaultOption}
                                     onChange={handleChangeFlock} 
-                                    options={flockIDs}/>
+                                    options={flockIDs}
+                                    defaultValue={flockIDs[0]}/>
+                                
                                 
                                 
                             </Grid>
@@ -278,13 +290,14 @@ const Form = (props) => {
                                     value={selectedOptionUser} 
                                     placeholder={"Please select a user."}
                                     onChange={handleChangeUser}
-                                    options = {userIDs} />
+                                    options = {userIDs}/>
+                                    
                                 ) : (
                                     <Dropdown 
                                     value={selectedOptionUser} 
                                     placeholder={"Please select a user."}
                                     onChange={handleChangeUser}
-                                    options = {['Please select a flock']} />
+                                    options = {['Please re-select the flock.']} />
                                 )} 
 
                             </Grid>
