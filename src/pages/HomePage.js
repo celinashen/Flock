@@ -28,7 +28,7 @@ var profileMatch = false;
 var flockIDs = [];
 var loopCount;
 
-const HomePage = ({ user, signOut, signInWithGoogle }) => {
+const HomePage = () => {
 
   db.collection('flock-groups').get().then(querySnapshot => {//Translate from flock ID to flockName for dropdown
     for (var i=0; i < flockIDs.length; i++) {//To-do: add warning that you shouldn't have two flocks with the same name, otherwise code will die

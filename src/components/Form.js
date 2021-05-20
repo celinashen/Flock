@@ -7,13 +7,14 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Dropdowns from './Dropdowns';
 import Grid from '@material-ui/core/Grid';
 import {TextField} from '@material-ui/core';
+import { useEffect } from 'react';
 
-import { db } from '../pages/firebaseConfig';
-import firebase from 'firebase';
+import { db } from '../pages/firebaseConfig'
+import firebase from 'firebase'
 
 
 
@@ -99,10 +100,6 @@ const Form = (props) => {
     const [selectedOptionUser, setSelectedUser] = useState('');
     const [isSelected, setIsSelected] = useState(false);
 
-    
-    
-
-
     const handleInputChange = (event) => {
         const target = event.target;
         const value = target.value;
@@ -159,6 +156,8 @@ const Form = (props) => {
         var flockIDs = [];
         var tempObject = {};
     
+        console.log(user);
+
         //Scan through database for user profileMatch, then load user-specific flocks.
         db.collection('user').get().then(querySnapshot =>{
             querySnapshot.forEach(doc => {
@@ -179,6 +178,7 @@ const Form = (props) => {
             })
         })//end of firebase ref
         //console.log(flockIDs);
+        console.log(flockIDs);
         return flockIDs;
     }
 
@@ -211,14 +211,16 @@ const Form = (props) => {
 
 
     const defaultOption = "Please select a flock.";
+    const [flockIDs, setFlockIDs] = useState(getFlockLists());
     const userIDs = getUserLists();
 
-    const [flockIDs, setFlockIDs] = useState([]);
+    console.log('hello');
+
     useEffect(() => {
-        setFlockIDs(getFlockLists());
-        console.log('hello');
-        console.log(flockIDs);
-    });
+        setTimeout(function(){ setFlockIDs(getFlockLists()) }, 1000);
+    },[]);
+    
+    //once dismount, close in useeffect
 
 
     const classes = useStyles();
@@ -318,159 +320,5 @@ const Form = (props) => {
 
 
 export default Form;
-
-
-
-
-
-
-
-
-
-
-// class Form extends React.Component{
-//     constructor(props){
-//         super(props);
-//         this.state={
-//             amount: 0,
-//             expenseName: ''
-//         };
-//         this.handleInputChange = this.handleInputChange.bind(this);
-//     }
-
-//     handleInputChange(event){
-//         const target = event.target;
-//         const value = target.value;
-//         const name = target.name;
-
-//         this.setState({
-//             [name]: value
-//         });
-//     }
-
-//     handleSubmit(event){
-//         //this is where you will send the values to the fb
-//         alert(
-//             'Amount: ' + this.state.amount);
-//         event.preventDefault();
-//     }
-
-//     render(){
-//         const { classes } = this.props;
-//         return(
-//             <div>
-//                 <Typography className = {classes.titleTypography}>Issue a Receivable</Typography>
-                
-//                 <form onSubmit={this.handleSubmit}>
-//                     <label>
-//                         Amount 
-//                         <br/>
-//                         <input
-//                             name = 'amount'
-//                             type = 'number'
-//                             value={this.state.amount}
-//                             onChange={this.handleInputChange}>
-//                         </input>
-//                     </label>
-//                     <br />
-
-//                     <label>
-//                         Name of Expense
-//                         <br/>
-//                         <input
-//                             name = 'expenseName'
-//                             type = 'text'
-//                             value={this.state.expenseName}
-//                             onChange={this.handleInputChange}>
-//                         </input>
-//                     </label>
-
-//                     <input type="submit" value="Submit" />
-//                 </form>
-//             </div>
-            
-//         )
-//     }
-// }
-
-// export default withStyles(styles, { withTheme: true })(Form);
-
-
-
-
-
-
-
-// const UseStyles = makeStyles((theme) => ({
-//     titleTypography: {
-//       "fontFamily": "Poppins",
-//       "fontSize": 50,
-//       "color": "#769E76"
-//     },
-//     titleStyle:{
-//         position: 'absolute', 
-//         left: '50%', 
-//         top: '25%',
-//         transform: 'translate(-50%, -50%)'
-//     },
-//     formStyle:{
-//         position: 'absolute', 
-//         left: '50%', 
-//         top: '25%',
-//         transform: 'translate(-50%, -50%)'
-//     }
-// }));
-
-// const Form = () =>{
-
-//     const [amount, setAmount] = useState("");
-//     const [transactionName, setTransaction] = useState("");
-//     const [message, setMessage] = useState("");
-
-//     const classes = UseStyles();
-//     return (
-//         <div>
-//             <Box className = {classes.titleStyle}>
-//                 <Typography className = {classes.titleTypography} style={{fontWeight: 600}}>Issue a Receivable</Typography>
-//             </Box>
-            
-//             <form className = {classes.formStyle}>
-            
-//                 <label>Amount</label>
-//                 <input 
-//                     placeholder="Amount" 
-//                     value = {amount}
-//                     onChange={(e) => setAmount(e.target.value)}/>
-
-//                 <label>Transaction</label>
-//                 <input 
-//                     placeholder="Transaction Name"
-//                     value = {transactionName}
-//                     onChange={(e) => setTransaction(e.target.value)}/>
-
-//                 <label>Message</label>
-//                 <input 
-//                     placeholder="Message"
-//                     value = {message}
-//                     onChange={(e) => setMessage(e.target.value)}/>
-
-//             </form>
-
-//             <h3>Your amount is: {amount}</h3>
-//             <h3>Your transaction is: {transactionName}</h3>
-//             <h3>Your message is: {message}</h3>
-            
-//         </div>
-//     )
-// }
-
-// //values are what you want to send back to fb
-
-// export default Form;
-
-
-
-
-
 
 

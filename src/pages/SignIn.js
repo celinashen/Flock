@@ -114,6 +114,9 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
     </span>
   )
 
+  //make component sign in 
+  //then create conditional using router redirect
+
   return (
     <div>
         <div className = {classes.signIn}>
