@@ -14,6 +14,7 @@ import { db, firebaseAppAuth, providers } from './firebaseConfig.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from "@material-ui/core/Card";
+import Typography from '@material-ui/core/Typography';
 
 // const options = [
 //   'flock1', 'scottsaho', 'celinasthebest:)'
@@ -31,6 +32,14 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         fontWeight: '600'
+    },
+    textStyle:{
+      "fontFamily": "Poppins",
+      "fontSize": 15,
+      "color": "#769E76",
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontWeight: '400'
     },
     signIn:{
         backgroundColor: '#C9D4C4',
@@ -122,16 +131,14 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
         <div className = {classes.signIn}>
             <Card className = {classes.cardStyle}>
                 
+              <Typography className = {classes.titleTypography}>Please sign in with Google.</Typography>
+              <button className = {classes.buttonStyle} onClick={signInWithGoogle}>Sign in with Google</button>
+
                 <header className = {classes.titleTypography}>
                 {
                     user 
                     ? <p>Hello, {user.displayName}</p>
-                    : <p>Please sign in.</p>
-                }
-                {
-                    user
-                    ? <button className = {classes.buttonStyle} onClick={signOut}>Sign out</button>
-                    : <button className = {classes.buttonStyle} onClick={signInWithGoogle}>Sign in with Google</button>
+                    : <p>Please try again.</p>
                 }
                 </header>
             </Card>
