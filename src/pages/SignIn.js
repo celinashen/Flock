@@ -15,6 +15,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from "@material-ui/core/Card";
 import Typography from '@material-ui/core/Typography';
+import { useHistory } from "react-router-dom";
+
 
 // const options = [
 //   'flock1', 'scottsaho', 'celinasthebest:)'
@@ -126,21 +128,31 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
   //make component sign in 
   //then create conditional using router redirect
 
+  const history = useHistory();
+
+  async function handleSubmit(event){
+    event.preventDefault();
+  
+    try {
+      await signInWithGoogle;
+      console.log('1');
+      console.log(user)
+      if (user == true){
+        console.log('2');
+        history.push("/");
+      }
+    } catch (e) {
+      alert('Please try again.');
+    }
+  }
+
   return (
     <div>
         <div className = {classes.signIn}>
             <Card className = {classes.cardStyle}>
                 
-              <Typography className = {classes.titleTypography}>Please sign in with Google.</Typography>
-              <button className = {classes.buttonStyle} onClick={signInWithGoogle}>Sign in with Google</button>
-
-                <header className = {classes.titleTypography}>
-                {
-                    user 
-                    ? <p>Hello, {user.displayName}</p>
-                    : <p>Please try again.</p>
-                }
-                </header>
+              <Typography className = {classes.titleTypography}>Please sign in.</Typography>
+              <button className = {classes.buttonStyle} onClick = {handleSubmit} >Sign in with Google</button>
             </Card>
                 <Emoji symbol="🦆" className = {classes.loonTheDuck}/>
         </div>
@@ -149,6 +161,19 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
 
   );
 }
+
+{/* <header className = {classes.titleTypography}>
+{
+    user 
+    ? <p>Hello, {user.displayName}</p>
+    : <p>Please sign in.</p>
+}
+{
+    user
+    ? <button className = {classes.buttonStyle} onClick={signOut}>Sign out</button>
+    : <button className = {classes.buttonStyle} onClick={signInWithGoogle}>Sign in with Google</button>
+}
+</header> */}
 
 
 export default withFirebaseAuth({
