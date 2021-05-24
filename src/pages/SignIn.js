@@ -134,7 +134,7 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
     event.preventDefault();
   
     try {
-      await signInWithGoogle;
+      await signInWithGoogle();
       console.log('1');
       console.log(user)
       if (user == true){
@@ -142,6 +142,7 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
         history.push("/");
       }
     } catch (e) {
+      console.log('3');
       alert('Please try again.');
     }
   }
