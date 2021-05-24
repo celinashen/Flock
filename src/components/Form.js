@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import Dropdowns from './Dropdowns';
+//import Dropdowns from './Dropdowns';
 import Grid from '@material-ui/core/Grid';
 import {TextField} from '@material-ui/core';
 import { useEffect } from 'react';
@@ -118,10 +118,10 @@ const Form = (props) => {
 
     const handleChangeFlock = (selectedOptionFlock) => {
         setFlock(selectedOptionFlock);
-        setIsSelected(isSelected);
+        setIsSelected(!isSelected);
 
         //the second dropdown indicates boolean is true, but prints out false? maybe cause need to exit function to update
-        console.log('boolean: ', isSelected); 
+        console.log('boolean: ', !isSelected); 
         console.log(`Option selected:`, selectedOptionFlock);
     };
 

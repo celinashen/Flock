@@ -7,6 +7,75 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Image from 'react-bootstrap/Image';
 import FlockCard from '../components/FlockCard'
+import { db } from './firebaseConfig';
+import firebase from 'firebase';
+import CreateFlock from './CreateFlock';
+import Dropdown from 'react-dropdown';
+
+
+
+
+function getFlockListWithImages() {
+    var user = firebase.auth().currentUser;
+    var flockIDs = [];
+    var tempObject = {};
+ 
+    //Scan through database for user profileMatch, then load user-specific flocks.
+    db.collection('user').get().then(querySnapshot =>{
+        querySnapshot.forEach(doc => {
+            if (doc.data()!=null && user!=null)
+                if (doc.data().id == user.uid) 
+                    doc.data().flocks.forEach(doc2 => {
+                        db.collection('flock-groups').get().then(querySnapshot2 => {
+                            querySnapshot2.forEach(doc3 => {
+                                if (doc2 == doc3.id) {
+                                    tempObject = {id: doc2, name: doc3.data().flockName, image: "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"};
+                                    flockIDs.push(tempObject);
+                                    console.log(tempObject.name);
+                                    //console.log(tempObject);
+                                }
+                            })
+                        })
+                    });
+        })
+    })//end of firebase ref
+    //console.log(flockIDs);
+    console.log(flockIDs);
+    return flockIDs;
+}
+
+
+function getFlockListDropdown() {
+  var user = firebase.auth().currentUser;
+  var flockIDs = [];
+  var tempObject = {};
+
+  //Scan through database for user profileMatch, then load user-specific flocks.
+  db.collection('user').get().then(querySnapshot =>{
+      querySnapshot.forEach(doc => {
+          if (doc.data()!=null && user!=null)
+              if (doc.data().id == user.uid) 
+                  doc.data().flocks.forEach(doc2 => {
+                      db.collection('flock-groups').get().then(querySnapshot2 => {
+                          querySnapshot2.forEach(doc3 => {
+                              if (doc2 == doc3.id) {
+                                  tempObject = {value: doc2, label: doc3.data().flockName};
+                                  flockIDs.push(tempObject);
+                                  //console.log(tempObject);
+                              }
+                          })
+                      })
+                  });
+      })
+  })//end of firebase ref
+  //console.log(flockIDs);
+  return flockIDs;
+}
+
+
+
+
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -45,26 +114,44 @@ const FlockListTitle=()=> {
 // put in pexel (or unsplash) link for flockPhoto + flock title as props
 // use pexel API to create a place where user can create flocks
 //must copy image address not link address
-const UserFlocks=()=>{
+const UserFlocks=(props)=>{
   const classes = useStyles();
+
+  //var objects = [{name: "Spotify", image: "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"},
+  //{name: "Rent", image: "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"}, 
+  //{name: "Road Trip", image: "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"}];
+
+  //firebase format data 
+  var objects = getFlockListWithImages();
+
+  
+  useEffect(() => {
+    setTimeout(function(){ setFlockIDs(getFlockLists()) }, 1000);
+  },[]);
+
+
   return(
     <div> 
       <div>
+
+        <CreateFlock/>
+        <Dropdown 
+          options={getFlockListDropdown()} 
+          onChange={getFlockListDropdown()._onSelect} 
+          value={"Please select a flock."} 
+          placeholder="Select an option" />
+
+
+
+
         <FlockListTitle/>
 
         <Grid direction = "row" container spacing={0} justify = "left" alignItems = "center" className = {classes.outstandingBoxContainer} >
-          <Box pl = {13} pr = {2.5} pt = {5}>
-            <FlockCard flockName = "Spotify" flockImage = "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"/>
-          </Box>
-          <Box pl = {13} pr = {2.5} pt = {5}>
-            <FlockCard flockName = "Spotify" flockImage = "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"/>
-          </Box>
-          <Box pl = {13} pr = {2.5} pt = {5}>
-            <FlockCard flockName = "Spotify" flockImage = "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"/>
-          </Box>
-          <Box pl = {13} pr = {2.5} pt = {5}>
-            <FlockCard flockName = "Spotify" flockImage = "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"/>
-          </Box>
+          {objects.map(function(object){
+                return (<Box pl = {13} pr = {2.5} pt = {5}>
+                  <FlockCard flockName={object.name} flockImage={object.image} />
+                  </Box>);
+          })}
         </Grid>
       </div>
     </div>
