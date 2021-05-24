@@ -11,7 +11,8 @@ import { db } from './firebaseConfig';
 import firebase from 'firebase';
 import CreateFlock from './CreateFlock';
 import Dropdown from 'react-dropdown';
-
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 
@@ -122,11 +123,11 @@ const UserFlocks=(props)=>{
   //{name: "Road Trip", image: "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"}];
 
   //firebase format data 
-  var objects = getFlockListWithImages();
 
-  
+  const [objects, setObjects] = useState(getFlockListWithImages());
+
   useEffect(() => {
-    setTimeout(function(){ setFlockIDs(getFlockLists()) }, 1000);
+    setTimeout(function(){ setObjects(getFlockListWithImages()) }, 1000);
   },[]);
 
 
