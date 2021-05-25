@@ -31,13 +31,26 @@ const useStyles = makeStyles((theme) => ({
     }, 
     textStyle:{
       position: 'absolute',
-      top: '50%',
-      left: '50%',
       color: 'white',
       fontFamily: 'Poppins',
       fontWeight: '400px',
       fontSize: '30px',
-      
+      flex: '0 0 120px',
+    },
+    wrapper:{
+      position: 'relative',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    overlay:{
+      position: 'absolute',
+      backgroundColor: 'rgba(0, 0, 255, 1)',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      display: 'none'
     }
 }));
 
@@ -45,20 +58,17 @@ const FlockCard=(props)=> {
     const classes = useStyles();
     return (
       <div>
-          <Card className = {classes.cardStyle} variant = "outlined">
-            <CardMedia className = {classes.media}
-                component="img"
-                image={props.flockImage}
-                title="Flock"     
-            />
-            
-
-            <Typography className = {classes.textStyle}>
-              {props.flockName}
-            </Typography>
-
-          </Card>
-        
+            <div className = {classes.wrapper}>
+              <CardMedia 
+                className = {classes.media}
+                  component="img"
+                  image={props.flockImage}
+                  title="Flock"     
+              />
+              <Typography className = {classes.textStyle}>
+                {props.flockName}
+              </Typography>
+            </div>
       </div>
     );
   }
