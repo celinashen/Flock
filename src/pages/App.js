@@ -48,9 +48,9 @@ const App = () => {
             <Switch>
                 <Route path = '/issue'><IssueDebit/></Route>
                 <Route path = '/pay'><PayCredit/></Route>
-                <Route path = '/signin'><SignIn/></Route>
                 <Route path = '/yourflocks'><UserFlocks/></Route>
-                <Route path = '/'><HomePage/></Route>
+                <Route path = '/home'><HomePage/></Route>
+                <Route path = '/'><SignIn/></Route>
             </Switch>
           </Router>
           

@@ -63,7 +63,7 @@ function HeaderBar() {
 
           <div className = {classes.navigation}>
 
-        <Link to='/' className = {classes.linkStyle}> 
+        <Link to='/home' className = {classes.linkStyle}> 
           <Typography variant="h6" color="inherit" className={classes.typography}>
             your dashboard
           </Typography>
