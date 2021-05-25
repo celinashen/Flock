@@ -8,8 +8,11 @@ import SignIn from './pages/SignIn';
 import HomePage from './pages/HomePage';
 import UserFlocks from './pages/UserFlocks'
 //import * as serviceWorker from './serviceWorker';
+import {BrowserRouter} from 'react-router-dom'
 
-ReactDOM.render(<SignIn/>, document.getElementById('root'));
+ReactDOM.render(
+    <BrowserRouter><SignIn/></BrowserRouter>, 
+    document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

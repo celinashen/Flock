@@ -158,7 +158,7 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
 
               {
                   user 
-                  ? {useRedirect}
+                  ? <Redirect  to="/home" />
                   : <Typography className = {classes.titleTypography}>Please sign in.</Typography>
               }
 
