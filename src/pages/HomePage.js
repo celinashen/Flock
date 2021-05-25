@@ -52,7 +52,7 @@ const HomePage = () => {
         <Router>
         <ActivityIcon/>
         <Switch>
-            <Route path = '/' />
+            <Route path = '/home' />
         </Switch>
         </Router>
         

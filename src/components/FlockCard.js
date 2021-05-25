@@ -21,12 +21,23 @@ const useStyles = makeStyles((theme) => ({
     },
     cardStyle:{
       maxWidth: '30vh', 
-      borderRadius: '10px'
+      borderRadius: '10px', 
+      position: 'relative',
     },
     media:{
       maxWidth: '30vh',
       maxHeight: '30vh',
-      borderRadius: '10px'
+      borderRadius: '10px',
+    }, 
+    textStyle:{
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      color: 'white',
+      fontFamily: 'Poppins',
+      fontWeight: '400px',
+      fontSize: '30px',
+      
     }
 }));
 
@@ -37,15 +48,15 @@ const FlockCard=(props)=> {
           <Card className = {classes.cardStyle} variant = "outlined">
             <CardMedia className = {classes.media}
                 component="img"
-                className={classes.media}
                 image={props.flockImage}
-                title="Flock"
+                title="Flock"     
             />
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {props.flockName}
-                </Typography>
-            </CardContent>
+            
+
+            <Typography className = {classes.textStyle}>
+              {props.flockName}
+            </Typography>
+
           </Card>
         
       </div>

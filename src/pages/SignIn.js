@@ -17,6 +17,7 @@ import Card from "@material-ui/core/Card";
 import Typography from '@material-ui/core/Typography';
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import { withRouter } from "react-router";
 
 
 // const options = [
@@ -146,21 +147,19 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
     }
   }
 
-  function useRedirect() {
-    let history = useHistory();
-    history.push("/home");
-  }
 
   return (
     <div>
         <div className = {classes.signIn}>
             <Card className = {classes.cardStyle}>
 
+            <Route exact path="/">
               {
                   user 
-                  ? <Redirect  to="/home" />
+                  ? <Redirect from="/" to="/home" />
                   : <Typography className = {classes.titleTypography}>Please sign in.</Typography>
               }
+            </Route>
 
               {
                   user
@@ -191,9 +190,10 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
 }
 </header> */}
 
-
-export default withFirebaseAuth({
-  providers,
-  firebaseAppAuth,
-})(SignIn);
+export default 
+  withFirebaseAuth({
+    providers,
+    firebaseAppAuth,
+  })(SignIn);
+  
 

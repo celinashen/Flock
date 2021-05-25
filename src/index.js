@@ -11,7 +11,7 @@ import UserFlocks from './pages/UserFlocks'
 import {BrowserRouter} from 'react-router-dom'
 
 ReactDOM.render(
-    <BrowserRouter><SignIn/></BrowserRouter>, 
+    <BrowserRouter><App/></BrowserRouter>, 
     document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

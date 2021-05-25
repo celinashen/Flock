@@ -125,7 +125,7 @@ const FlockIcon=(props)=> {
           backgroundRepeat: 'no-repeat'
         }}>
           <Typography className={classes.flockIconTitle} style = {{fontWeight: 500}}>{props.flockTitle}</Typography>  
-        </Avatar>
+      </Avatar>
     </div>
   );
 }
