@@ -21,16 +21,15 @@ const useStyles = makeStyles((theme) => ({
     },
     cardStyle:{
       maxWidth: '30vh', 
-      borderRadius: '10px', 
       position: 'relative',
     },
     media:{
       maxWidth: '30vh',
       maxHeight: '30vh',
-      borderRadius: '10px',
+      borderRadius: '17px',
     }, 
     textStyle:{
-      position: 'absolute',
+      position: 'relative',
       color: 'white',
       fontFamily: 'Poppins',
       fontWeight: '400px',
@@ -45,12 +44,16 @@ const useStyles = makeStyles((theme) => ({
     },
     overlay:{
       position: 'absolute',
-      backgroundColor: 'rgba(0, 0, 255, 1)',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      borderRadius: '17px',
       top: 0,
       bottom: 0,
       left: 0,
       right: 0,
-      display: 'none'
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+      
     }
 }));
 
@@ -65,9 +68,12 @@ const FlockCard=(props)=> {
                   image={props.flockImage}
                   title="Flock"     
               />
-              <Typography className = {classes.textStyle}>
-                {props.flockName}
-              </Typography>
+              
+              <div className={classes.overlay}>
+                <Typography className = {classes.textStyle}>
+                  {props.flockName}
+                </Typography>
+              </div>
             </div>
       </div>
     );
