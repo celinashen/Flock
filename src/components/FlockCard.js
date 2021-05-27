@@ -38,9 +38,6 @@ const useStyles = makeStyles((theme) => ({
     },
     wrapper:{
       position: 'relative',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center'
     },
     overlay:{
       position: 'absolute',
@@ -68,7 +65,6 @@ const FlockCard=(props)=> {
                   image={props.flockImage}
                   title="Flock"     
               />
-              
               <div className={classes.overlay}>
                 <Typography className = {classes.textStyle}>
                   {props.flockName}
