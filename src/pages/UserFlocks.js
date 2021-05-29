@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 const FlockListTitle=()=> {
   const classes = useStyles();
   return (
-    <Box pl={15} pt={5}>  
+    <Box pl={15} pt={5} pb = {6}>  
       <Typography className={classes.typography} align = "left" variant="h1" color="inherit" style={{fontWeight: 600}}>
           your flocks
       </Typography>
@@ -66,17 +66,17 @@ const UserFlocks=()=>{
       <div>
         <FlockListTitle/>
 
-        <Grid direction = "row" container spacing={0} justify = "left" alignItems = "center" className = {classes.outstandingBoxContainer} >
-          <Box onClick = {openModal} classname = {classes.boxStyle} pl = {13} pr = {2.5} pt = {5}>
+        <Grid direction = "row" container spacing={0} justify = "space-around" alignItems = "center" className = {classes.outstandingBoxContainer} >
+          <Box onClick = {openModal} className = {classes.boxStyle}>
             <FlockCard flockName = "Spotify" flockImage = "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"/>
           </Box>
-          <Box pl = {13} pr = {2.5} pt = {5}>
+          <Box onClick = {openModal} className = {classes.boxStyle}>
             <FlockCard flockName = "Spotify" flockImage = "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"/>
           </Box>
-          <Box pl = {13} pr = {2.5} pt = {5}>
+          <Box onClick = {openModal} className = {classes.boxStyle}>
             <FlockCard flockName = "Spotify" flockImage = "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"/>
           </Box>
-          <Box pl = {13} pr = {2.5} pt = {5}>
+          <Box onClick = {openModal} className = {classes.boxStyle}>
             <FlockCard flockName = "Spotify" flockImage = "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"/>
           </Box>
         </Grid>

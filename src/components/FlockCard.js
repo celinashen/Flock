@@ -56,8 +56,10 @@ const useStyles = makeStyles((theme) => ({
 
 const FlockCard=(props)=> {
     const classes = useStyles();
+
     return (
       <div>
+            {props.isClicked}
             <div className = {classes.wrapper}>
               <CardMedia 
                 className = {classes.media}
