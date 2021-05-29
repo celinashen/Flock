@@ -1,8 +1,11 @@
 import React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 import Card from '@material-ui/core/Card';
+
+import MemberList from './MemberList';
 
 
 
@@ -22,8 +25,35 @@ const useStyles = makeStyles((theme) => ({
         left: '50%',
         top: '50%',
         transform: 'translate(-50%, -50%)'
+    }, 
+    popupTitle:{
+        "fontFamily": "Poppins",
+        "fontSize": 30,
+        "color": "#769E76",
+        marginLeft: '10%',
+        marginTop: '10%',
+        display: 'flex',
+        align: 'left',
+        alignContent: 'flex-start',
+        fontWeight: '600'
     }
 }));
+
+
+const Popup = () => {
+    const classes = useStyles();
+
+    return(
+        <>
+            <Card className = {classes.popupStyle}>
+                <Typography className = {classes.popupTitle}>
+                    Spotify
+                </Typography>
+                <MemberList/>
+            </Card> 
+        </>
+    );
+};
 
 const Modal = ({showModal, setShowModal}) => {
     const classes = useStyles();
@@ -31,7 +61,7 @@ const Modal = ({showModal, setShowModal}) => {
     return(
         <>
             {showModal ? 
-                <Card className = {classes.popupStyle}>hello</Card> 
+                <Popup/> 
                 : 
                 null}
             
