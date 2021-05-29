@@ -55,10 +55,18 @@ const FlockListTitle=()=> {
 const UserFlocks=()=>{
 
   const [showModal, setShowModal] = useState(false)
+  const [modalTitle, setModalTitle] = useState("")
 
   const openModal = () => {
     setShowModal(prev => !prev);
+    setModalTitle("Spotify");
   };
+
+  //for the setModalTitle, replace "Netflix" with a variable
+  //TODO: scott will create variable to store flock name from db (for flockName prop) --> i will take this variable to use in set modal title
+  //TODO: will need to map flock title variables for each flock card
+
+  
 
   const classes = useStyles();
   return(
@@ -80,7 +88,7 @@ const UserFlocks=()=>{
             <FlockCard flockName = "Spotify" flockImage = "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"/>
           </Box>
         </Grid>
-        <Modal showModal={showModal} setShowModal = {setShowModal} />
+        <Modal showModal={showModal} setShowModal = {setShowModal} modalTitle = {modalTitle} />
       </div>
     </div>
   )

@@ -54,22 +54,21 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const FlockCard=(props)=> {
+const FlockCard=({flockImage, flockName})=> {
     const classes = useStyles();
 
     return (
       <div>
-            {props.isClicked}
             <div className = {classes.wrapper}>
               <CardMedia 
                 className = {classes.media}
                   component="img"
-                  image={props.flockImage}
+                  image={flockImage}
                   title="Flock"     
               />
               <div className={classes.overlay}>
                 <Typography className = {classes.textStyle}>
-                  {props.flockName}
+                  {flockName}
                 </Typography>
               </div>
             </div>

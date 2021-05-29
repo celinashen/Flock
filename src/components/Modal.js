@@ -40,14 +40,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Popup = () => {
+const Popup = ({modalTitle}) => {
     const classes = useStyles();
 
     return(
         <>
             <Card className = {classes.popupStyle}>
                 <Typography className = {classes.popupTitle}>
-                    Spotify
+                    {modalTitle}
                 </Typography>
                 <MemberList/>
             </Card> 
@@ -55,13 +55,13 @@ const Popup = () => {
     );
 };
 
-const Modal = ({showModal, setShowModal}) => {
+const Modal = ({showModal, setShowModal, modalTitle}) => {
     const classes = useStyles();
 
     return(
         <>
             {showModal ? 
-                <Popup/> 
+                <Popup modalTitle = {modalTitle}/> 
                 : 
                 null}
             
