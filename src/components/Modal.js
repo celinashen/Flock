@@ -45,20 +45,21 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: "200%"
     },
     typographyCard: {
+        backgroundColor: '#769E76',
         "fontFamily": "Poppins",
         "fontSize": 20,
-        "color": "#979B82"
+        "color": "white"
     },
     typographyOutstandingTitle:{
         "fontFamily": "Poppins",
-        "fontSize": 25,
+        "fontSize": 20,
         "color": "#979B82", 
         textAlign: 'center'
       },
       outstandingBoxContainer:{
-        backgroundColor: "#769E76",
+        backgroundColor: "white",
         borderRadius: "20px",
-        maxWidth: '45%',
+        maxWidth: '40%',
         maxHeight: 320,
         marginLeft: '10%',
         marginBottom: '10%',
@@ -111,7 +112,7 @@ const OutstandingReceivable = ({title}) => {
           </Box>
           <Grid>
             <Grid direction = "column" justify = "center" alignItems = "center" className = {classes.outstandingBoxContainer} >
-              <Box pl = {2.5} pr = {2.5} pt = {2.5}>
+              <Box pl = {2.5} pr = {2.5}>
                 <ListItem/>
               </Box>
               <Box pl = {2.5} pr = {2.5} pt = {2}>
@@ -129,7 +130,7 @@ const OutstandingReceivable = ({title}) => {
               <Box pl = {2.5} pr = {2.5} pt = {2}>
                 <ListItem/>
               </Box>
-              <Box pl = {2.5} pr = {2.5} pt = {2} pb = {2}>
+              <Box pl = {2.5} pr = {2.5} pt = {2}>
                 <ListItem/>
               </Box>
             </Grid>
@@ -150,6 +151,7 @@ const Popup = ({modalTitle}) => {
                 </Typography>
                 <MemberList/>
                 <OutstandingReceivable/>
+                
             </Card> 
         </>
     );
