@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom';
+import { IconDashboard } from '@tabler/icons';
+import Card from '@material-ui/core/Card';
 
 //import createMuiTheme from '@material-ui/styles';
 
@@ -33,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Poppins",
     color: 'white',
     fontStyle: 'normal',
-    fontWeight: 'bold',
+    fontWeight: 500,
     fontSize: '30px',
     paddingTop: '15%',
     textAlign: 'center'
@@ -59,6 +61,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#309F5E',
     borderBottomRightRadius: '15px',
     borderTopRightRadius: '15px',
+  },
+  menuIcon: {
+    backgroundColor: 'white',
+    width: '5vh',
+    minHeight: '5vh',
+    borderRadius: '10px',
+    boxShadow: 'none'
   }
 }));
 
@@ -86,16 +95,26 @@ function HeaderBar() {
           </Typography>
 
           <Link to='/home' className = {classes.linkStyle}> 
-          <Typography color="inherit" className={classes.typography}>
-            your dashboard
-          </Typography>
-        </Link>
 
-        <Link to = '/yourflocks' className = {classes.linkStyle}>
-          <Typography color="inherit" className={classes.typography}>
-            your flocks
-          </Typography>
-        </Link>
+            <Card className = {classes.menuIcon}>
+              <IconDashboard 
+                size={36} // set custom `width` and `height`
+                color="#309F5E" // set `stroke` color
+                stroke={3}  // set `stroke-width`
+                strokeLinejoin="miter" // override other SVG props
+              />
+            </Card>
+
+            <Typography color="inherit" className={classes.typography}>
+              your dashboard
+            </Typography>
+          </Link>
+
+          <Link to = '/yourflocks' className = {classes.linkStyle}>
+            <Typography color="inherit" className={classes.typography}>
+              your flocks
+            </Typography>
+          </Link>
 
           <Link to = "/issue" className = {classes.linkStyle}>
             <Typography color="inherit" className={classes.typography}>
