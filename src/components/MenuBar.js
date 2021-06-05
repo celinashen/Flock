@@ -18,24 +18,29 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  bar: {
-    background: "#ADD7AD",
-  },
+  
   typography: {
-    "fontFamily": "Poppins",
-    "fontSize": 20,
-    paddingRight: 35
+    fontFamily: "Poppins",
+    fontSize: 20,
+    fontStyle: 'normal',
+    
+    fontSize: '15px',
+    lineHeight: '45px',
+    textAlign: 'center',
+    letterSpacing: '0.07em'
   },
   homeButton:{
-    "fontFamily": "Poppins",
-    "fontSize": 20
+    fontFamily: "Poppins",
+    color: 'white',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: '30px',
+    paddingTop: '15%',
+    textAlign: 'center'
   },
   navigation:{
     padding: '20px',
     display: 'flex',
-   // flexDirection: 'row',
-   // justifyContent: 'flex-end',
-   // float: 'right'
   }, 
   linkStyle:{
     textDecoration: 'none', 
@@ -46,50 +51,64 @@ const useStyles = makeStyles((theme) => ({
     '&:active':{
       textDecoration: 'underline'
     }
+  },
+  verticalMenu: {
+    minHeight: '100%',
+    minWidth: '20vh',
+    position: 'absolute',
+    backgroundColor: '#309F5E',
+    borderBottomRightRadius: '15px',
+    borderTopRightRadius: '15px',
   }
 }));
 
 
 function HeaderBar() {
   const classes = useStyles();
+  
+  const Emoji = props => (
+    <span
+      className="emoji"
+      role="img"
+      aria-label={props.label ? props.label : ""}
+      aria-hidden={props.label ? "false" : "true"}
+    >
+      {props.symbol}
+    </span>
+  )
+  
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.bar} style={{boxShadow: "none"}}>
-        <Toolbar variant="dense">
-
-          <Typography variant="h6" color="inherit" className={classes.homeButton}>
-            F L O C K 
+      <div className = {classes.verticalMenu}>
+          <Typography className={classes.homeButton}>
+            Flock 
+            <Emoji symbol="🦆" className = {classes.loonTheDuck}/>
           </Typography>
 
-          <div className = {classes.navigation}>
-
-        <Link to='/home' className = {classes.linkStyle}> 
-          <Typography variant="h6" color="inherit" className={classes.typography}>
+          <Link to='/home' className = {classes.linkStyle}> 
+          <Typography color="inherit" className={classes.typography}>
             your dashboard
           </Typography>
         </Link>
 
         <Link to = '/yourflocks' className = {classes.linkStyle}>
-          <Typography variant="h6" color="inherit" className={classes.typography}>
+          <Typography color="inherit" className={classes.typography}>
             your flocks
           </Typography>
         </Link>
 
           <Link to = "/issue" className = {classes.linkStyle}>
-            <Typography variant="h6" color="inherit" className={classes.typography}>
+            <Typography color="inherit" className={classes.typography}>
               issue debits
             </Typography>
           </Link>
 
           <Link to ='/pay' className = {classes.linkStyle}>
-            <Typography variant="h6" color="inherit" className={classes.typography}>
+            <Typography color="inherit" className={classes.typography}>
               pay credits
             </Typography>
           </Link>
-          </div>
-          
-        </Toolbar>
-      </AppBar>
+      </div>
     </div>
   );
 }
