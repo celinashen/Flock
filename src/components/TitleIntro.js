@@ -13,10 +13,10 @@ import Grid from '@material-ui/core/Grid';
 // });
 
 const UseStyles = makeStyles((theme) => ({
-  typography: {
+  name: {
     "fontFamily": "Poppins",
-    "fontSize": 80,
-    "color": "#769E76"
+    "fontSize": 60,
+    "color": "black",
   },
   debitTypography: {
     "fontFamily": "Poppins",
@@ -33,46 +33,42 @@ const UseStyles = makeStyles((theme) => ({
 const Debit=()=> {
   const classes = UseStyles();
   return (
-      <Box pl={9} pt={10}>
           <Typography className={classes.debitTypography} align = "left" variant="h1" color="inherit" style={{fontWeight: 700}}>
             $100
             <br />
             debit
           </Typography>
-      </Box>
   );
 }
 
 const Credit=()=> {
   const classes = UseStyles();
   return (
-      <Box pl={15} pt={10}>
           <Typography className={classes.creditTypography} align = "left" variant="h1" color="inherit" style={{fontWeight: 700}}>
             $100
             <br />
             credit
           </Typography>
-      </Box>
   );
 }
 
 const titleBar=()=> {
-  const Classes = UseStyles();
+  const classes = UseStyles();
   return (
     <div>
-      <Grid container spacing={1} direction  = "row" alignItems="center" justify="flex-start">
-        <Grid>
-            <Box pl={15} pt={10} pr={15}>
-                <Typography className={Classes.typography} align = "left" variant="h1" color="inherit" style={{fontWeight: 600}}>
-                  Hi Celina, your bills are
-                </Typography>
-            </Box>
+      <Grid container spacing={0} alignItems="center" justify="flex">
+        <Grid style = {{marginLeft: '15vw', marginTop: '10vh'}}>
+            <Typography className={classes.name} align = "left" variant="h1" color="inherit" style={{fontWeight: 700}}>
+              Hi Celina, 
+            </Typography>
         </Grid>
         <Grid>
-          <Debit/>
-        </Grid>
-        <Grid>
-          <Credit/>
+          <Grid>
+            <Debit/>
+          </Grid>
+          <Grid>
+            <Credit/>
+          </Grid>
         </Grid>
       </Grid>  
     </div>

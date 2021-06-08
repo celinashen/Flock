@@ -46,25 +46,26 @@ const HomePage = () => {
     <div> 
       <div className="App">
         <TitleIntro/>
-        <FlockList/>
-        <OutstandingBoxList/>
+
+        {/* <FlockList/>
+        <OutstandingBoxList/> */}
         
-        <Router>
-        <ActivityIcon/>
-        <Switch>
-            <Route path = '/home' />
-        </Switch>
-        </Router>
+        {/* <Router>
+          <ActivityIcon/>
+          <Switch>
+              <Route path = '/home' />
+          </Switch>
+        </Router> */}
         
         
-        <CreateFlock/>
+        {/* <CreateFlock/> */}
       </div>
 
-      <Dropdown 
+      {/* <Dropdown 
           options={flockOptions} 
           onChange={flockOptions._onSelect} 
           value={defaultOption} 
-          placeholder="Select an option" />
+          placeholder="Select an option" /> */}
 
     </div>
     

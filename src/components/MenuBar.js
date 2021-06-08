@@ -31,8 +31,9 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: 'normal',
     fontSize: '15px',
     textAlign: 'center',
-    letterSpacing: '0.07em',
-    alignItems: "center"
+    letterSpacing: '0.09em',
+    alignItems: "center",
+    paddingTop: '8%'
   },
   homeButton:{
     fontFamily: "Poppins",
@@ -41,7 +42,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     fontSize: '30px',
     paddingTop: '15%',
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingBottom: '10%'
   },
   navigation:{
     padding: '20px',
@@ -57,6 +59,9 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: 'underline'
     }
   },
+  hoverBtnStyle:{
+    
+  },
   verticalMenu: {
     minHeight: '100%',
     minWidth: '20vh',
@@ -64,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#309F5E',
     borderBottomRightRadius: '15px',
     borderTopRightRadius: '15px',
+    boxShadow: '4px 4px 20px 4px rgba(118,158,118,0.5)'
   },
   menuIcon: {
     backgroundColor: 'white',
@@ -72,6 +78,18 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '5vh',
     borderRadius: '10px',
     boxShadow: 'none',
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex',
+    transition: '0.3s all',
+    '&:hover':{
+      backgroundColor: 'black',
+      color: 'rgba(118,158,118,1)',
+      boxShadow: '4px 4px 20px 4px rgba(118,158,118,1)',
+      cursor: 'pointer',
+      borderColor: 'rgba(118,158,118,1)',
+      outlineColor: 'rgba(118,158,118,1)',
+    }
   },
   menuIconNav:{
     marginTop: '10%',
@@ -80,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     display: 'flex',
     flexDirection: 'column',
-    
+    paddingTop: '5%'
   },
   menuStyle: {
     direction: "column",
@@ -117,7 +135,7 @@ function HeaderBar() {
               <Link to='/home'> 
                 <Card className = {classes.menuIcon}>
                   <IconDashboard 
-                    size={30} // set custom `width` and `height`
+                    size={25} // set custom `width` and `height`
                     color="#309F5E" // set `stroke` color
                     stroke={1.5}  // set `stroke-width`
                     strokeLinejoin="miter" // override other SVG props
@@ -126,9 +144,7 @@ function HeaderBar() {
               </Link>
               <Link to='/home' className = {classes.linkStyle}>
                 <Typography color="inherit" className={classes.typography}>
-                    Your
-                    <br></br> 
-                    Dashboard
+                    dashboard
                 </Typography>
               </Link>
             </Grid>      
@@ -137,7 +153,7 @@ function HeaderBar() {
               <Link to = '/yourflocks'>
                 <Card className = {classes.menuIcon}>
                   <IconFeather 
-                    size={30} // set custom `width` and `height`
+                    size={25} // set custom `width` and `height`
                     color="#309F5E" // set `stroke` color
                     stroke={1.5}  // set `stroke-width`
                     strokeLinejoin="miter" // override other SVG props
@@ -155,7 +171,7 @@ function HeaderBar() {
               <Link to = "/issue">
                 <Card className = {classes.menuIcon}>
                   <IconCash
-                    size={30} // set custom `width` and `height`
+                    size={25} // set custom `width` and `height`
                     color="#309F5E" // set `stroke` color
                     stroke={1.5}  // set `stroke-width`
                     strokeLinejoin="miter" // override other SVG props
@@ -164,7 +180,7 @@ function HeaderBar() {
               </Link>
               <Link to = "/issue" className = {classes.linkStyle}>
                 <Typography color="inherit" className={classes.typography}>
-                  Receivables
+                  receivables
                 </Typography>
               </Link>
             </Grid>  
@@ -173,7 +189,7 @@ function HeaderBar() {
               <Link to ='/pay'>
                 <Card className = {classes.menuIcon}>
                   <IconBrandTelegram
-                    size={30} // set custom `width` and `height`
+                    size={25} // set custom `width` and `height`
                     color="#309F5E" // set `stroke` color
                     stroke={1.5}  // set `stroke-width`
                     strokeLinejoin="miter" // override other SVG props
@@ -182,7 +198,7 @@ function HeaderBar() {
               </Link>
               <Link to ='/pay' className = {classes.linkStyle}>
                 <Typography color="inherit" className={classes.typography}>
-                  Payables
+                  payables
                 </Typography>
               </Link>
             </Grid>  

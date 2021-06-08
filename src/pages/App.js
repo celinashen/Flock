@@ -20,6 +20,7 @@ import SignIn from './SignIn';
 import { GiDungeonGate } from 'react-icons/gi';
 import UserFlocks from './UserFlocks';
 
+import background from '../images/bgvectors.svg'
 //everything that's constant across all pages put into here
 
 
@@ -32,17 +33,30 @@ import UserFlocks from './UserFlocks';
 //               value={defaultOption} placeholder="Select an option" />;
 
 
-
+const styles = {
+  container: {
+    backgroundImage:`url(${ background })`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100vw',
+    height: '100vh'
+  }
+};
 
 const App = () => {
-  
-  
-
   return (
     <ThemeProvider>
-        <div className="App">
-          
+      <div 
+        style = {{backgroundImage:`url(${ background })`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        width: '100vw',
+        height: '100vh'
+      }}>
 
+        <div className="App">
           <Router>
             <HeaderBar/>
             <Switch>
@@ -53,9 +67,8 @@ const App = () => {
                 <Route path = '/'><SignIn/></Route>
             </Switch>
           </Router>
-          
         </div>
-
+      </div>
     </ThemeProvider>
   );
 }
