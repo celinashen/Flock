@@ -118,24 +118,24 @@ const OutstandingBox=(props)=>{
   );
 }
 
-const OutstandingBoxList=()=>{
-  const classes = useStyles();
-  return(
-      <Grid container spacing={0} direction  = "row" className = {classes.minListWidth}>
-        <Grid item lg = {4} md = {6} sm = {12} xs = {12}>
-          <OutstandingBox title = "oustanding debits"/>
-        </Grid>
-        <Grid item lg = {4} md = {6} sm = {12} xs = {12}>
-          <OutstandingBox title = "oustanding credits"/>
-        </Grid>
-        <Grid item lg = {4} md = {6} sm = {12} xs = {12}>
-          <OutstandingBox title = "inbox"/>
-        </Grid>
-      </Grid>    
-  );
-}
+// const OutstandingBoxList=()=>{
+//   const classes = useStyles();
+//   return(
+//       <Grid container spacing={0} direction  = "row" className = {classes.minListWidth}>
+//         <Grid item lg = {4} md = {6} sm = {12} xs = {12}>
+//           <OutstandingBox title = "oustanding debits"/>
+//         </Grid>
+//         <Grid item lg = {4} md = {6} sm = {12} xs = {12}>
+//           <OutstandingBox title = "oustanding credits"/>
+//         </Grid>
+//         <Grid item lg = {4} md = {6} sm = {12} xs = {12}>
+//           <OutstandingBox title = "inbox"/>
+//         </Grid>
+//       </Grid>    
+//   );
+// }
 
 //TODO:
 // have props to change bgcolor of outstanding boxes 
 
-export default OutstandingBoxList;
+export default OutstandingBox;
