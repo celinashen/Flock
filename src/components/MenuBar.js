@@ -67,18 +67,24 @@ const useStyles = makeStyles((theme) => ({
   },
   menuIcon: {
     backgroundColor: 'white',
+    minWidth: '5vh',
     maxWidth: '5vh',
-    minWidht: '5vh',
     minHeight: '5vh',
     borderRadius: '10px',
     boxShadow: 'none',
-    alignContent: 'center',
-    justifyContent: 'center',
-    display:'flex', 
   },
   menuIconNav:{
     marginTop: '10%',
-    textAlign: 'center'
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    
+  },
+  menuStyle: {
+    direction: "column",
+    alignItems:"center",
   }
 }));
 
@@ -105,72 +111,76 @@ function HeaderBar() {
             <Emoji symbol="🦆" className = {classes.loonTheDuck}/>
           </Typography>
 
-          <Grid 
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            style={{ minHeight: '100vh', marginTop: '20%' }}
-          >
+          <Grid className = {classes.menuStyle} containerSpacing = {0}>
 
-            <Grid item xs = {6} alignItems="center" className = {classes.menuIconNav}> 
-              <Link to='/home' className = {classes.linkStyle}> 
+            <Grid className = {classes.menuIconNav}> 
+              <Link to='/home'> 
                 <Card className = {classes.menuIcon}>
                   <IconDashboard 
-                    size={36} // set custom `width` and `height`
+                    size={30} // set custom `width` and `height`
                     color="#309F5E" // set `stroke` color
                     stroke={1.5}  // set `stroke-width`
                     strokeLinejoin="miter" // override other SVG props
                   />
                 </Card>
+              </Link>
+              <Link to='/home' className = {classes.linkStyle}>
                 <Typography color="inherit" className={classes.typography}>
-                    your dashboard
+                    Your
+                    <br></br> 
+                    Dashboard
                 </Typography>
               </Link>
             </Grid>      
 
-            <Grid className = {classes.menuIconNav}>
-              <Link to = '/yourflocks' className = {classes.linkStyle}>
+            <Grid className = {classes.menuIconNav} containerSpacing = {0}>
+              <Link to = '/yourflocks'>
                 <Card className = {classes.menuIcon}>
                   <IconFeather 
-                    size={36} // set custom `width` and `height`
+                    size={30} // set custom `width` and `height`
                     color="#309F5E" // set `stroke` color
                     stroke={1.5}  // set `stroke-width`
                     strokeLinejoin="miter" // override other SVG props
                   />
                 </Card>
+              </Link>
+              <Link to = '/yourflocks' className = {classes.linkStyle}>
                 <Typography color="inherit" className={classes.typography}>
                   your flocks
                 </Typography>
               </Link>
             </Grid>  
 
-            <Grid item xs={3} className = {classes.menuIconNav}>
-              <Link to = "/issue" className = {classes.linkStyle}>
+            <Grid className = {classes.menuIconNav}>
+              <Link to = "/issue">
                 <Card className = {classes.menuIcon}>
                   <IconCash
-                    size={36} // set custom `width` and `height`
+                    size={30} // set custom `width` and `height`
                     color="#309F5E" // set `stroke` color
                     stroke={1.5}  // set `stroke-width`
                     strokeLinejoin="miter" // override other SVG props
                   />
                 </Card>
+              </Link>
+              <Link to = "/issue" className = {classes.linkStyle}>
                 <Typography color="inherit" className={classes.typography}>
                   Receivables
                 </Typography>
               </Link>
             </Grid>  
 
-            <Grid item xs={3} className = {classes.menuIconNav}>
-              <Link to ='/pay' className = {classes.linkStyle}>
+            <Grid className = {classes.menuIconNav}>
+              <Link to ='/pay'>
                 <Card className = {classes.menuIcon}>
                   <IconBrandTelegram
-                    size={36} // set custom `width` and `height`
+                    size={30} // set custom `width` and `height`
                     color="#309F5E" // set `stroke` color
                     stroke={1.5}  // set `stroke-width`
                     strokeLinejoin="miter" // override other SVG props
                   />
                 </Card>
+              </Link>
+              <Link to ='/pay' className = {classes.linkStyle}>
                 <Typography color="inherit" className={classes.typography}>
                   Payables
                 </Typography>

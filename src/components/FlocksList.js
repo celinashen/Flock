@@ -160,7 +160,7 @@ const FlockList=()=>{
         <FlockListTitle/>
       </div>
 
-      <div className={classes.divStyle}>
+      {/* <div className={classes.divStyle}>
           <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Spotify" flockPhoto = "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"/></Grid>
           <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Rent" flockPhoto = "https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
           <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Japan" flockPhoto = "https://images.pexels.com/photos/3800117/pexels-photo-3800117.jpeg?cs=srgb&dl=pexels-vitalna-3800117.jpg&fm=jpg"/></Grid>
@@ -170,7 +170,7 @@ const FlockList=()=>{
           <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Phone Bill" flockPhoto = "https://images.pexels.com/photos/4348791/pexels-photo-4348791.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
           <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Utilities" flockPhoto = "https://images.pexels.com/photos/1624895/pexels-photo-1624895.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
           <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Groceries" flockPhoto = "https://images.pexels.com/photos/1005638/pexels-photo-1005638.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
-      </div>
+      </div> */}
     </div>
   )
 }
