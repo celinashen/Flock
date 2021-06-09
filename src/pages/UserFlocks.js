@@ -11,6 +11,7 @@ import { db } from './firebaseConfig';
 import firebase from 'firebase';
 import CreateFlock from './CreateFlock';
 import Dropdown from 'react-dropdown';
+import { useState, useEffect } from 'react';
 
 
 
@@ -31,7 +32,6 @@ function getFlockListWithImages() {
                                 if (doc2 == doc3.id) {
                                     tempObject = {id: doc2, name: doc3.data().flockName, image: "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"};
                                     flockIDs.push(tempObject);
-                                    console.log(tempObject.name);
                                     //console.log(tempObject);
                                 }
                             })
@@ -122,13 +122,20 @@ const UserFlocks=(props)=>{
   //{name: "Road Trip", image: "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"}];
 
   //firebase format data 
-  var objects = getFlockListWithImages();
+  //var objects = getFlockListWithImages();
 
-  
+
+  //useEffect(() => {
+  //  setTimeout(function(){ setFlockIDs(getFlockLists()) }, 1000);
+  //},[]);
+  const [FlockArray, setFlockArray] = useState(getFlockListWithImages());
+  var temp = getFlockListWithImages();
+
   useEffect(() => {
-    setTimeout(function(){ setFlockIDs(getFlockLists()) }, 1000);
-  },[]);
-
+    setTimeout(() => {
+      setFlockArray(temp);
+    }, 500)
+  }, [temp]);
 
   return(
     <div> 
@@ -142,14 +149,12 @@ const UserFlocks=(props)=>{
           placeholder="Select an option" />
 
 
-
-
         <FlockListTitle/>
 
         <Grid direction = "row" container spacing={0} justify = "left" alignItems = "center" className = {classes.outstandingBoxContainer} >
-          {objects.map(function(object){
+          {FlockArray.map(function(object, i){
                 return (<Box pl = {13} pr = {2.5} pt = {5}>
-                  <FlockCard flockName={object.name} flockImage={object.image} />
+                  <FlockCard key={i} flockName={object.name} flockImage={object.image} />
                   </Box>);
           })}
         </Grid>

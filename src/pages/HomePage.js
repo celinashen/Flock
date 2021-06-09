@@ -15,7 +15,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 
-const HomePage = () => {
+const HomePage = ({user, signIn, signOutFromGoogle}) => {
   
   return (
     <div> 

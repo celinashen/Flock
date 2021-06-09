@@ -6,6 +6,10 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Image from 'react-bootstrap/Image';
+import { db } from '../pages/firebaseConfig';
+import firebase from 'firebase';
+import { useState, useEffect } from 'react';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -111,6 +115,38 @@ const useStyles = makeStyles((theme) => ({
         <img src={props.flockPhoto} width='200px' height='200px'></img>
       </div> */}
 
+
+function getFlockListWithImages() {
+  var user = firebase.auth().currentUser; //ISSUE IS THAT THIS DOES NOT LOAD IMMEDIATELY SO IT RENDERS NOTHING
+  //console.log(user)
+  var flockIDs = [];
+  var tempObject = {};
+
+  //Scan through database for user profileMatch, then load user-specific flocks.
+  db.collection('user').get().then(querySnapshot =>{
+      querySnapshot.forEach(doc => {
+          if (doc.data()!=null && user!=null)
+              if (doc.data().id == user.uid) 
+                  doc.data().flocks.forEach(doc2 => {
+                      db.collection('flock-groups').get().then(querySnapshot2 => {
+                          querySnapshot2.forEach(doc3 => {
+                              if (doc2 == doc3.id) {
+                                  tempObject = {id: doc2, name: doc3.data().flockName, image: "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"};
+                                  flockIDs.push(tempObject);
+                                  //console.log(tempObject);
+                              }
+                          })
+                      })
+                  });
+      })
+  })//end of firebase ref
+  //console.log(flockIDs);
+  return flockIDs;
+}
+    
+    
+
+
 const FlockIcon=(props)=> {
   const classes = useStyles();
   return (
@@ -154,6 +190,16 @@ const FlockListTitle=()=> {
 //must copy image address not link address
 const FlockList=()=>{
   const classes = useStyles();
+  const [FlockArray, setFlockArray] = useState(getFlockListWithImages());
+  var temp = getFlockListWithImages();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFlockArray(temp);
+    }, 500)
+  }, [temp]);
+
+  
   return(
     <div> 
       <div>
@@ -161,15 +207,11 @@ const FlockList=()=>{
       </div>
 
       <div className={classes.divStyle}>
-          <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Spotify" flockPhoto = "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Rent" flockPhoto = "https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Japan" flockPhoto = "https://images.pexels.com/photos/3800117/pexels-photo-3800117.jpeg?cs=srgb&dl=pexels-vitalna-3800117.jpg&fm=jpg"/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Travel" flockPhoto = "https://images.pexels.com/photos/3464632/pexels-photo-3464632.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Netflix" flockPhoto = "https://images.pexels.com/photos/987586/pexels-photo-987586.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Trip" flockPhoto = "https://images.pexels.com/photos/1777921/pexels-photo-1777921.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Phone Bill" flockPhoto = "https://images.pexels.com/photos/4348791/pexels-photo-4348791.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Utilities" flockPhoto = "https://images.pexels.com/photos/1624895/pexels-photo-1624895.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
-          <Grid className = {classes.flockIconWidth}><FlockIcon flockTitle = "Groceries" flockPhoto = "https://images.pexels.com/photos/1005638/pexels-photo-1005638.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/></Grid>
+        {
+        FlockArray.map(function(item, i){
+            return <Grid className = {classes.flockIconWidth} key={i}><FlockIcon key={i} flockTitle = {item.name} flockPhoto = {"https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"}/></Grid>
+          })
+        }
       </div>
     </div>
   )
