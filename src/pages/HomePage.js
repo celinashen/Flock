@@ -46,7 +46,7 @@ const HomePage = () => {
     <div> 
       <div className="App">
         <TitleIntro/>
-        
+        <OutstandingBox/>
 
         {/* <FlockList/>
         <OutstandingBoxList/> */}

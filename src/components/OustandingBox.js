@@ -15,17 +15,17 @@ import { CallMissedSharp, CheckBoxOutlineBlankSharp } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
+  //typography for list item 
   typographyCard: {
     "fontFamily": "Poppins",
     "fontSize": 20,
-    "color": "#979B82"
+    "color": "#8D8D8D"
   },
+  //big container containing all list items
   outstandingBoxContainer:{
-    backgroundColor: "#769E76",
-    borderRadius: "20px",
     minWidth: 430,
     maxHeight: 320,
-    marginLeft: 120,
+    marginLeft: '300px',
     marginBottom: 200,
     overflowY: 'scroll',
     overflowX: 'hidden',
@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
       width: '0.45em',
       height: '0.1em',
       scrollMarginTop: '10px'
-      
     },
     '&::-webkit-scrollbar-track': {
       boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
@@ -49,26 +48,40 @@ const useStyles = makeStyles((theme) => ({
       scrollMarginTop: '10px'
     },
   },
+  //card with list item
   card:{
     borderRadius: 10,
-    maxWidth: "200%"
+    maxWidth: "20vh",
+    boxShadow: "none", 
+    border: '2px solid #8D8D8D',
+    marginBottom: '2vh',
+    minWidth: '25vw',
   },
-  minListWidth:{
-    maxWidth: 1500,
-    maxHeight: 500
-  },
-  typographyOutstandingTitle:{
+  // minListWidth:{
+  //   maxWidth: 1500,
+  //   maxHeight: 500
+  // },
+  //transaction title
+  transactionTitle:{
     "fontFamily": "Poppins",
     "fontSize": 25,
     "color": "#979B82", 
-    textAlign: 'center'
+    marginLeft: '300px',
+    marginTop: '5vh',
+    marginBottom: '1vh',
+    textAlign: 'left',
+    fontWeight: 600, 
+    colot: '#494949'
   },
+  listItemContainer: {
+
+  }
 }));
 
-const ListItem=()=> {
+const ListItem=(props)=> {
   const classes = useStyles();
   return (
-    <Card className = {classes.card} style={{boxShadow: "none"}}>
+    <Card className = {classes.card}>
       <Typography className = {classes.typographyCard} style={{fontWeight: 500}}>
         Flock: Japan
         <br />
@@ -78,39 +91,20 @@ const ListItem=()=> {
   );
 }
 
-const OutstandingBox=(props)=>{
+const OutstandingBox=()=>{
   const classes = useStyles();
   return(
 
     <div>
-      <Box pt = {6} ml = {20}>
-        <Typography className = {classes.typographyOutstandingTitle} style={{fontWeight: 500}}>
-          {props.title}
-        </Typography>
-      </Box>
-      <Grid>
-        <Grid direction = "column" justify = "center" alignItems = "center" className = {classes.outstandingBoxContainer} >
-          <Box pl = {2.5} pr = {2.5} pt = {2.5}>
+      <Typography className = {classes.transactionTitle}>
+        past transactions
+      </Typography>
+      <Grid direction = "column" justify = "center" alignItems = "center" className = {classes.outstandingBoxContainer}>
+        <Grid className = {classes.listItemContainer}>
             <ListItem/>
-          </Box>
-          <Box pl = {2.5} pr = {2.5} pt = {2}>
+        </Grid>
+        <Grid>
             <ListItem/>
-          </Box>
-          <Box pl = {2.5} pr = {2.5} pt = {2}>
-            <ListItem/>
-          </Box>
-          <Box pl = {2.5} pr = {2.5} pt = {2}>
-            <ListItem/>
-          </Box>
-          <Box pl = {2.5} pr = {2.5} pt = {2}>
-            <ListItem/>
-          </Box>
-          <Box pl = {2.5} pr = {2.5} pt = {2}>
-            <ListItem/>
-          </Box>
-          <Box pl = {2.5} pr = {2.5} pt = {2} pb = {2}>
-            <ListItem/>
-          </Box>
         </Grid>
       </Grid>
     </div>
