@@ -5,7 +5,6 @@ import 'react-dropdown/style.css';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import FlockList from '../components/FlocksList';
 import HeaderBar from '../components/MenuBar';
-import OutstandingBoxList from '../components/OustandingBox';
 import TitleIntro from '../components/TitleIntro';
 import ActivityIcon from '../components/ActivityBar';
 import './App.css';

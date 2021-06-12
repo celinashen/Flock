@@ -17,9 +17,15 @@ import { CallMissedSharp, CheckBoxOutlineBlankSharp } from '@material-ui/icons';
 const useStyles = makeStyles((theme) => ({
   //typography for list item 
   typographyCard: {
-    "fontFamily": "Poppins",
-    "fontSize": 20,
-    "color": "#8D8D8D"
+    fontFamily: "Poppins",
+    fontSize: 20,
+    color: "#8D8D8D",
+    fontWeight: 500,
+    textAlign: 'left',
+    paddingLeft: '15px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   //big container containing all list items
   outstandingBoxContainer:{
@@ -51,16 +57,18 @@ const useStyles = makeStyles((theme) => ({
   //card with list item
   card:{
     borderRadius: 10,
-    maxWidth: "20vh",
+    maxWidth: "25vw",
+    minWidth: '400px',
     boxShadow: "none", 
     border: '2px solid #8D8D8D',
     marginBottom: '2vh',
-    minWidth: '25vw',
+    
   },
   // minListWidth:{
   //   maxWidth: 1500,
   //   maxHeight: 500
   // },
+
   //transaction title
   transactionTitle:{
     "fontFamily": "Poppins",
@@ -73,8 +81,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600, 
     colot: '#494949'
   },
-  listItemContainer: {
-
+  //typography for flock name and date of transaction
+  transactionDetails:{
+    fontFamily: 'Poppins',
+    textAlign: 'right',
+    fontSize: 15,
+    color: '#8D8D8D'
   }
 }));
 
@@ -82,16 +94,25 @@ const ListItem=(props)=> {
   const classes = useStyles();
   return (
     <Card className = {classes.card}>
-      <Typography className = {classes.typographyCard} style={{fontWeight: 500}}>
-        Flock: Japan
-        <br />
-        $20 from Jess
-      </Typography>
+      <Grid container spacing={0} direction = "row" justify="space-around" alignItems="center">
+        <Grid>
+          <Typography className = {classes.typographyCard}>
+            {props.transaction}
+          </Typography>
+        </Grid>
+        <Grid>
+          <Typography className = {classes.transactionDetails}>
+            {props.flock}
+            <br></br>
+            {props.date}
+          </Typography>
+        </Grid>
+      </Grid>
     </Card>
   );
 }
 
-const OutstandingBox=()=>{
+const TransactionsBox=()=>{
   const classes = useStyles();
   return(
 
@@ -101,10 +122,10 @@ const OutstandingBox=()=>{
       </Typography>
       <Grid direction = "column" justify = "center" alignItems = "center" className = {classes.outstandingBoxContainer}>
         <Grid className = {classes.listItemContainer}>
-            <ListItem/>
+            <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
         </Grid>
-        <Grid>
-            <ListItem/>
+        <Grid className = {classes.listItemContainer}>
+            <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
         </Grid>
       </Grid>
     </div>
@@ -132,4 +153,4 @@ const OutstandingBox=()=>{
 //TODO:
 // have props to change bgcolor of outstanding boxes 
 
-export default OutstandingBox;
+export default TransactionsBox;

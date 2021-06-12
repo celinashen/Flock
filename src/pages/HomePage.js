@@ -5,7 +5,7 @@ import 'react-dropdown/style.css';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import FlockList from '../components/FlocksList';
 import HeaderBar from '../components/MenuBar';
-import OutstandingBox from '../components/OustandingBox';
+import TransactionsBox from '../components/TransactionsBox';
 import TitleIntro from '../components/TitleIntro';
 import ActivityIcon from '../components/ActivityBar';
 import './App.css';
@@ -46,7 +46,7 @@ const HomePage = () => {
     <div> 
       <div className="App">
         <TitleIntro/>
-        <OutstandingBox/>
+        <TransactionsBox/>
 
         {/* <FlockList/>
         <OutstandingBoxList/> */}
