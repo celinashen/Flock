@@ -12,7 +12,7 @@ import './App.css';
 import CreateFlock from './CreateFlock';
 import { db, firebaseAppAuth, providers } from './firebaseConfig.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import Submit from '../components/Submit';
 
 // const options = [
 //   'flock1', 'scottsaho', 'celinasthebest:)'

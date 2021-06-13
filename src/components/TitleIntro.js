@@ -77,7 +77,7 @@ const titleBar=()=> {
   return (
     <div>
       <Grid container spacing={0} direction = "column" justify="flex">
-        <Grid style = {{marginLeft: '300px', marginTop: '10vh'}}>
+        <Grid style = {{marginLeft: '300px', marginTop: '8vh'}}>
             <Typography className={classes.name} align = "left" color="inherit">
               Hi Celina, 
             </Typography>

@@ -12,6 +12,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import { palette } from '@material-ui/system';
 import { CallMissedSharp, CheckBoxOutlineBlankSharp } from '@material-ui/icons';
+import Submit from './Submit';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth:'430px',
     maxWidth: '25vw',
     maxHeight: '36vh',
-    marginLeft: '290px',
+    //marginLeft: '290px',
     overflowY: 'scroll',
     overflowX: 'hidden',
     '&::-webkit-scrollbar': {
@@ -139,22 +140,36 @@ const TransactionsBox=()=>{
       <Typography className = {classes.transactionTitle}>
         past transactions
       </Typography>
-      <Grid className = {classes.outstandingBoxContainer}>
-        <Grid className = {classes.listItemContainer}>
-            <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+      <Grid 
+        style = {{
+          minWidth:'430px',
+          maxWidth: '25vw',
+          marginLeft: '290px',
+        }}
+      >
+        <Grid className = {classes.outstandingBoxContainer}>
+          <Grid className = {classes.listItemContainer}>
+              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+          </Grid>
+          <Grid className = {classes.listItemContainer}>
+              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+          </Grid>
+          <Grid className = {classes.listItemContainer}>
+              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+          </Grid>
+          <Grid className = {classes.listItemContainer}>
+              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+          </Grid>
+          <Grid className = {classes.listItemContainer}>
+              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+          </Grid>
         </Grid>
-        <Grid className = {classes.listItemContainer}>
-            <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
-        </Grid>
-        <Grid className = {classes.listItemContainer}>
-            <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
-        </Grid>
-        <Grid className = {classes.listItemContainer}>
-            <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
-        </Grid>
-        <Grid className = {classes.listItemContainer}>
-            <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
-        </Grid>
+
+        <Submit submitName = "your payables" minWidth = "18vw" maxWidth = "18vw" marginTop = '2vh'/>
+
+        <Submit submitName = "your receivables" minWidth = "18vw" maxWidth = "18vw" marginTop = '2vh'/>
+
+
       </Grid>
     </div>
  
