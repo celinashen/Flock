@@ -32,30 +32,19 @@ import background from '../images/bgvectors.svg'
 //               value={defaultOption} placeholder="Select an option" />;
 
 
-const styles = {
-  container: {
-    backgroundImage:`url(${ background })`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    width: '100vw',
-    height: '100vh'
-  }
-};
-
 const App = () => {
   return (
-    <ThemeProvider>
+    
       <div 
         style = {{backgroundImage:`url(${ background })`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        width: '100vw',
-        height: '100vh'
+        minHeight: '100vh',
+        minWidth: '100vw'
       }}>
 
-        <div className="App">
+        <div className="App" >
           <Router>
             <HeaderBar/>
             <Switch>
@@ -67,8 +56,9 @@ const App = () => {
             </Switch>
           </Router>
         </div>
+
       </div>
-    </ThemeProvider>
+    
   );
 }
 

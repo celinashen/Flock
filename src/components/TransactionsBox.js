@@ -29,13 +29,12 @@ const useStyles = makeStyles((theme) => ({
   },
   //big container containing all list items
   outstandingBoxContainer:{
-    minWidth: 430,
-    maxHeight: 320,
+    minWidth:'430px',
+    maxWidth: '25vw',
+    maxHeight: '36vh',
     marginLeft: '300px',
-    marginBottom: 200,
     overflowY: 'scroll',
     overflowX: 'hidden',
-    height: "100%",
     '&::-webkit-scrollbar': {
       width: '0.45em',
       height: '0.1em',
@@ -49,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
     '&::-webkit-scrollbar-thumb': {
       height: '6px',
       backgroundColor: 'rgba(0,0,0,.3)',
-      outline: '1px solid slategrey',
       borderRadius: '10px',
       scrollMarginTop: '10px'
     },
@@ -57,12 +55,14 @@ const useStyles = makeStyles((theme) => ({
   //card with list item
   card:{
     borderRadius: 10,
-    maxWidth: "25vw",
+    maxWidth: "23vw",
     minWidth: '400px',
     boxShadow: "none", 
     border: '2px solid #8D8D8D',
     marginBottom: '2vh',
-    
+    minHeight: '7vh',
+    display: 'flex',
+    aligntItems: 'center'
   },
   // minListWidth:{
   //   maxWidth: 1500,
@@ -73,13 +73,13 @@ const useStyles = makeStyles((theme) => ({
   transactionTitle:{
     "fontFamily": "Poppins",
     "fontSize": 25,
-    "color": "#979B82", 
+    "color": "#494949", 
     marginLeft: '300px',
     marginTop: '5vh',
     marginBottom: '1vh',
     textAlign: 'left',
     fontWeight: 600, 
-    colot: '#494949'
+    color: '#494949'
   },
   //typography for flock name and date of transaction
   transactionDetails:{
@@ -94,7 +94,7 @@ const ListItem=(props)=> {
   const classes = useStyles();
   return (
     <Card className = {classes.card}>
-      <Grid container spacing={0} direction = "row" justify="space-around" alignItems="center">
+      <Grid container spacing={0} display = "flex" direction = "row" justify="space-around" alignItems="center">
         <Grid>
           <Typography className = {classes.typographyCard}>
             {props.transaction}
@@ -120,7 +120,16 @@ const TransactionsBox=()=>{
       <Typography className = {classes.transactionTitle}>
         past transactions
       </Typography>
-      <Grid direction = "column" justify = "center" alignItems = "center" className = {classes.outstandingBoxContainer}>
+      <Grid className = {classes.outstandingBoxContainer}>
+        <Grid className = {classes.listItemContainer}>
+            <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+        </Grid>
+        <Grid className = {classes.listItemContainer}>
+            <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+        </Grid>
+        <Grid className = {classes.listItemContainer}>
+            <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+        </Grid>
         <Grid className = {classes.listItemContainer}>
             <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
         </Grid>
