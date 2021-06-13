@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth:'430px',
     maxWidth: '25vw',
     maxHeight: '36vh',
-    marginLeft: '300px',
+    marginLeft: '290px',
     overflowY: 'scroll',
     overflowX: 'hidden',
     '&::-webkit-scrollbar': {
@@ -62,7 +62,23 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '2vh',
     minHeight: '7vh',
     display: 'flex',
-    aligntItems: 'center'
+    aligntItems: 'center',
+    '&:hover':{
+      backgroundColor: '#309F5E',
+      color: 'rgba(118,158,118,1)',
+      //horizontal offset, vertical offset, blur radius, optional spread radius, colour
+      boxShadow: '0px 0px 10px 5px rgba(48,159,94,0.2)',
+      cursor: 'pointer',
+      border: '2px solid #309F5E',
+      
+      "& $typographyCard": {
+        color: "white"
+      },
+      "& $transactionDetails": {
+        color: "white"
+      },
+
+  }
   },
   // minListWidth:{
   //   maxWidth: 1500,
@@ -87,6 +103,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'right',
     fontSize: 15,
     color: '#8D8D8D'
+  }, 
+  listItemContainer: {
+    paddingLeft: '10px'
   }
 }));
 
