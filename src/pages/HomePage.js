@@ -13,6 +13,8 @@ import CreateFlock from './CreateFlock';
 import { db, firebaseAppAuth, providers } from './firebaseConfig.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Submit from '../components/Submit';
+import FavFlocks from '../components/FavFlocks';
+import Grid from '@material-ui/core/Grid';
 
 // const options = [
 //   'flock1', 'scottsaho', 'celinasthebest:)'
@@ -45,8 +47,17 @@ const HomePage = () => {
   return (
     <div> 
       <div className="App">
-        <TitleIntro/>
-        <TransactionsBox/>
+        
+        <Grid direction = "row" container spacing = {0}>
+          <Grid>
+            <TitleIntro/>
+            <TransactionsBox/>
+          </Grid>
+          <Grid>
+            <FavFlocks/>
+          </Grid>
+        </Grid>
+        
 
         {/* <FlockList/>
         <OutstandingBoxList/> */}

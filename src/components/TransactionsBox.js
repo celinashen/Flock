@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   outstandingBoxContainer:{
     minWidth:'430px',
     maxWidth: '25vw',
-    maxHeight: '36vh',
+    maxHeight: '33vh',
     //marginLeft: '290px',
     overflowY: 'scroll',
     overflowX: 'hidden',
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none", 
     border: '2px solid #8D8D8D',
     marginBottom: '2vh',
-    minHeight: '7vh',
+    minHeight: '6vh',
     display: 'flex',
     aligntItems: 'center',
     '&:hover':{
@@ -88,9 +88,9 @@ const useStyles = makeStyles((theme) => ({
 
   //transaction title
   transactionTitle:{
-    "fontFamily": "Poppins",
-    "fontSize": 25,
-    "color": "#494949", 
+    fontFamily: "Poppins",
+    fontSize: 25,
+    color: "#494949", 
     marginLeft: '300px',
     marginTop: '5vh',
     marginBottom: '1vh',
@@ -165,10 +165,8 @@ const TransactionsBox=()=>{
           </Grid>
         </Grid>
 
-        <Submit submitName = "your payables" minWidth = "18vw" maxWidth = "18vw" marginTop = '2vh'/>
-
-        <Submit submitName = "your receivables" minWidth = "18vw" maxWidth = "18vw" marginTop = '2vh'/>
-
+        <Submit submitName = "your payables" fontSize = '17px' minWidth = "18vw" maxWidth = "18vw" marginTop = '2vh'/>
+        <Submit submitName = "your receivables" fontSize = '17px' minWidth = "18vw" maxWidth = "18vw" marginTop = '2vh'/>
 
       </Grid>
     </div>

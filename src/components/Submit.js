@@ -12,19 +12,22 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import { palette } from '@material-ui/system';
 import { CallMissedSharp, CheckBoxOutlineBlankSharp } from '@material-ui/icons';
-
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     submit:{
         fontFamily: "Poppins",
         color: 'rgba(255, 255, 255, 1)',        
         height: '56px',
-        borderRadius: '15px',
         backgroundColor: '#309F5E',
         border: 'rgba(118,158,118,1)',
         transition: '0.3s all',
-        
 
+        textTransform: 'lowercase',
+        borderRadius: '20px',
+        boxShadow: 'none',
+
+        fontSize: (props) => props.fontSize,
         minWidth: (props)  => props.minWidth,
         maxWidth: (props)  => props.maxWidth,
         marginTop: (props) => props.marginTop,
@@ -44,8 +47,9 @@ const useStyles = makeStyles({
 const Submit=(props)=>{
   const classes = useStyles(props);
   return(
-    
-    <input type="submit" value={props.submitName} className = {classes.submit}/>
+    <Button variant="contained" className = {classes.submit}>
+      {props.submitName}
+    </Button>
   );
 }
 
