@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Submit from '../components/Submit';
 import FavFlocks from '../components/FavFlocks';
 import Grid from '@material-ui/core/Grid';
+import OutstandingDashboardBox from '../components/OutstandingDashboardBox';
 
 // const options = [
 //   'flock1', 'scottsaho', 'celinasthebest:)'
@@ -54,7 +55,12 @@ const HomePage = () => {
             <TransactionsBox/>
           </Grid>
           <Grid>
-            <FavFlocks/>
+            <Grid>
+              <FavFlocks/>
+            </Grid>
+            <Grid>
+              <OutstandingDashboardBox/>
+            </Grid>
           </Grid>
         </Grid>
         
