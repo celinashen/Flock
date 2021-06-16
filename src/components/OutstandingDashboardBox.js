@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
         minWidth: '35vw',
         maxWidth: '35vw',
         marginLeft: '10vw',
-        marginTop: '10vh',
+        marginTop: '5vh',
         boxShadow: '0px 4px 20px 0px rgba(48,159,94,0.5)',
         borderRadius: '20px'
     },

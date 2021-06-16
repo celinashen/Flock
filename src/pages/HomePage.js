@@ -58,7 +58,7 @@ const HomePage = () => {
             <Grid>
               <FavFlocks/>
             </Grid>
-            <Grid>
+            <Grid >
               <OutstandingDashboardBox/>
             </Grid>
           </Grid>
