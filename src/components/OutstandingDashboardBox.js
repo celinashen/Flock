@@ -135,11 +135,15 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: '13px',
       marginLeft: '13px',
       marginRight: '13px'
+    },
+    flock: {
+      backgroundColor:"#309F5E",
+      color: "white",
+      fontFamily: "Poppins",
+      fontSize: 15,
+      boxShadow: 'none',
+      border: '2px solid #309F5E',
     }
-
-    
-    
-
 }));
 
 const Payable=(props)=> {
@@ -168,6 +172,9 @@ const Payable=(props)=> {
             </Typography>
           </Grid>
         </Grid>
+        <Card className = {classes.flock}>
+          {props.flock}
+        </Card>
       </Card>
     );
   }
@@ -185,13 +192,13 @@ const OutstandingDashboardBox=()=>{
                 className={classes.iconListContainer}>
                 
                 <Grid>
-                  <Payable personPaying = 'you' amount = '$450' personOwed = 'Angela' date = "Mar 3, 2021"/>
+                  <Payable personPaying = 'you' amount = '$450' personOwed = 'Angela' date = "Mar 3, 2021" flock = "Rent"/>
                 </Grid>
                 <Grid>
-                  <Payable personPaying = 'you' amount = '$450' personOwed = 'Angela' date = "Mar 3, 2021"/>
+                  <Payable personPaying = 'you' amount = '$450' personOwed = 'Angela' date = "Mar 3, 2021" flock = "Rent"/>
                 </Grid>
                 <Grid>
-                  <Payable personPaying = 'you' amount = '$450' personOwed = 'Angela' date = "Mar 3, 2021"/>
+                  <Payable personPaying = 'you' amount = '$450' personOwed = 'Angela' date = "Mar 3, 2021" flock = "Rent"/>
                 </Grid>
 
             </Grid>
