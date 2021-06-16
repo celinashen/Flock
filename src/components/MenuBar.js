@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   
+  //menu words
   typography: {
     fontFamily: "Poppins",
     fontSize: 20,
@@ -33,7 +34,24 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     letterSpacing: '0.09em',
     alignItems: "center",
-    paddingTop: '8%'
+    paddingTop: '8%',
+
+    '&:hover': {
+      color: 'black',
+
+      "& $menuIcon": {
+        backgroundColor: 'black',
+        color: 'rgba(118,158,118,1)',
+        boxShadow: '4px 4px 20px 4px rgba(118,158,118,1)',
+        cursor: 'pointer',
+        borderColor: 'rgba(118,158,118,1)',
+        outlineColor: 'rgba(118,158,118,1)',
+      }
+
+    },
+    '&:active':{
+      textDecoration: 'none'
+    }
   },
   homeButton:{
     fontFamily: "Poppins",
@@ -49,18 +67,10 @@ const useStyles = makeStyles((theme) => ({
     padding: '20px',
     display: 'flex',
   }, 
+  //Styles the default link text of menu items
   linkStyle:{
-    textDecoration: 'none', 
-    color: 'white',
-    '&:hover': {
-      color: 'black',
-    },
-    '&:active':{
-      textDecoration: 'underline'
-    }
-  },
-  hoverBtnStyle:{
-    
+    textDecoration: 'none',
+    color: 'white'
   },
   verticalMenu: {
     minHeight: '100%',
@@ -89,6 +99,15 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
       borderColor: 'rgba(118,158,118,1)',
       outlineColor: 'rgba(118,158,118,1)',
+
+      "& $linkStyle": {
+        color: "black",
+        textDecoration: 'underline'
+      },
+
+      "& $typography": {
+        color: 'black'
+      }
     }
   },
   menuIconNav:{
@@ -105,6 +124,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems:"center",
   }
 }));
+
+//set state: https://stackoverflow.com/questions/59457439/how-to-change-a-css-property-based-on-a-state-of-another-component
 
 
 function HeaderBar() {

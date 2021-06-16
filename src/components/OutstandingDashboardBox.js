@@ -106,17 +106,68 @@ const useStyles = makeStyles((theme) => ({
             borderColor: 'rgba(118,158,118,1)',
             outlineColor: 'rgba(118,158,118,1)',
         }
+    },
+
+    payable: {
+      borderRadius: 10,
+      boxShadow: "none", 
+      border: '2px solid #309F5E',
+    },
+    
+    amount: {
+      fontWeight: 550, 
+      fontFamily: "Poppins",
+      fontSize: 35,
+      color: "#309F5E", 
+    },
+    subtext: {
+      color: "#707070",
+      fontFamily: "Poppins",
+      fontSize: 16,
+    }, 
+    date: {
+      color: "#707070",
+      fontFamily: "Poppins",
+      fontSize: 13,
+    },
+    cardContent: {
+      marginTop: '13px',
+      marginBottom: '13px',
+      marginLeft: '13px',
+      marginRight: '13px'
     }
+
     
     
 
 }));
 
-const OustandingList=(props)=> {
+const Payable=(props)=> {
     const classes = useStyles();
     return (
-      <Card>
-
+      <Card variant = "outlined" className = {classes.payable}>
+        <Grid className = {classes.cardContent}>
+          <Grid>
+            <Typography className = {classes.subtext}>
+              {props.personPaying} owe
+            </Typography>
+          </Grid>
+          <Grid>
+            <Typography className = {classes.amount}>
+              {props.amount}
+            </Typography>
+          </Grid>
+          <Grid>
+            <Typography className = {classes.subtext}>
+              to {props.personOwed}
+            </Typography>
+          </Grid>
+          <Grid>
+            <Typography className = {classes.date}>
+              Due: {props.date}
+            </Typography>
+          </Grid>
+        </Grid>
       </Card>
     );
   }
@@ -126,14 +177,23 @@ const OutstandingDashboardBox=()=>{
   return(
         
         <Card className = {classes.card}>
-            <Typography className = {classes.favFlocksTitle}>favorited flocks</Typography>
+            <Typography className = {classes.favFlocksTitle}>outstanding payables</Typography>
             <Grid 
                 container direction="row"
                 justify="space-around"
                 alignItems="center"
                 className={classes.iconListContainer}>
-                    
                 
+                <Grid>
+                  <Payable personPaying = 'you' amount = '$450' personOwed = 'Angela' date = "Mar 3, 2021"/>
+                </Grid>
+                <Grid>
+                  <Payable personPaying = 'you' amount = '$450' personOwed = 'Angela' date = "Mar 3, 2021"/>
+                </Grid>
+                <Grid>
+                  <Payable personPaying = 'you' amount = '$450' personOwed = 'Angela' date = "Mar 3, 2021"/>
+                </Grid>
+
             </Grid>
         </Card>
     

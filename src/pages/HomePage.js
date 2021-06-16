@@ -54,7 +54,7 @@ const HomePage = () => {
             <TitleIntro/>
             <TransactionsBox/>
           </Grid>
-          <Grid>
+          <Grid direction = "column">
             <Grid>
               <FavFlocks/>
             </Grid>
