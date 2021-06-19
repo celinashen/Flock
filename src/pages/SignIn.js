@@ -7,7 +7,6 @@ import FlockList from '../components/FlocksList';
 import HeaderBar from '../components/MenuBar';
 import OutstandingBoxList from '../components/TransactionsBox';
 import TitleIntro from '../components/TitleIntro';
-import ActivityIcon from '../components/ActivityBar';
 import './App.css';
 import CreateFlock from './CreateFlock';
 import { db, firebaseAppAuth, providers } from './firebaseConfig.js';
