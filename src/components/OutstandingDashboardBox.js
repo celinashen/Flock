@@ -15,6 +15,10 @@ import { CallMissedSharp, CheckBoxOutlineBlankSharp } from '@material-ui/icons';
 import Submit from './Submit';
 import Button from '@material-ui/core/Button';
 import { useState } from 'react';
+import {
+  FaChevronRight,
+  FaChevronLeft,
+} from "react-icons/fa";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -76,6 +80,19 @@ const useStyles = makeStyles((theme) => ({
       fontSize: 15,
       boxShadow: 'none',
       border: '2px solid #309F5E',
+    },
+
+    styledDiv: {
+      position: 'relative',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    arrow :{
+      color: '#309F5E',
+      '&:hover':{
+        cursor: 'pointer',
+      }
     }
 }));
 
@@ -113,60 +130,112 @@ const Payable=(props)=> {
 }
 
 //this is testing data
-const payableData = [
+const transactionPayableData = [
     {
-      amount: '$450',
+      amount: '1',
       personOwed: 'Angela',
       date: "Mar 3, 2021",
       flock: "Rent"
     },
     {
-      amount: '$450',
+      amount: '2',
       personOwed: 'Angela',
       date: "Mar 3, 2021",
       flock: "Rent"
     },
     {
-      amount: '$450',
+      amount: '3',
       personOwed: 'Angela',
       date: "Mar 3, 2021",
       flock: "Rent"
     },
     {
-      amount: '$450',
+      amount: '4',
+      personOwed: 'Angela',
+      date: "Mar 3, 2021",
+      flock: "Rent"
+    },
+    {
+      amount: '5',
+      personOwed: 'Angela',
+      date: "Mar 3, 2021",
+      flock: "Rent"
+    },
+    {
+      amount: '6',
+      personOwed: 'Angela',
+      date: "Mar 3, 2021",
+      flock: "Rent"
+    },
+    {
+      amount: '7',
       personOwed: 'Angela',
       date: "Mar 3, 2021",
       flock: "Rent"
     },
 ]
 
-const Carousel = ({slideTime}) => {
+const Carousel = ({transactionData}) => {
+
+  const classes = useStyles();
+
   const [current, setCurrent] = useState(0);
+  const length = transactionData.length;
 
-  return payableData.map((data, index) => {
-    return (
-      <Grid>
-        <Payable personPaying = 'you' amount = {data.amount} personOwed = {data.personOwed} date = {data.date} flock = {data.flock}/>
+  const nextSlide = () => {
+    setCurrent(current === length - 1 ? 0 : current + 1);
+  };
+
+  const prevSlide = () => {
+    setCurrent(current === 0 ? length - 1 : current - 1);
+  };
+
+  return (
+    <div className = {classes.styledDiv}>
+
+      <FaChevronLeft
+        className = {classes.arrow}
+        onClick={prevSlide}
+      />
+      <Grid
+      container direction="row"
+      justify="space-around"
+      alignItems="center"
+      className={classes.iconListContainer}>
+
+        {transactionData.map((data, index) => {
+          return (
+            
+            <Grid key = {index} item lg = {4} item md = {4} item sm = {4} item xs = {4}>
+              {index === current && (
+                <Payable personPaying = 'you' amount = {data.amount} personOwed = {data.personOwed} date = {data.date} flock = {data.flock}/>
+              )}
+            </Grid>
+          );
+        })}
+
       </Grid>
-    );
-  })
-
+      <FaChevronRight
+        className = {classes.arrow}
+        onClick={nextSlide}
+      />
+    </div>
+  );
 }
 
 const OutstandingDashboardBox=()=>{
+  
   const classes = useStyles();
+
   return(
         
         <Card className = {classes.card}>
             <Typography className = {classes.favFlocksTitle}>outstanding payables</Typography>
-            <Grid 
-                container direction="row"
-                justify="space-around"
-                alignItems="center"
-                className={classes.iconListContainer}>
+            
                 
-                <Carousel/>
-            </Grid>
+                
+                <Carousel transactionData = {transactionPayableData}/>
+
         </Card>
     
   );
