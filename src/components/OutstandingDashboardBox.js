@@ -205,12 +205,14 @@ const Carousel = ({transactionData}) => {
 
         {transactionData.map((data, index) => {
           return (
-            
-            <Grid key = {index} item lg = {4} item md = {4} item sm = {4} item xs = {4}>
-              {index === current && (
-                <Payable personPaying = 'you' amount = {data.amount} personOwed = {data.personOwed} date = {data.date} flock = {data.flock}/>
-              )}
-            </Grid>
+
+              <Grid key = {index} item lg = {4} item md = {4} item sm = {4} item xs = {4}>
+                {index === current && (
+                  <Payable personPaying = 'you' amount = {data.amount} personOwed = {data.personOwed} date = {data.date} flock = {data.flock}/>
+                )}
+              </Grid>
+
+
           );
         })}
 
@@ -232,8 +234,6 @@ const OutstandingDashboardBox=()=>{
         <Card className = {classes.card}>
             <Typography className = {classes.favFlocksTitle}>outstanding payables</Typography>
             
-                
-                
                 <Carousel transactionData = {transactionPayableData}/>
 
         </Card>

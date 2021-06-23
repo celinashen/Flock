@@ -132,6 +132,46 @@ const ListItem=(props)=> {
   );
 }
 
+//dummy data for scott to substitute
+const transactionData = [
+  {
+    transaction: "You paid $230 to Angela", 
+    flock: "Rent",
+    date:"05/03/2021"
+  },
+  {
+    transaction: "You paid $230 to Scott", 
+    flock: "Rent",
+    date:"05/03/2021"
+  },
+  {
+    transaction: "You paid $230 to Celina", 
+    flock: "Rent",
+    date:"05/03/2021"
+  },
+  {
+    transaction: "You paid $230 to Ryan", 
+    flock: "Rent",
+    date:"05/03/2021"
+  },
+  {
+    transaction: "You paid $230 to Kyle", 
+    flock: "Rent",
+    date:"05/03/2021"
+  },
+  {
+    transaction: "You paid $230 to Angela", 
+    flock: "Rent",
+    date:"05/03/2021"
+  },
+  {
+    transaction: "You paid $230 to Angela", 
+    flock: "Rent",
+    date:"05/03/2021"
+  },
+]
+
+//could add data as props
 const TransactionsBox=()=>{
   const classes = useStyles();
   return(
@@ -148,23 +188,15 @@ const TransactionsBox=()=>{
         }}
       >
         <Grid className = {classes.outstandingBoxContainer}>
-          <Grid className = {classes.listItemContainer}>
-              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
-          </Grid>
-          <Grid className = {classes.listItemContainer}>
-              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
-          </Grid>
-          <Grid className = {classes.listItemContainer}>
-              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
-          </Grid>
-          <Grid className = {classes.listItemContainer}>
-              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
-          </Grid>
-          <Grid className = {classes.listItemContainer}>
-              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
-          </Grid>
+          {transactionData.map((data, index) => {
+            return (
+              <Grid key = {index} className = {classes.listItemContainer}>
+                  <ListItem transaction = {data.transaction} flock = {data.flock} date = {data.date}/>
+              </Grid>
+            );
+          })}
         </Grid>
-
+        
         <Submit submitName = "your payables" fontSize = '17px' minWidth = "18vw" maxWidth = "18vw" marginTop = '2vh'/>
         <Submit submitName = "your receivables" fontSize = '17px' minWidth = "18vw" maxWidth = "18vw" marginTop = '2vh'/>
 
@@ -173,6 +205,23 @@ const TransactionsBox=()=>{
  
   );
 }
+
+{/* <Grid className = {classes.listItemContainer}>
+              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+          </Grid>
+          <Grid className = {classes.listItemContainer}>
+              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+          </Grid>
+          <Grid className = {classes.listItemContainer}>
+              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+          </Grid>
+          <Grid className = {classes.listItemContainer}>
+              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+          </Grid>
+          <Grid className = {classes.listItemContainer}>
+              <ListItem transaction = "You paid $230 to Angela" flock = "Rent" date = "05/03/2021"/>
+          </Grid>
+        </Grid> */}
 
 // const OutstandingBoxList=()=>{
 //   const classes = useStyles();
