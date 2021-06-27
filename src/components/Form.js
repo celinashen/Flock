@@ -215,8 +215,6 @@ const Form = (props) => {
     const userIDs = getUserLists();
 
 
-    console.log('hello');
-
     useEffect(() => {
         setTimeout(function(){ setFlockIDs(getFlockLists()) }, 1000);
     },[]);
