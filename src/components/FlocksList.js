@@ -152,6 +152,38 @@ const FlockListTitle=()=> {
 }
 
 
+
+function getFlockListWithImages() {
+  var user = firebase.auth().currentUser; //ISSUE IS THAT THIS DOES NOT LOAD IMMEDIATELY SO IT RENDERS NOTHING
+  //console.log(user)
+  var flockIDs = [];
+  var tempObject = {};
+
+  //Scan through database for user profileMatch, then load user-specific flocks.
+  db.collection('user').get().then(querySnapshot =>{
+      querySnapshot.forEach(doc => {
+          if (doc.data()!=null && user!=null)
+              if (doc.data().id == user.uid) 
+                  doc.data().flocks.forEach(doc2 => {
+                      db.collection('flock-groups').get().then(querySnapshot2 => {
+                          querySnapshot2.forEach(doc3 => {
+                              if (doc2 == doc3.id) {
+                                  tempObject = {id: doc2, name: doc3.data().flockName, image: "https://images.pexels.com/photos/5077404/pexels-photo-5077404.jpeg?cs=srgb&dl=pexels-cottonbro-5077404.jpg&fm=jpg"};
+                                  flockIDs.push(tempObject);
+                                  //console.log(tempObject);
+                              }
+                          })
+                      })
+                  });
+      })
+  })//end of firebase ref
+  //console.log(flockIDs);
+  return flockIDs;
+}
+
+
+
+
 // put in pexel (or unsplash) link for flockPhoto + flock title as props
 // use pexel API to create a place where user can create flocks
 //must copy image address not link address
