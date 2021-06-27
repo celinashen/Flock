@@ -6,6 +6,9 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Image from 'react-bootstrap/Image';
+import { db } from '../pages/firebaseConfig';
+import firebase from 'firebase';
+import { useState, useEffect } from 'react';
 
 
 const useStyles = makeStyles((theme) => ({
