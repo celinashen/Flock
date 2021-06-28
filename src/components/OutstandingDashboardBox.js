@@ -50,11 +50,11 @@ const useStyles = makeStyles((theme) => ({
     payable: {
       borderRadius: 10,
       boxShadow: "none", 
-      border: '2px solid #309F5E',
+      minHeight: '100%',
       minWidth: '9vw',
       maxWidth: '9vw',
 
-      color: (props) => props.color,
+      border: (props) => props.border,
     },
     
     amount: {
@@ -92,7 +92,10 @@ const useStyles = makeStyles((theme) => ({
       position: 'relative',
       display: 'flex',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+
+        
+
     },
     cardsList: {
       marginBottom: '3vh'
@@ -100,6 +103,7 @@ const useStyles = makeStyles((theme) => ({
     leftArrow :{
       color: '#309F5E',
       marginLeft: '5%',
+      marginBottom: '3vh',
       '&:hover':{
         cursor: 'pointer',
       }
@@ -107,6 +111,7 @@ const useStyles = makeStyles((theme) => ({
     rightArrow :{
       color: '#309F5E',
       marginRight: '5%',
+      marginBottom: '3vh',
       '&:hover':{
         cursor: 'pointer',
       }
@@ -117,7 +122,7 @@ const Payable=(props)=> {
     const classes = useStyles();
     const { payable } = useStyles(props);
     return (
-      <Card variant = "outlined" className = {classes.payable}>
+      <Card variant = "outlined" className = {payable}>
         <Grid className = {classes.cardContent}>
           <Grid>
             <Typography className = {classes.subtext}>
@@ -159,7 +164,7 @@ const chunk = (arr, size) =>
 
 const Carousel = ({transactionData}, props) => {
 
-  const classes = useStyles(props);
+  const classes = useStyles();
 
   const [current, setCurrent] = useState(0);
   const length = transactionData.length;
@@ -186,6 +191,7 @@ const Carousel = ({transactionData}, props) => {
         onClick={prevSlide}
       />
 
+      
       {arr.map((item,index) => 
       item.length === 3 && index === current ?
         //First conditional (3 items)
@@ -195,7 +201,7 @@ const Carousel = ({transactionData}, props) => {
         alignItems="center"
         className = {classes.cardsList}>
           <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
-            <Payable color = {props.color} personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
+            <Payable border = {props.borderColor} personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
           </Grid>
           <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
             <Payable personPaying = {item[1].personPaying} amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
@@ -251,9 +257,9 @@ const OutstandingDashboardBox=()=>{
         
         <Card className = {classes.card}>
             <Typography className = {classes.favFlocksTitle}>outstanding payables</Typography>
-              <Carousel transactionData = {transactionPayableData}/>
+              <Carousel borderColor = '2px solid #309F5E' transactionData = {transactionPayableData}/>
             <Typography className = {classes.favFlocksTitle}>outstanding receivables</Typography>
-              <Carousel color = {'black'} transactionData = {transactionReceivableData}/>
+              <Carousel borderColor = '2px solid #FFFFFF' transactionData = {transactionReceivableData}/>
         </Card>
     
   );
