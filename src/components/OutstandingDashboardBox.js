@@ -19,6 +19,7 @@ import {
   FaChevronRight,
   FaChevronLeft,
 } from "react-icons/fa";
+import {transactionPayableData, transactionReceivableData} from './DummyData'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -28,14 +29,15 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '35vw',
         marginLeft: '10vw',
         marginTop: '5vh',
+        marginBottom: '2vh',
+        paddingTop: '4vh',
         boxShadow: '0px 4px 20px 0px rgba(48,159,94,0.5)',
-        borderRadius: '20px'
+        borderRadius: '20px',
     },
 
     //card title
     favFlocksTitle: {
         marginLeft: '3vw',
-        marginTop: '4vh',
         marginBottom: '1vh',
         textAlign: 'left',
 
@@ -50,7 +52,9 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: "none", 
       border: '2px solid #309F5E',
       minWidth: '9vw',
-      maxWidth: '9vw'
+      maxWidth: '9vw',
+
+      color: (props) => props.color,
     },
     
     amount: {
@@ -90,6 +94,9 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
       alignItems: 'center'
     },
+    cardsList: {
+      marginBottom: '3vh'
+    },
     leftArrow :{
       color: '#309F5E',
       marginLeft: '5%',
@@ -108,6 +115,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Payable=(props)=> {
     const classes = useStyles();
+    const { payable } = useStyles(props);
     return (
       <Card variant = "outlined" className = {classes.payable}>
         <Grid className = {classes.cardContent}>
@@ -139,117 +147,6 @@ const Payable=(props)=> {
   );
 }
 
-//this is testing data
-const transactionPayableData = [
-    {
-      amount: '1',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '2',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '3',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '4',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '5',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '6',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '7',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '8',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-]
-
-//dummy data for receivables
-const transactionReceivableData = [
-  {
-    amount: '1',
-    personPaying: 'Celina',
-    personOwed: 'Angela',
-    date: "Mar 3, 2021",
-    flock: "Rent"
-  },
-  {
-    amount: '2',
-    personPaying: 'Celina',
-    personOwed: 'Angela',
-    date: "Mar 3, 2021",
-    flock: "Rent"
-  },
-  {
-    amount: '3',
-    personPaying: 'Celina',
-    personOwed: 'Angela',
-    date: "Mar 3, 2021",
-    flock: "Rent"
-  },
-  {
-    amount: '4',
-    personPaying: 'Celina',
-    personOwed: 'Angela',
-    date: "Mar 3, 2021",
-    flock: "Rent"
-  },
-  {
-    amount: '5',
-    personPaying: 'Celina',
-    personOwed: 'Angela',
-    date: "Mar 3, 2021",
-    flock: "Rent"
-  },
-  {
-    amount: '6',
-    personPaying: 'Celina',
-    personOwed: 'Angela',
-    date: "Mar 3, 2021",
-    flock: "Rent"
-  },
-  {
-    amount: '7',
-    personPaying: 'Celina',
-    personOwed: 'Angela',
-    date: "Mar 3, 2021",
-    flock: "Rent"
-  },
-  {
-    amount: '8',
-    personPaying: 'Celina',
-    personOwed: 'Angela',
-    date: "Mar 3, 2021",
-    flock: "Rent"
-  },
-]
 
 const chunk = (arr, size) =>
   //length: 3
@@ -258,9 +155,11 @@ const chunk = (arr, size) =>
     arr.slice(i * size, i * size + size)
   );
 
-const Carousel = ({transactionData}) => {
+//TODO: stop carousel from scrolling when on the last page
 
-  const classes = useStyles();
+const Carousel = ({transactionData}, props) => {
+
+  const classes = useStyles(props);
 
   const [current, setCurrent] = useState(0);
   const length = transactionData.length;
@@ -273,8 +172,8 @@ const Carousel = ({transactionData}) => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
-  let arr=chunk(transactionPayableData, 3);
-  console.log(transactionPayableData.length);
+  let arr=chunk(transactionData, 3);
+  console.log(transactionData.length);
   console.log(Math.ceil(arr.length / 3));
   
   
@@ -293,15 +192,16 @@ const Carousel = ({transactionData}) => {
         <Grid
         container direction="row"
         justify="center"
-        alignItems="center">
+        alignItems="center"
+        className = {classes.cardsList}>
           <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
-            <Payable personPaying = 'you' amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
+            <Payable color = {props.color} personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
           </Grid>
           <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
-            <Payable personPaying = 'you' amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
+            <Payable personPaying = {item[1].personPaying} amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
           </Grid>
           <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">     
-            <Payable personPaying = 'you' amount = {item[2].amount} personOwed = {item[2].personOwed} date = {item[2].date} flock = {item[2].flock}/>
+            <Payable personPaying = {item[2].personPaying} amount = {item[2].amount} personOwed = {item[2].personOwed} date = {item[2].date} flock = {item[2].flock}/>
           </Grid>
         </Grid>
         : 
@@ -311,12 +211,12 @@ const Carousel = ({transactionData}) => {
             container direction="row"
             justify="space-around"
             alignItems="center"
-            className={classes.iconListContainer}>
+            className = {classes.cardsList}>
               <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
-                <Payable personPaying = 'you' amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
+                <Payable personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
               </Grid>
               <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
-                <Payable personPaying = 'you' amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
+                <Payable personPaying = {item[1].personPaying} amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
               </Grid>
             </Grid>
           :
@@ -325,9 +225,9 @@ const Carousel = ({transactionData}) => {
                 container direction="row"
                 justify="space-around"
                 alignItems="center"
-                className={classes.iconListContainer}>
+                className = {classes.cardsList}>
                   <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
-                    <Payable personPaying = 'you' amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
+                    <Payable personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
                   </Grid>
                 </Grid>
                :
@@ -353,8 +253,7 @@ const OutstandingDashboardBox=()=>{
             <Typography className = {classes.favFlocksTitle}>outstanding payables</Typography>
               <Carousel transactionData = {transactionPayableData}/>
             <Typography className = {classes.favFlocksTitle}>outstanding receivables</Typography>
-              <Carousel transactionData = {transactionReceivableData}/>
-
+              <Carousel color = {'black'} transactionData = {transactionReceivableData}/>
         </Card>
     
   );
