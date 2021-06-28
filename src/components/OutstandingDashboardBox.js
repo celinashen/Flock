@@ -61,7 +61,8 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: 550, 
       fontFamily: "Poppins",
       fontSize: 35,
-      color: "#309F5E", 
+
+      color: (props) => props.amountColor,
     },
     subtext: {
       color: "#707070",
@@ -80,12 +81,13 @@ const useStyles = makeStyles((theme) => ({
       marginRight: '13px'
     },
     flock: {
-      backgroundColor:"#309F5E",
       color: "white",
       fontFamily: "Poppins",
       fontSize: 15,
       boxShadow: 'none',
-      border: '2px solid #309F5E',
+
+      border: (props) => props.flockoBorder,
+      backgroundColor: (props) => props.backgroundColor,
     },
 
     styledDiv: {
@@ -93,9 +95,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-
-        
-
     },
     cardsList: {
       marginBottom: '3vh'
@@ -120,7 +119,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Payable=(props)=> {
     const classes = useStyles();
-    const { payable } = useStyles(props);
+    const { payable, flock, amount } = useStyles(props);
     return (
       <Card variant = "outlined" className = {payable}>
         <Grid className = {classes.cardContent}>
@@ -130,7 +129,7 @@ const Payable=(props)=> {
             </Typography>
           </Grid>
           <Grid>
-            <Typography className = {classes.amount}>
+            <Typography className = {amount}>
               {props.amount}
             </Typography>
           </Grid>
@@ -145,7 +144,7 @@ const Payable=(props)=> {
             </Typography>
           </Grid>
         </Grid>
-        <Card className = {classes.flock}>
+        <Card className = {flock}>
           {props.flock}
         </Card>
     </Card>
@@ -162,7 +161,7 @@ const chunk = (arr, size) =>
 
 //TODO: stop carousel from scrolling when on the last page
 
-const Carousel = ({transactionData}, props) => {
+const Carousel = ({transactionData, borderColor, backgroundColor, flockBorder, amountColor}) => {
 
   const classes = useStyles();
 
@@ -181,7 +180,6 @@ const Carousel = ({transactionData}, props) => {
   console.log(transactionData.length);
   console.log(Math.ceil(arr.length / 3));
   
-  
 
   return (
     <div className = {classes.styledDiv}>
@@ -195,19 +193,20 @@ const Carousel = ({transactionData}, props) => {
       {arr.map((item,index) => 
       item.length === 3 && index === current ?
         //First conditional (3 items)
+
         <Grid
         container direction="row"
         justify="center"
         alignItems="center"
         className = {classes.cardsList}>
           <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
-            <Payable border = {props.borderColor} personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
+            <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
           </Grid>
           <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
-            <Payable personPaying = {item[1].personPaying} amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
+            <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[1].personPaying} amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
           </Grid>
           <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">     
-            <Payable personPaying = {item[2].personPaying} amount = {item[2].amount} personOwed = {item[2].personOwed} date = {item[2].date} flock = {item[2].flock}/>
+            <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[2].personPaying} amount = {item[2].amount} personOwed = {item[2].personOwed} date = {item[2].date} flock = {item[2].flock}/>
           </Grid>
         </Grid>
         : 
@@ -219,10 +218,10 @@ const Carousel = ({transactionData}, props) => {
             alignItems="center"
             className = {classes.cardsList}>
               <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
-                <Payable personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
+                <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
               </Grid>
               <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
-                <Payable personPaying = {item[1].personPaying} amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
+                <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[1].personPaying} amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
               </Grid>
             </Grid>
           :
@@ -233,7 +232,7 @@ const Carousel = ({transactionData}, props) => {
                 alignItems="center"
                 className = {classes.cardsList}>
                   <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
-                    <Payable personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
+                    <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
                   </Grid>
                 </Grid>
                :
@@ -257,9 +256,9 @@ const OutstandingDashboardBox=()=>{
         
         <Card className = {classes.card}>
             <Typography className = {classes.favFlocksTitle}>outstanding payables</Typography>
-              <Carousel borderColor = '2px solid #309F5E' transactionData = {transactionPayableData}/>
+              <Carousel borderColor = '2px solid #309F5E' backgroundColor = '#309F5E' flockBorder = '2px solid #309F5E' amountColor = '#309F5E'transactionData = {transactionPayableData}/>
             <Typography className = {classes.favFlocksTitle}>outstanding receivables</Typography>
-              <Carousel borderColor = '2px solid #FFFFFF' transactionData = {transactionReceivableData}/>
+              <Carousel borderColor = '2px solid #000000' backgroundColor = '#000000' flockBorder = '2px solid #000000' amountColor = '#000000' transactionData = {transactionReceivableData}/>
         </Card>
     
   );
