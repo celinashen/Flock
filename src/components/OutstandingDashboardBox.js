@@ -191,6 +191,66 @@ const transactionPayableData = [
     },
 ]
 
+//dummy data for receivables
+const transactionReceivableData = [
+  {
+    amount: '1',
+    personPaying: 'Celina',
+    personOwed: 'Angela',
+    date: "Mar 3, 2021",
+    flock: "Rent"
+  },
+  {
+    amount: '2',
+    personPaying: 'Celina',
+    personOwed: 'Angela',
+    date: "Mar 3, 2021",
+    flock: "Rent"
+  },
+  {
+    amount: '3',
+    personPaying: 'Celina',
+    personOwed: 'Angela',
+    date: "Mar 3, 2021",
+    flock: "Rent"
+  },
+  {
+    amount: '4',
+    personPaying: 'Celina',
+    personOwed: 'Angela',
+    date: "Mar 3, 2021",
+    flock: "Rent"
+  },
+  {
+    amount: '5',
+    personPaying: 'Celina',
+    personOwed: 'Angela',
+    date: "Mar 3, 2021",
+    flock: "Rent"
+  },
+  {
+    amount: '6',
+    personPaying: 'Celina',
+    personOwed: 'Angela',
+    date: "Mar 3, 2021",
+    flock: "Rent"
+  },
+  {
+    amount: '7',
+    personPaying: 'Celina',
+    personOwed: 'Angela',
+    date: "Mar 3, 2021",
+    flock: "Rent"
+  },
+  {
+    amount: '8',
+    personPaying: 'Celina',
+    personOwed: 'Angela',
+    date: "Mar 3, 2021",
+    flock: "Rent"
+  },
+]
+
 const chunk = (arr, size) =>
   //length: 3
   //arr.slice(0, 3), arr.slice(1,6)
@@ -226,9 +286,6 @@ const Carousel = ({transactionData}) => {
         className = {classes.leftArrow}
         onClick={prevSlide}
       />
-
-
-{/* arr.map(item=> item.length>1 ? `<div>${item[0]}${item[1]}</div>` : `<div>${item[0]}</div>` ) */}
 
       {arr.map((item,index) => 
       item.length === 3 && index === current ?
@@ -278,19 +335,6 @@ const Carousel = ({transactionData}) => {
                 <Typography></Typography>
         )
       }
-
-        {/* {transactionData.map((data, index) => {
-          return (
-
-              // <Grid key = {index} item lg = {4} item md = {4} item sm = {4} item xs = {4}>
-              //   {index === current && (
-              //     <Payable personPaying = 'you' amount = {data.amount} personOwed = {data.personOwed} date = {data.date} flock = {data.flock}/>
-              //   )}
-              // </Grid>
-
-          );
-        })} */}
-
       <FaChevronRight
         className = {classes.rightArrow}
         onClick={nextSlide}
@@ -307,8 +351,9 @@ const OutstandingDashboardBox=()=>{
         
         <Card className = {classes.card}>
             <Typography className = {classes.favFlocksTitle}>outstanding payables</Typography>
-            
-                <Carousel transactionData = {transactionPayableData}/>
+              <Carousel transactionData = {transactionPayableData}/>
+            <Typography className = {classes.favFlocksTitle}>outstanding receivables</Typography>
+              <Carousel transactionData = {transactionReceivableData}/>
 
         </Card>
     
