@@ -49,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: 10,
       boxShadow: "none", 
       border: '2px solid #309F5E',
+      minWidth: '9vw',
+      maxWidth: '9vw'
     },
     
     amount: {
@@ -88,8 +90,16 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
       alignItems: 'center'
     },
-    arrow :{
+    leftArrow :{
       color: '#309F5E',
+      marginLeft: '5%',
+      '&:hover':{
+        cursor: 'pointer',
+      }
+    },
+    rightArrow :{
+      color: '#309F5E',
+      marginRight: '5%',
       '&:hover':{
         cursor: 'pointer',
       }
@@ -173,6 +183,12 @@ const transactionPayableData = [
       date: "Mar 3, 2021",
       flock: "Rent"
     },
+    {
+      amount: '8',
+      personOwed: 'Angela',
+      date: "Mar 3, 2021",
+      flock: "Rent"
+    },
 ]
 
 const chunk = (arr, size) =>
@@ -207,7 +223,7 @@ const Carousel = ({transactionData}) => {
     <div className = {classes.styledDiv}>
 
       <FaChevronLeft
-        className = {classes.arrow}
+        className = {classes.leftArrow}
         onClick={prevSlide}
       />
 
@@ -219,16 +235,15 @@ const Carousel = ({transactionData}) => {
         //First conditional (3 items)
         <Grid
         container direction="row"
-        justify="space-around"
-        alignItems="center"
-        className={classes.iconListContainer}>
-          <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
+        justify="center"
+        alignItems="center">
+          <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
             <Payable personPaying = 'you' amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
           </Grid>
-          <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
+          <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
             <Payable personPaying = 'you' amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
           </Grid>
-          <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
+          <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">     
             <Payable personPaying = 'you' amount = {item[2].amount} personOwed = {item[2].personOwed} date = {item[2].date} flock = {item[2].flock}/>
           </Grid>
         </Grid>
@@ -277,7 +292,7 @@ const Carousel = ({transactionData}) => {
         })} */}
 
       <FaChevronRight
-        className = {classes.arrow}
+        className = {classes.rightArrow}
         onClick={nextSlide}
       />
     </div>
