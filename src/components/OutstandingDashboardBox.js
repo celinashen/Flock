@@ -100,20 +100,20 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: '3vh'
     },
     leftArrow :{
-      color: '#309F5E',
       marginLeft: '5%',
       marginBottom: '3vh',
       '&:hover':{
         cursor: 'pointer',
-      }
+      },
+      color: (props) => props.amountColor,
     },
     rightArrow :{
-      color: '#309F5E',
       marginRight: '5%',
       marginBottom: '3vh',
       '&:hover':{
         cursor: 'pointer',
-      }
+      },
+      color: (props) => props.amountColor,
     }
 }));
 
@@ -161,7 +161,7 @@ const chunk = (arr, size) =>
 
 //TODO: stop carousel from scrolling when on the last page
 
-const Carousel = ({transactionData, borderColor, backgroundColor, flockBorder, amountColor}) => {
+const Carousel = ({transactionData, borderColor, backgroundColor, flockBorder, amountColor, arrowColor}) => {
 
   const classes = useStyles();
 
@@ -187,6 +187,7 @@ const Carousel = ({transactionData, borderColor, backgroundColor, flockBorder, a
       <FaChevronLeft
         className = {classes.leftArrow}
         onClick={prevSlide}
+        color = {arrowColor}
       />
 
       
@@ -214,26 +215,35 @@ const Carousel = ({transactionData, borderColor, backgroundColor, flockBorder, a
           item.length === 2 && index === current ?
             <Grid
             container direction="row"
-            justify="space-around"
+            justify="center"
             alignItems="center"
             className = {classes.cardsList}>
-              <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
+              <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
                 <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
               </Grid>
-              <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
+              <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
                 <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[1].personPaying} amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
+              </Grid>
+              <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center"> 
+               {/* empty component to algn components left */}
               </Grid>
             </Grid>
           :
             item.length === 1 && index === current ?
               <Grid
                 container direction="row"
-                justify="space-around"
+                justify="center"
                 alignItems="center"
                 className = {classes.cardsList}>
-                  <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
+                  <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
                     <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
                   </Grid>
+                  <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center"> 
+               {/* empty component to algn components left */}
+              </Grid>
+              <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center"> 
+               {/* empty component to algn components left */}
+              </Grid>
                 </Grid>
                :
                //THIS IS BAD CODE --> typography always shows up TODO: FIX THIS LATER
@@ -243,6 +253,7 @@ const Carousel = ({transactionData, borderColor, backgroundColor, flockBorder, a
       <FaChevronRight
         className = {classes.rightArrow}
         onClick={nextSlide}
+        color = {arrowColor}
       />
     </div>
   );
@@ -256,9 +267,9 @@ const OutstandingDashboardBox=()=>{
         
         <Card className = {classes.card}>
             <Typography className = {classes.favFlocksTitle}>outstanding payables</Typography>
-              <Carousel borderColor = '2px solid #309F5E' backgroundColor = '#309F5E' flockBorder = '2px solid #309F5E' amountColor = '#309F5E'transactionData = {transactionPayableData}/>
+              <Carousel borderColor = '2px solid #309F5E' backgroundColor = '#309F5E' flockBorder = '2px solid #309F5E' amountColor = '#309F5E' arrowColor = '#309F5E' transactionData = {transactionPayableData}/>
             <Typography className = {classes.favFlocksTitle}>outstanding receivables</Typography>
-              <Carousel borderColor = '2px solid #000000' backgroundColor = '#000000' flockBorder = '2px solid #000000' amountColor = '#000000' transactionData = {transactionReceivableData}/>
+              <Carousel borderColor = '2px solid #000000' backgroundColor = '#000000' flockBorder = '2px solid #000000' amountColor = '#000000' arrowColor = '#000000' transactionData = {transactionReceivableData}/>
         </Card>
     
   );
