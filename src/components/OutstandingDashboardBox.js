@@ -166,7 +166,10 @@ const Carousel = ({transactionData, borderColor, backgroundColor, flockBorder, a
   const classes = useStyles();
 
   const [current, setCurrent] = useState(0);
-  const length = transactionData.length;
+  
+
+  let arr=chunk(transactionData, 3);
+  const length = arr.length;
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -176,7 +179,7 @@ const Carousel = ({transactionData, borderColor, backgroundColor, flockBorder, a
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
-  let arr=chunk(transactionData, 3);
+  
   console.log(transactionData.length);
   console.log(Math.ceil(arr.length / 3));
   
