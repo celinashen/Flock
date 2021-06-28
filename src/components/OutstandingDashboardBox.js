@@ -175,6 +175,13 @@ const transactionPayableData = [
     },
 ]
 
+const chunk = (arr, size) =>
+  //length: 3
+  //arr.slice(0, 3), arr.slice(1,6)
+  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+    arr.slice(i * size, i * size + size)
+  );
+
 const Carousel = ({transactionData}) => {
 
   const classes = useStyles();
@@ -190,6 +197,12 @@ const Carousel = ({transactionData}) => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
+  let arr=chunk(transactionPayableData, 3);
+  console.log(transactionPayableData.length);
+  console.log(Math.ceil(arr.length / 3));
+  
+  
+
   return (
     <div className = {classes.styledDiv}>
 
@@ -197,26 +210,72 @@ const Carousel = ({transactionData}) => {
         className = {classes.arrow}
         onClick={prevSlide}
       />
-      <Grid
-      container direction="row"
-      justify="space-around"
-      alignItems="center"
-      className={classes.iconListContainer}>
 
-        {transactionData.map((data, index) => {
+
+{/* arr.map(item=> item.length>1 ? `<div>${item[0]}${item[1]}</div>` : `<div>${item[0]}</div>` ) */}
+
+      {arr.map((item,index) => 
+      item.length === 3 && index === current ?
+        //First conditional (3 items)
+        <Grid
+        container direction="row"
+        justify="space-around"
+        alignItems="center"
+        className={classes.iconListContainer}>
+          <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
+            <Payable personPaying = 'you' amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
+          </Grid>
+          <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
+            <Payable personPaying = 'you' amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
+          </Grid>
+          <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
+            <Payable personPaying = 'you' amount = {item[2].amount} personOwed = {item[2].personOwed} date = {item[2].date} flock = {item[2].flock}/>
+          </Grid>
+        </Grid>
+        : 
+
+          item.length === 2 && index === current ?
+            <Grid
+            container direction="row"
+            justify="space-around"
+            alignItems="center"
+            className={classes.iconListContainer}>
+              <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
+                <Payable personPaying = 'you' amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
+              </Grid>
+              <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
+                <Payable personPaying = 'you' amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
+              </Grid>
+            </Grid>
+          :
+            item.length === 1 && index === current ?
+              <Grid
+                container direction="row"
+                justify="space-around"
+                alignItems="center"
+                className={classes.iconListContainer}>
+                  <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4}>    
+                    <Payable personPaying = 'you' amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
+                  </Grid>
+                </Grid>
+               :
+               //THIS IS BAD CODE --> typography always shows up TODO: FIX THIS LATER
+                <Typography></Typography>
+        )
+      }
+
+        {/* {transactionData.map((data, index) => {
           return (
 
-              <Grid key = {index} item lg = {4} item md = {4} item sm = {4} item xs = {4}>
-                {index === current && (
-                  <Payable personPaying = 'you' amount = {data.amount} personOwed = {data.personOwed} date = {data.date} flock = {data.flock}/>
-                )}
-              </Grid>
-
+              // <Grid key = {index} item lg = {4} item md = {4} item sm = {4} item xs = {4}>
+              //   {index === current && (
+              //     <Payable personPaying = 'you' amount = {data.amount} personOwed = {data.personOwed} date = {data.date} flock = {data.flock}/>
+              //   )}
+              // </Grid>
 
           );
-        })}
+        })} */}
 
-      </Grid>
       <FaChevronRight
         className = {classes.arrow}
         onClick={nextSlide}
