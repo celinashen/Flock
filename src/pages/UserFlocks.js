@@ -10,6 +10,7 @@ import FlockCard from '../components/FlockCard';
 import Modal from '../components/Modal';
 import { useState } from 'react';
 
+import CreateFlock from '../components/CreateFlock.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,6 +91,7 @@ const UserFlocks=()=>{
         </Grid>
         <Modal showModal={showModal} setShowModal = {setShowModal} modalTitle = {modalTitle} />
       </div>
+      <CreateFlock/>
     </div>
   )
 }

@@ -1,10 +1,10 @@
 import React, { useReducer, useState } from 'react';
 import 'react-dropdown/style.css';
 
-import './App.css';
+import '../pages/App.css';
 //COMPONENTS MUST START WITH UPPERCASE
 
-import {db, firebaseAppAuth, providers} from './firebaseConfig.js';
+import {db, firebaseAppAuth, providers} from '../components/firebaseConfig.js';
 //use this component to create a new flock
 import withFirebaseAuth from 'react-with-firebase-auth'
 import firebase from 'firebase'
@@ -29,7 +29,7 @@ class CreateFlock extends React.Component {
 
         db.collection('flock-groups').add({
             flockName: this.state.value,
-            members: [firebase.auth().currentUser.uid],
+            members: [{id: firebase.auth().currentUser.uid, name: firebase.auth().currentUser.name }],
         }).then(function(docRef) {
 
             db.collection('user').get().then(querySnapshot =>{

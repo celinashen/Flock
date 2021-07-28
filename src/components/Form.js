@@ -13,7 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import {TextField} from '@material-ui/core';
 import { useEffect } from 'react';
 
-import { db } from '../pages/firebaseConfig'
+import { db } from '../components/firebaseConfig.js'
 import firebase from 'firebase'
 
 

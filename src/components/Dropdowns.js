@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { db, firebaseAppAuth, providers } from '../pages/firebaseConfig.js';
+import { db, firebaseAppAuth, providers } from '../components/firebaseConfig.js';
 import Dropdown from 'react-dropdown';
 import firebase from 'firebase';
 import Grid from '@material-ui/core/Grid';
