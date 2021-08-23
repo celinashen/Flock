@@ -11,6 +11,7 @@ import Modal from '../components/Modal';
 import { useState } from 'react';
 
 import CreateFlock from '../components/CreateFlock.js';
+import AddUser from '../components/AddUser.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,6 +93,7 @@ const UserFlocks=()=>{
         <Modal showModal={showModal} setShowModal = {setShowModal} modalTitle = {modalTitle} />
       </div>
       <CreateFlock/>
+      <AddUser/>
     </div>
   )
 }
