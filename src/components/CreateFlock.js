@@ -24,21 +24,27 @@ class CreateFlock extends React.Component {
     }
 
     handleSubmit(event) {
-        //alert('A name was submitted: ' + this.state.value);
+        alert('A flock was submitted: ' + this.state.value);
+        var temp = this.state.value;
         event.preventDefault();
 
+        // Setting up the proper data format for new flocks
         db.collection('flock-groups').add({
             flockName: this.state.value,
-            members: [{id: firebase.auth().currentUser.uid, name: firebase.auth().currentUser.name }],
+            members: [{id: firebase.auth().currentUser.uid, name: firebase.auth().currentUser.displayName }],
         }).then(function(docRef) {
 
-            db.collection('user').get().then(querySnapshot =>{
+            // Must still find the current user so their data can be edited
+            db.collection('user').get().then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     var userRef = db.collection('user').doc(doc.id);
-                    if (doc.data().id == firebase.auth().currentUser.uid) {
+                    if (doc.id == firebase.auth().currentUser.uid) {
+                        
+                        // Updating the user's local flock list to include the newly created one
                         userRef.update({
-                            flocks: firebase.firestore.FieldValue.arrayUnion(docRef.id)
+                            flocks: firebase.firestore.FieldValue.arrayUnion({value: docRef.id, label: temp})
                         });
+                    
                     }
                 })
             });

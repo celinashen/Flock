@@ -104,10 +104,9 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
         }
     })
     if (profileMatch == false && user!=null) {
-      const res = db.collection('user').add({
+      const res = db.collection('user').doc(user.uid).set({
         name: user.displayName,
         flocks: [],
-        id: user.uid,
       });
     }//end of if profileMatch
   })//end of firebase ref
