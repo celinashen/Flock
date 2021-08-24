@@ -18,7 +18,9 @@ async function getDocument (collection, userID) {
       return Promise.reject(Error(`No such document: ${collection}.${userID}`))
 }
   
-
+// Todo: clear all database data except for user UIDs
+// Todo: make the user UIDs into each user document id itself
+// Todo: make label/value combinations built-in in the database data
 
 //component to build text bar that adds the inputted user ID to the flock
 //include function to find the corresponding name to the user ID
@@ -37,24 +39,65 @@ class AddUserTextBar extends React.Component {
 
     handleSubmit(event) {
         alert('An ID was submitted: ' + this.state.value);
+        alert('Current Dropdown Selection: ' + this.props.selectedFlock.value)
         event.preventDefault();
         var match = false;
+        var repeated = false;
 
+        // Find the user who owns the ID that was submitted
         db.collection('user').get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
                 if (doc.data().id == this.state.value) {
                     match = true;
+                    
+                    // This block's ultimate intention is to add the submitted info to the database
+                    
+                    // Document references are created here to later be checked for repeated info
+                    var flockDoc = db.collection('flock-groups').doc(this.props.selectedFlock.value);
+                    var userDoc = db.collection('user').doc(doc.id);
 
-                    // Must add new member to flock-groups collection
-                    db.collection('flock-groups').doc(this.props.selectedFlock.value).update({
-                        members: firebase.firestore.FieldValue.arrayUnion(this.state),
-                    })
-                    // Must add new flock to the specific user's local flocks list; viable because already on the right user document from before 
-                    db.collection('user').doc(doc.id).update({
-                        flocks: firebase.firestore.FieldValue.arrayUnion(this.props.selectedFlock.value)
+                    // Check for repeated info in flock-groups collection
+                    flockDoc.get().then((doc2) => {
+                        if (doc2.exists) {
+                            if (doc2.data().members.indexOf(this.state) == -1) {
+                                repeated = true;
+                                alert('Member is already a part of this flock!')
+                            } 
+                        } else {
+                            alert('Error retrieving document.')
+                        }
+                    }).catch((error) => {
+                        console.log("Error getting document:", error);
                     });
 
-        
+                    // Check for repeated info in user collection
+                    userDoc.get().then((doc3) => {
+                        if (doc3.exists) {
+                            if (doc3.data().flocks.indexOf(this.props.selectedFlock.value) == -1) {
+                                repeated = true;
+                                alert('Member is already a part of this flock!')
+                            } 
+                        } else {
+                            alert('Error retrieving document.')
+                        }
+                    }).catch((error) => {
+                        console.log("Error getting document:", error);
+                    });
+
+
+                    // No repeated information, so information is viable
+                    if (repeated==false) {
+
+                        // Must add new user to the flock document's user list
+                        flockDoc.update({
+                            members: firebase.firestore.FieldValue.arrayUnion(this.state.value),
+                        })
+
+                        // Must add new flock to the specific user's local flocks list 
+                        userDoc.update({
+                            flocks: firebase.firestore.FieldValue.arrayUnion(this.props.selectedFlock.value)
+                        });
+                    }
                 }
             })
             if (match == false) 
@@ -113,9 +156,9 @@ const AddUser = () => {
   
     const handleChange = (selectedFlock) => {
         setFlock(selectedFlock);
-        console.log('Option selected: ');
-        console.log(selectedOptionFlock) //One step late
-        console.log(selectedFlock) //Not one step late
+        //console.log('Option selected: ');
+        //console.log(selectedOptionFlock) //One step late
+        //console.log(selectedFlock) //Not one step late
     };
 
 
