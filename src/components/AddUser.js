@@ -7,11 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import { doc, getDoc } from "firebase";
 
 
-  
-// Todo: clear all database data except for user UIDs
-// Todo: make the user UIDs into each user document id itself
-// Todo: make label/value combinations built-in in the database data
-
 
 //component to build text bar that adds the inputted user ID to the flock
 //include function to find the corresponding name to the user ID

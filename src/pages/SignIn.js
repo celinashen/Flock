@@ -104,7 +104,7 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
         }
     })
     if (profileMatch == false && user!=null) {
-      const res = db.collection('user').doc(user.uid).set({
+       db.collection('user').doc(user.uid).set({
         name: user.displayName,
         flocks: [],
       });

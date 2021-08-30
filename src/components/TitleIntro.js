@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import firebase from 'firebase';
 
 // const THEME = createMuiTheme({
 //   typography: {
@@ -79,7 +80,9 @@ const titleBar=()=> {
       <Grid container spacing={0} direction = "column" justify="flex">
         <Grid style = {{marginLeft: '300px', marginTop: '8vh'}}>
             <Typography className={classes.name} align = "left" color="inherit">
-              Hi Celina, 
+              Hi {firebase.auth().currentUser
+              ? firebase.auth().currentUser.displayName.split(" ")[0]
+              : null}, 
             </Typography>
         </Grid>
         <Grid container spacing={0} direction = "row" justify="flex" style = {{marginLeft: '300px', marginTop: '2vh'}}>
