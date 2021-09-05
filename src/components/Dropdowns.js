@@ -6,11 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 
-var flockOptions = [];
 var defaultOption = "Please select a flock.";
-var flockIDs = [];
-var userIDs = [];
-var loopCount;
 
 const Dropdowns = () => {
     
@@ -18,9 +14,6 @@ const Dropdowns = () => {
     const [selectedOptionUser, setSelectedUser] = useState(null);
     const [isSelected, setIsSelected] = useState(false);
     
-    const toggleIsSelected = () => setIsSelected(isSelected => !isSelected);
-
-    //setIsSelected(isSelected => !isSelected);
 
     const handleChange = (selectedOptionFlock) => {
         setFlock(selectedOptionFlock);
@@ -37,48 +30,6 @@ const Dropdowns = () => {
         console.log("User selected:", selectedOptionUser);
     };
 
-
-    function getFlockLists() {
-        var user = firebase.auth().currentUser;
-
-        //Scan through database for user profileMatch, then load user-specific flocks.
-        db.collection('user').get().then(querySnapshot =>{
-            querySnapshot.forEach(doc => {
-                if (doc.data()!=null && user!=null)
-                    if (doc.data().id == user.uid) {
-                        Object.assign(flockIDs, doc.data().flocks) //load flockIDs with the flock IDs
-                    }
-            })
-        })//end of firebase ref
-        
-        /*
-        db.collection('flock-groups').get().then(querySnapshot => {//Translate from flock ID to flockName for dropdown
-            for (var i=0; i < flockIDs.length; i++) {//To-do: add warning that you shouldn't have two flocks with the same name, otherwise code will die
-                querySnapshot.forEach(doc => {
-                if (doc.id == flockIDs[i] && loopCount == 0) {
-                    flockOptions.push(doc.data().flockName);
-                }
-                })
-            }
-            loopCount++
-        })
-        */
-
-        return flockIDs;
-    }
-
-    function getFlockUsers() {
-        db.collection('flock-groups').get().then(querySnapshot =>{
-            querySnapshot.forEach(doc => {
-                if (doc.data()!=null)
-                    if (doc.id == selectedOptionFlock) {
-                        Object.assign(userIDs, doc.data().members) //load flockIDs with the flock IDs
-                    }
-            })
-        })//end of firebase ref
-        console.log(userIDs);
-        return userIDs;
-    }
 
 //flock dropdowns has options: options={getFlockLists()
 //user dropdowns has options (if true): options = {getFlockUsers()}

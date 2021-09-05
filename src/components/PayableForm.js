@@ -13,7 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import {TextField} from '@material-ui/core';
 import { useEffect } from 'react';
 
-import { db } from '../components/firebaseConfig.js'
+import { db } from './firebaseConfig.js'
 import firebase from 'firebase'
 
 
@@ -89,9 +89,30 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//props: title, description
 
-const Form = (props) => {
+
+function getFlockLists() {
+    var user = firebase.auth().currentUser;
+    var flockIDs = [];
+    //Scan through database for user profileMatch, then load user-specific flocks.
+    db.collection('user').get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+            if (doc.data()!=null && user!=null) {
+                //console.log(user.uid+", "+doc.data().id)
+                if (doc.id === user.uid) {
+                    Object.assign(flockIDs, doc.data().flocks) //load flockIDs with the flock IDs
+                }
+            }   
+        })
+    })//end of firebase ref
+    console.log(flockIDs)
+    return flockIDs;
+}
+
+
+
+
+const PayableForm = (props) => {
 
     const [amount, setAmount] = useState(0);
     const [expenseName, setExpenseName] = useState('');
@@ -99,6 +120,7 @@ const Form = (props) => {
     const [selectedOptionFlock, setFlock] = useState('');
     const [selectedOptionUser, setSelectedUser] = useState('');
     const [isSelected, setIsSelected] = useState(false);
+    
 
     const handleInputChange = (event) => {
         const target = event.target;
@@ -139,48 +161,40 @@ const Form = (props) => {
         event.preventDefault();
         //use 'amount' and 'expenseName' and 'message' to retrive the values
         
-        /*var user = firebase.auth().currentUser;
+        var user = firebase.auth().currentUser;
         const res = db.collection('transaction').add({
-            receivableBy: user.uid,
-            payableTo:
-            id: user.uid,
             amount: amount,
-          });*/
+            expenseName: expenseName,
+            flock: {value: selectedOptionFlock.value, label: selectedOptionFlock.label},
+            receivableBy: {value: selectedOptionUser.value, label: selectedOptionUser.label},
+            payableTo: {value: user.uid, label: user.displayName},
+            message: message,
+            date: (new Date()).getDate(),
+          });
     
     }
+
 
 
 
     function getFlockLists() {
         var user = firebase.auth().currentUser;
         var flockIDs = [];
-        var tempObject = {};
-    
-        console.log(user);
-
         //Scan through database for user profileMatch, then load user-specific flocks.
-        db.collection('user').get().then(querySnapshot =>{
+        db.collection('user').get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
-                if (doc.data()!=null && user!=null)
-                    if (doc.data().id == user.uid) 
-                        doc.data().flocks.forEach(doc2 => {
-                            db.collection('flock-groups').get().then(querySnapshot2 => {
-                                querySnapshot2.forEach(doc3 => {
-                                    if (doc2 == doc3.id) {
-                                        tempObject = {value: doc2, label: doc3.data().flockName};
-                                        flockIDs.push(tempObject);
-                                        //console.log(tempObject);
-                                    }
-    
-                                })
-                            })
-                        });                        
+                if (doc.data()!=null && user!=null) {
+                    //console.log(user.uid+", "+doc.data().id)
+                    if (doc.id === user.uid) {
+                        Object.assign(flockIDs, doc.data().flocks) //load flockIDs with the flock IDs
+                    }
+                }   
             })
         })//end of firebase ref
-        //console.log(flockIDs);
-        console.log(flockIDs);
+        console.log(flockIDs)
         return flockIDs;
     }
+    
 
     function getUserLists() {
         var userIDs = [];
@@ -213,15 +227,12 @@ const Form = (props) => {
     const defaultOption = "Please select a flock.";
     const [flockIDs, setFlockIDs] = useState(getFlockLists());
     const userIDs = getUserLists();
-
-
-    console.log('hello');
+    var temp = getFlockLists()
 
     useEffect(() => {
-        setTimeout(function(){ setFlockIDs(getFlockLists()) }, 1000);
-    },[]);
-    
-    //once dismount, close in useeffect
+        setTimeout(function(){ setFlockIDs(temp) }, 1000);
+    },[temp]); 
+
 
 
     const classes = useStyles();
@@ -237,7 +248,7 @@ const Form = (props) => {
                 <form onSubmit={handleSubmit}>
                     <Grid direction = "row" container spacing={0}>
                         <Grid item lg = {6} style = {{marginBottom: '25px'}}>
-                            <Typography className = {classes.labelStyle}>Amount</Typography>
+                            <Typography className = {classes.labelStyle}>Amount ($)</Typography>
                             <TextField 
                                 id = "outlined-basic" 
                                 variant = "outlined" 
@@ -268,7 +279,7 @@ const Form = (props) => {
 
                         <Grid direction = "row" container spacing={0}>
                             <Grid item lg = {6}>
-                                <Typography>Which flock owes you?</Typography> 
+                                <Typography>Which flock?</Typography> 
                                 <Dropdown 
                                     value={selectedOptionFlock} 
                                     placeholder={defaultOption}
@@ -277,22 +288,23 @@ const Form = (props) => {
                             </Grid>
 
                             <Grid item lg = {6}>
-                                <Typography>Who owes you?</Typography>
+                                <Typography>{props.text}</Typography>
 
-                                {isSelected ? 
-                                (
+                                {
+                                isSelected 
+                                ? (
                                 <Dropdown 
                                     value={selectedOptionUser} 
                                     placeholder={"Please select a user."}
                                     onChange={handleChangeUser}
-                                    options = {userIDs} />
-                                ) : (
+                                    options = {userIDs} /> ) 
+                                : (
                                     <Dropdown 
                                     value={selectedOptionUser} 
                                     placeholder={"Please select a user."}
                                     onChange={handleChangeUser}
-                                    options = {['Please select a flock']} />
-                                )} 
+                                    options = {['Please select a flock']} /> )
+                                } 
 
                             </Grid>
                         </Grid>
@@ -320,6 +332,6 @@ const Form = (props) => {
     }
 
 
-export default Form;
+export default PayableForm;
 
 

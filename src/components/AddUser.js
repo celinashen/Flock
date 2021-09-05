@@ -24,7 +24,7 @@ class AddUserTextBar extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('An ID was submitted: ' + this.state.value);
+        alert('An ID was submitted: ' + this.state.value); 
         alert('Current Dropdown Selection: ' + this.props.selectedFlock.value)
         event.preventDefault();
         var match = false;
@@ -33,7 +33,7 @@ class AddUserTextBar extends React.Component {
         // Find the user who owns the ID that was submitted
         db.collection('user').get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
-                if (doc.data().id == this.state.value) {
+                if (doc.id == this.state.value) {
                     match = true;
                     
                     // This block's ultimate intention is to add the submitted info to the database
@@ -76,12 +76,12 @@ class AddUserTextBar extends React.Component {
 
                         // Must add new user to the flock document's user list
                         flockDoc.update({
-                            members: firebase.firestore.FieldValue.arrayUnion(this.state.value),
+                            members: firebase.firestore.FieldValue.arrayUnion({id: doc.id, name: doc.data().name}),
                         })
 
                         // Must add new flock to the specific user's local flocks list 
                         userDoc.update({
-                            flocks: firebase.firestore.FieldValue.arrayUnion(this.props.selectedFlock.value)
+                            flocks: firebase.firestore.FieldValue.arrayUnion({value: this.props.selectedFlock.value, label: this.props.selectedFlock.label})
                         });
                     }
                 }

@@ -98,7 +98,7 @@ const SignIn = ({ user, signOut, signInWithGoogle }) => {
   db.collection('user').get().then(querySnapshot =>{
     querySnapshot.forEach(doc => {
       if (doc.data()!=null && user!=null)
-        if (doc.data().id == user.uid) {
+        if (doc.id == user.uid) {
           Object.assign(flockIDs, doc.data().flocks) //load flockIDs with the flock IDs
           profileMatch = true;
         }

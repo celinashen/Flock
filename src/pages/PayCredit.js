@@ -2,7 +2,7 @@ import React from 'react';
 import '../pages/App.css';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import Form from '../components/Form';
+import PayableForm from '../components/ReceivableForm';
 import MenuBar from '../components/MenuBar'
 
 //COMPONENTS MUST START WITH UPPERCASE
@@ -17,9 +17,10 @@ import MenuBar from '../components/MenuBar'
 const PayCredit = () => {
     return (
         <div>
-            <Form 
-                title = "Pay a Credit"
-                description = "Let the person you owe know that you have paid them or e-transfered them by submitting a ‘pay a credit’ confirmation. Note: your credit record will be removed once they confirm they have received your money."
+            <PayableForm 
+                title = "Issue a Payable"
+                description = "Let the person you owe know that they owe you by submitting an 'Issue a Payable' confirmation. Note: your credit record will be removed once they confirm they have received your money."
+                text = "Who do you owe?"
                 submit = "Submit Confirmation"
             />
         </div>

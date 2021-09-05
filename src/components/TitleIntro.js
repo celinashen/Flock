@@ -81,7 +81,7 @@ const titleBar=()=> {
         <Grid style = {{marginLeft: '300px', marginTop: '8vh'}}>
             <Typography className={classes.name} align = "left" color="inherit">
               Hi {firebase.auth().currentUser
-              ? firebase.auth().currentUser.displayName.split(" ")[0]
+              ? firebase.auth().currentUser.displayName.split(" ")[0] + ", ID is " + firebase.auth().currentUser.uid
               : null}, 
             </Typography>
         </Grid>
