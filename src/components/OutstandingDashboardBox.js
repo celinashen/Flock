@@ -19,6 +19,7 @@ import {
   FaChevronRight,
   FaChevronLeft,
 } from "react-icons/fa";
+import {transactionPayableData, transactionReceivableData} from './DummyData'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -28,14 +29,15 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '35vw',
         marginLeft: '10vw',
         marginTop: '5vh',
+        marginBottom: '2vh',
+        paddingTop: '4vh',
         boxShadow: '0px 4px 20px 0px rgba(48,159,94,0.5)',
-        borderRadius: '20px'
+        borderRadius: '20px',
     },
 
     //card title
     favFlocksTitle: {
         marginLeft: '3vw',
-        marginTop: '4vh',
         marginBottom: '1vh',
         textAlign: 'left',
 
@@ -48,14 +50,19 @@ const useStyles = makeStyles((theme) => ({
     payable: {
       borderRadius: 10,
       boxShadow: "none", 
-      border: '2px solid #309F5E',
+      minHeight: '100%',
+      minWidth: '8vw',
+      maxWidth: '8vw',
+
+      border: (props) => props.border,
     },
     
     amount: {
       fontWeight: 550, 
       fontFamily: "Poppins",
       fontSize: 35,
-      color: "#309F5E", 
+
+      color: (props) => props.amountColor,
     },
     subtext: {
       color: "#707070",
@@ -74,32 +81,49 @@ const useStyles = makeStyles((theme) => ({
       marginRight: '13px'
     },
     flock: {
-      backgroundColor:"#309F5E",
       color: "white",
       fontFamily: "Poppins",
       fontSize: 15,
       boxShadow: 'none',
-      border: '2px solid #309F5E',
+
+      border: (props) => props.flockoBorder,
+      backgroundColor: (props) => props.backgroundColor,
     },
 
     styledDiv: {
       position: 'relative',
       display: 'flex',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
     },
-    arrow :{
-      color: '#309F5E',
+    cardsList: {
+      marginBottom: '3vh',
+      transition: 'transform 0.2s ease-in-out',
+      transform: 'translateX(0)'
+    },
+    leftArrow :{
+      marginLeft: '5%',
+      marginBottom: '3vh',
       '&:hover':{
         cursor: 'pointer',
-      }
+      },
+      color: (props) => props.amountColor,
+    },
+    rightArrow :{
+      marginRight: '5%',
+      marginBottom: '3vh',
+      '&:hover':{
+        cursor: 'pointer',
+      },
+      color: (props) => props.amountColor,
     }
 }));
 
 const Payable=(props)=> {
     const classes = useStyles();
+    const { payable, flock, amount } = useStyles(props);
     return (
-      <Card variant = "outlined" className = {classes.payable}>
+      <Card variant = "outlined" className = {payable}>
         <Grid className = {classes.cardContent}>
           <Grid>
             <Typography className = {classes.subtext}>
@@ -107,7 +131,7 @@ const Payable=(props)=> {
             </Typography>
           </Grid>
           <Grid>
-            <Typography className = {classes.amount}>
+            <Typography className = {amount}>
               {props.amount}
             </Typography>
           </Grid>
@@ -122,65 +146,32 @@ const Payable=(props)=> {
             </Typography>
           </Grid>
         </Grid>
-        <Card className = {classes.flock}>
+        <Card className = {flock}>
           {props.flock}
         </Card>
     </Card>
   );
 }
 
-//this is testing data
-const transactionPayableData = [
-    {
-      amount: '1',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '2',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '3',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '4',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '5',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '6',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-    {
-      amount: '7',
-      personOwed: 'Angela',
-      date: "Mar 3, 2021",
-      flock: "Rent"
-    },
-]
 
-const Carousel = ({transactionData}) => {
+const chunk = (arr, size) =>
+  //length: 3
+  //arr.slice(0, 3), arr.slice(1,6)
+  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+    arr.slice(i * size, i * size + size)
+  );
+
+//TODO: stop carousel from scrolling when on the last page
+
+const Carousel = ({transactionData, borderColor, backgroundColor, flockBorder, amountColor, arrowColor}) => {
 
   const classes = useStyles();
 
   const [current, setCurrent] = useState(0);
-  const length = transactionData.length;
+  
+
+  let arr=chunk(transactionData, 3);
+  const length = arr.length;
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -190,36 +181,84 @@ const Carousel = ({transactionData}) => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
+  
+  console.log(transactionData.length);
+  console.log(Math.ceil(arr.length / 3));
+  
+
   return (
     <div className = {classes.styledDiv}>
 
       <FaChevronLeft
-        className = {classes.arrow}
+        className = {classes.leftArrow}
         onClick={prevSlide}
+        color = {arrowColor}
       />
-      <Grid
-      container direction="row"
-      justify="space-around"
-      alignItems="center"
-      className={classes.iconListContainer}>
 
-        {transactionData.map((data, index) => {
-          return (
+      
+      {arr.map((item,index) => 
+      item.length === 3 && index === current ?
+        //First conditional (3 items)
 
-              <Grid key = {index} item lg = {4} item md = {4} item sm = {4} item xs = {4}>
-                {index === current && (
-                  <Payable personPaying = 'you' amount = {data.amount} personOwed = {data.personOwed} date = {data.date} flock = {data.flock}/>
-                )}
+        <Grid
+        container direction="row"
+        justify="center"
+        alignItems="center"
+        className = {classes.cardsList}>
+          <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
+            <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
+          </Grid>
+          <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
+            <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[1].personPaying} amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
+          </Grid>
+          <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">     
+            <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[2].personPaying} amount = {item[2].amount} personOwed = {item[2].personOwed} date = {item[2].date} flock = {item[2].flock}/>
+          </Grid>
+        </Grid>
+        : 
+
+          item.length === 2 && index === current ?
+            <Grid
+            container direction="row"
+            justify="center"
+            alignItems="center"
+            className = {classes.cardsList}>
+              <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
+                <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
               </Grid>
-
-
-          );
-        })}
-
-      </Grid>
+              <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
+                <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[1].personPaying} amount = {item[1].amount} personOwed = {item[1].personOwed} date = {item[1].date} flock = {item[1].flock}/>
+              </Grid>
+              <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center"> 
+               {/* empty component to algn components left */}
+              </Grid>
+            </Grid>
+          :
+            item.length === 1 && index === current ?
+              <Grid
+                container direction="row"
+                justify="center"
+                alignItems="center"
+                className = {classes.cardsList}>
+                  <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center">    
+                    <Payable border = {borderColor} backgroundColor = {backgroundColor} flockBorder = {flockBorder} amountColor = {amountColor} personPaying = {item[0].personPaying} amount = {item[0].amount} personOwed = {item[0].personOwed} date = {item[0].date} flock = {item[0].flock}/>
+                  </Grid>
+                  <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center"> 
+               {/* empty component to algn components left */}
+              </Grid>
+              <Grid item lg = {4} item md = {4} item sm = {4} item xs = {4} container direction="row" justify="center" alignItems="center"> 
+               {/* empty component to algn components left */}
+              </Grid>
+                </Grid>
+               :
+               //THIS IS BAD CODE --> typography always shows up TODO: FIX THIS LATER
+                <Typography></Typography>
+        )
+      }
       <FaChevronRight
-        className = {classes.arrow}
+        className = {classes.rightArrow}
         onClick={nextSlide}
+        color = {arrowColor}
       />
     </div>
   );
@@ -233,9 +272,9 @@ const OutstandingDashboardBox=()=>{
         
         <Card className = {classes.card}>
             <Typography className = {classes.favFlocksTitle}>outstanding payables</Typography>
-            
-                <Carousel transactionData = {transactionPayableData}/>
-
+              <Carousel borderColor = '2px solid #309F5E' backgroundColor = '#309F5E' flockBorder = '2px solid #309F5E' amountColor = '#309F5E' arrowColor = '#309F5E' transactionData = {transactionPayableData}/>
+            <Typography className = {classes.favFlocksTitle}>outstanding receivables</Typography>
+              <Carousel borderColor = '2px solid #000000' backgroundColor = '#000000' flockBorder = '2px solid #000000' amountColor = '#000000' arrowColor = '#000000' transactionData = {transactionReceivableData}/>
         </Card>
     
   );

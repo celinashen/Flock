@@ -187,6 +187,7 @@ const TransactionsBox=()=>{
           marginLeft: '290px',
         }}
       >
+
         <Grid className = {classes.outstandingBoxContainer}>
           {transactionData.map((data, index) => {
             return (
