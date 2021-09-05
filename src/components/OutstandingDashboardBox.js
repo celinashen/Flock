@@ -51,8 +51,8 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: 10,
       boxShadow: "none", 
       minHeight: '100%',
-      minWidth: '9vw',
-      maxWidth: '9vw',
+      minWidth: '8vw',
+      maxWidth: '8vw',
 
       border: (props) => props.border,
     },
@@ -97,7 +97,9 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
     },
     cardsList: {
-      marginBottom: '3vh'
+      marginBottom: '3vh',
+      transition: 'transform 0.2s ease-in-out',
+      transform: 'translateX(0)'
     },
     leftArrow :{
       marginLeft: '5%',
